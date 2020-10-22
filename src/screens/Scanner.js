@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { StyleConstants, Styles, Colors } from '../style';
 
-export default function App() {
+export default function Scanner({navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
@@ -20,38 +19,31 @@ export default function App() {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        alert(`Bar has type ${type} and data ${data}`);
+        alert(`Barcode has type ${type} and data ${data}`)
+        // TODO: Search food and go to display
     };
 
     if (hasPermission === null) {
         return (
-            <View>
-                <Text style={Styles.labelText, {marginTop: StyleConstants.FormItemTextSize, textAlign: "center"}}>
-                    Awaiting permission to access the camera
-                </Text>
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text='Go To Search' onPress={onGoToSearch}/>
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text='Go To Home' onPress={onGoToHome}/>
-            </View>   
+            <View style={Colors.Background}/>   
         )
     }
     if (hasPermission === false) {
         return (
-            <View>
-                <Text style={Styles.labelText, {marginTop: StyleConstants.FormItemTextSize, textAlign: "center"}}>
-                    AllergenAlert needs permission to access the camera before you can use scanner
-                </Text>
-                <TextLoadingButton style={{ marginTop: StyleConsatants.FormItemTextSize }} text='Go To Search' onPress={onGoToSearch}/>
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text='Go To Home' onPress={onGoToHome}/>
+            <View style={[Styles.container, {justifyContent: 'center'}]}>
+                <View style={{width: StyleConstants.FormWidth}}>
+                    <Text style={Styles.labelText, {marginTop: StyleConstants.FormItemTextSize, textAlign: "center"}}>
+                        AllergenAlert needs permission to access the camera before you can use scanner
+                    </Text>
+                    <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text='Back to Search' onPress={onGoToSearch}/>
+                </View>
             </View>  
         )
     }
 
     function onGoToSearch() {
         // TODO: Insert navigation here
-    }
-
-    function onGoToHome(){
-        // TODO: Insert navigation here
+        navigation.navigate('Login');
     }
 
 
@@ -62,7 +54,7 @@ export default function App() {
             style={StyleSheet.absoluteFillObject}
         />
 
-        {scanned && <TextLoadingButton title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+        <TextLoadingButton text={'Back to Search'} onPress={onGoToSearch} style={{borderRadius: null, fontSize: 30}}/>
         </View>
     );
 }

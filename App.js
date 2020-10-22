@@ -25,7 +25,7 @@ function AuthStackScreen() {
         <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
             <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
-            <AuthStack.Screen name="Scanner" component={Scanner}/>
+            <AuthStack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/>
         </AuthStack.Navigator>
     )
 }

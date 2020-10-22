@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../context';
 import { useAsync } from './useAsync';
 
-const BASE_URL = 'http://192.168.1.102:5000/api';
+const BASE_URL = 'http://192.168.1.102:5001/api';
 
 function api(authContext, endpoint, urlParams, bodyParams) {
     let headers = {
