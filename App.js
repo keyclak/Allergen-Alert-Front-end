@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AuthContext } from './src/context';
 
 import Home from './src/screens/Home';
+import LandingPage from './src/screens/LandingPage';
 import Login from './src/screens/auth/Login';
 import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
@@ -13,7 +14,8 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen name="Home" component={Home}/>
+            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
+            {/* <HomeStack.Screen name="Home" component={Home}/> */}
         </HomeStack.Navigator>
     );
 }
