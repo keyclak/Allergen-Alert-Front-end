@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import {ImageBackground, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 import LoadingButton from '../../components/LoadingButton';
 import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles } from '../../style';
@@ -25,9 +25,9 @@ export default function CreateAccount() {
     return (
         <View style={Styles.container}>
             <View style={{width: StyleConstants.FormWidth}}>
-                <FormTextInput label="Username" onChangeText={setUsername}/>
-                <FormTextInput label="Email" onChangeText={setEmail}/>
-                <FormTextInput label="Password" onChangeText={setPassword} />
+                <FormTextInput placeholder="Username" onChangeText={setUsername}/>
+                <FormTextInput placeholder="Email" onChangeText={setEmail}/>
+                <FormTextInput placeholder="Password" onChangeText={setPassword} />
                 <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Log In" isLoading={login.loading} onPress={onSubmit} />
                 <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
             </View>
