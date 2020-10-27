@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AuthContext } from './src/context';
 
-import Food from './src/screens/Food'; 
+// import Food from './src/screens/Food'; 
 import LandingPage from './src/screens/LandingPage';
 import Settings from './src/screens/Settings'
 import Login from './src/screens/auth/Login';

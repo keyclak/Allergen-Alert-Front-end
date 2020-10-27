@@ -18,7 +18,6 @@ export default function Settings() {
                 <ListItem.Title style={{color:"#666"}}>
                     Log Out
                 </ListItem.Title>
-                
             </ListItem>
         </View>
     );
