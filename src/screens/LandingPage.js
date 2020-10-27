@@ -13,26 +13,6 @@ export default function LandingPage() {
             navTo: 'Diet'
         },
         {
-            title: 'My Safe Foods',
-            icon: 'verified-user', 
-            navTo: 'SafeFoods'
-        },
-        {
-            title: 'My Grocery List',
-            icon: 'local-grocery-store',
-            navTo: 'GroceryList'
-        },
-        {
-            title: 'My Flagged Foods',
-            icon: 'flag',
-            navTo: 'FlaggedFoods'
-        },
-        {
-            title: 'Create New Diet',
-            icon: 'add-circle-outline',
-            navTo: 'CreateDiet'
-        },
-        {
             title: 'Settings',
             icon: 'settings',
             navTo: 'Settings'
