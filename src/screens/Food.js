@@ -5,7 +5,15 @@ import Ingredients from '../components/Ingredients'
 
 export default function Food() {
     const [foodName, setFoodName] = useState("Cheerios"); 
-    const [safety, setSafety] = useState(false); 
+    const [foodObj, setFoodObj] = useState({
+        name: 'food1',
+        ingredients: [
+            'salt',
+            'pepper'
+        ],
+       // safe: false
+        safe: true
+    })
 
     const ing = [
         {
@@ -23,21 +31,14 @@ export default function Food() {
     
     const disclaimer = "Basic legal disclaimer"
 
-    const displaySafetyMsg = () => {
-        if(safety) {
-            return "This food is safe."
-        }
-        else {
-            return "This food is not safe."
-        }
-    }
-
     return(
-        <View style={[Styles.container, {backgroundColor: 'white'}]}>   
-            <Text style={[Styles.titleText, {marginTop: 20}]}>{foodName}</Text>
-            <Text style={[Styles.titleText, {marginTop: 20}]}>{displaySafetyMsg()}</Text>
+        <View style={Styles.container}>  
+            <Text style={[Styles.titleText, {marginTop: 130}, {fontSize: 45}]}>{foodObj.name}</Text> 
+            <View style={[Styles.alertBox, (foodObj.safe ? null : Styles.alert), {marginTop: -30}]}>
+                <Text style={Styles.subtitleText}>{(foodObj.safe ? 'This food is safe!' : 'This food is not safe!')}</Text>
+            </View>
             <Ingredients content={ingredients} />
-            <Text style={[Styles.labelText, {marginLeft: 0}]}>{disclaimer}</Text>
+            <Text style={[Styles.labelText, {marginLeft: 0}, {position: 'absolute'}, {bottom: 50}]}>{disclaimer}</Text>
         </View>
     )
 }
