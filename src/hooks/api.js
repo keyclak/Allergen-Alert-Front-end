@@ -71,3 +71,11 @@ export function useDummy(value) {
         return sleep(500).then(() => value);
     });
 }
+
+export function validateResetToken(token) {
+
+}
+
+export function resetPassword(token) {
+    
+}

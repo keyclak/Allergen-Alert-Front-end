@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 
 const Colors = {
-    Foreground: '#01760c',
+    Foreground: '#001dbd',
     Accent: '#FFF',
-    AccentForeground: '#b05903',
-    Background: '#51d112',
+    AccentForeground: '#683604',
+    Background: '#0060ff',
     BackgroundBlur: '#444',
-    InputBorder: '#01760c',
+    InputBorder: '#0034f5',
     InputBackground: '#FFF',
-    Input: '#01760c',
-    ButtonBorder: '#7e4104',
-    ButtonBackground: '#b05903',
+    Input: '#0034f5',
+    ButtonBorder: '#683604',
+    ButtonBackground: '#cc6f04',
     Error: '#F44',
 };
 const StyleConstants = {
@@ -59,7 +59,6 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: Colors.ButtonBorder,
-        backgroundColor: Colors.AccentForeground,
         elevation: 10, //Android
         shadowRadius: 5, //iOS
         shadowColor: 'black' //iOS
@@ -77,7 +76,7 @@ const Styles = StyleSheet.create({
         marginLeft: StyleConstants.Radius,
         fontSize: StyleConstants.FormItemTextSize,
         fontWeight: 'bold'
-    },
+    }
 });
 
 export { Colors, StyleConstants, Styles };

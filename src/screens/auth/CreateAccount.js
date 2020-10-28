@@ -28,8 +28,10 @@ export default function CreateAccount() {
                 <FormTextInput placeholder="Username" onChangeText={setUsername}/>
                 <FormTextInput placeholder="Email" onChangeText={setEmail}/>
                 <FormTextInput placeholder="Password" onChangeText={setPassword} />
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Log In" isLoading={login.loading} onPress={onSubmit} />
                 <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
+            </View>
+            <View style={{position: 'absolute', bottom:110, width: StyleConstants.FormWidth}}>
+                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Create Account" isLoading={login.loading} onPress={onSubmit} />
             </View>
         </View>
     );

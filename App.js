@@ -10,6 +10,7 @@ import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
 import ForgotPass from './src/screens/auth/ForgotPass';
 import ChangePass from './src/screens/auth/ChangePass';
+import AuthCode from './src/screens/auth/AuthCode';
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
@@ -28,6 +29,7 @@ function AuthStackScreen() {
             <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{title: "Back to login", headerTransparent: true}}/>
             <AuthStack.Screen name="ForgotPass" component={ForgotPass} options={{title: "", headerTransparent: true}}/>
             <AuthStack.Screen name="ChangePass" component={ChangePass} options={{title: "", headerTransparent: true}}/>
+            <AuthStack.Screen name="AuthCode" component={AuthCode} options={{title: "", headerTransparent: true}}/>
         </AuthStack.Navigator>
     )
 }
