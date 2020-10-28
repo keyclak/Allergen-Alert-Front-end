@@ -86,8 +86,8 @@ const Styles = StyleSheet.create({
         color: Colors.MainText,
         fontWeight: 'bold',
         fontSize: 20,
-        paddingHorizontal: 40,
-        paddingVertical: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 25,
         borderRadius: 20,
         backgroundColor: '#00FF99'
     },
@@ -97,8 +97,8 @@ const Styles = StyleSheet.create({
         color: Colors.MainText,
         fontWeight: 'bold',
         fontSize: 20,
-        paddingHorizontal: 40,
-        paddingVertical: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 25,
         borderRadius: 20,
         backgroundColor: '#FF403D'
     }
