@@ -8,26 +8,25 @@ export default function Food() {
     const [foodObj, setFoodObj] = useState({
         name: 'food1',
         ingredients: [
-            'salt',
-            'pepper'
+            {
+                name: 'salt',
+                key: 1
+            },
+            {
+                name: 'pepper',
+                key: 2
+            },
+            {
+                name: 'mono and diglycerides',
+                key: 3
+            }
         ],
        // safe: false
         safe: true
     })
 
-    const ing = [
-        {
-            name: 'ing1',
-            key: 1
-        }, 
-        {
-            name: 'ing2',
-            key: 2
-        }
-    ]
-
     // TODO: will need to make a component to display 
-    const [ingredients, setIngredients] = useState(ing);
+    const [ingredients, setIngredients] = useState(foodObj.ingredients);
     
     const disclaimer = "Basic legal disclaimer"
 
