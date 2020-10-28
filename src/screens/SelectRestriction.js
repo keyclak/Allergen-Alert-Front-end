@@ -7,7 +7,8 @@ import { useLogin } from '../hooks/api';
 import { AuthContext } from '../context';
 import { ListItem, Icon } from 'react-native-elements'
 
-export default function ViewDiet({navigation}) {
+
+export default function SelectRestriction({navigation}) {
     const context = useContext(AuthContext);
 
     const [currentDiet, setDiets] = useState([
@@ -19,29 +20,30 @@ export default function ViewDiet({navigation}) {
     ]);
     
     function addRestriction() {
-        navigation.navigate('SelectRestriction');
+        //navigation.navigate('SelectRestriction');
+        console.log('test');
     }
 
     return (
+
         <View style={[Styles.container, {justifyContent: 'top', paddingTop:40}]}>
             <View style={{width: StyleConstants.FormWidth}}>
-                <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
+                <Text style={{fontSize: 20, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Select Dietary Restrictions</Text>
                 <FlatList
                     data={currentDiet}
                     renderItem={({ item }) => (
-                        <Text
-                        style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}>
-                        {item.title}
-                        </Text>
+                        <TouchableOpacity
+                            style={Styles.button}
+                            onPress={addRestriction}
+                            >
+        
+                            <Text
+                            style={[Styles.buttonText]}>
+                            {item.title}
+                            </Text>
+                        </TouchableOpacity>
                     )}
                 />
-                <TouchableOpacity
-                    style={Styles.button}
-                    onPress={addRestriction}
-                    >
-
-                    <Text>Add a Dietary Restriction</Text>
-                </TouchableOpacity>
             </View>  
         </View>
     );
