@@ -9,12 +9,14 @@ const Colors = {
     BackgroundBlur: '#444',
     Border: '#AAA',
     Error: '#F44',
+    MainText: '#666'
 };
 const StyleConstants = {
     Radius: 25,
     FormItemHeight: 50,
     FormWidth: '80%',
-    FormItemTextSize: 16
+    FormItemTextSize: 16,
+    AvatarRadius: 120
 };
 
 const Styles = StyleSheet.create({
@@ -56,6 +58,23 @@ const Styles = StyleSheet.create({
         marginLeft: StyleConstants.Radius,
         fontSize: StyleConstants.FormItemTextSize
     },
+    titleText: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginTop: 160,
+        paddingBottom: StyleConstants.FormItemHeight
+    },
+    avatar: {
+        width: StyleConstants.AvatarRadius,
+        height: StyleConstants.AvatarRadius,
+        borderRadius: 63,
+        borderWidth: 2,
+        borderColor: "white",
+        alignSelf:'center',
+        position: 'absolute',
+        marginTop: 30
+      },
 });
 
 export { Colors, StyleConstants, Styles };

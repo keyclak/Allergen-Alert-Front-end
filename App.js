@@ -5,7 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, createTabNavigator } from '@react-navigation/bottom-tabs';
 import { AuthContext } from './src/context';
 
-import Home from './src/screens/Home';
+// import Food from './src/screens/Food'; 
+import LandingPage from './src/screens/LandingPage';
+import Settings from './src/screens/Settings'
 import Login from './src/screens/auth/Login';
 import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
@@ -34,10 +36,9 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator>
-            {/* Add Landing Page */}
-            {/* Add Diet Page */}
-            {/* Add Settings Page */}
-            <HomeStack.Screen name="Home" component={Home}/>
+            {/* <HomeStack.Screen name="FoodPage" component={Food} /> */}
+            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
+            <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
         </HomeStack.Navigator>
     );
 }
@@ -53,7 +54,7 @@ function AuthStackScreen() {
 }
 
 export default function App() {
-    const [authToken, setAuthToken] = useState(null);
+    const [authToken, setAuthToken] = useState('abc');
 
     const authContext = {
         token: authToken,
