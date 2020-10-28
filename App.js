@@ -7,6 +7,7 @@ import { AuthContext } from './src/context';
 // import Food from './src/screens/Food'; 
 import LandingPage from './src/screens/LandingPage';
 import Settings from './src/screens/Settings'
+import ViewDiet from './src/screens/ViewDiet'
 import Login from './src/screens/auth/Login';
 import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
@@ -18,6 +19,7 @@ function HomeStackScreen() {
             {/* <HomeStack.Screen name="FoodPage" component={Food} /> */}
             <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
+            <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
         </HomeStack.Navigator>
     );
 }
