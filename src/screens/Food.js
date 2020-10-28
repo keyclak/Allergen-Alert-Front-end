@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, Pressable, Image} from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image, TouchableOpacity} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../style';
 import Ingredients from '../components/Ingredients'
+import { color } from 'react-native-reanimated';
 
 export default function Food() {
     const [foodName, setFoodName] = useState("Cheerios"); 
@@ -37,6 +38,23 @@ export default function Food() {
                 <Text style={Styles.subtitleText}>{(foodObj.safe ? 'This food is safe!' : 'This food is not safe!')}</Text>
             </View>
             <Ingredients content={ingredients} />
+            <View style={[{flexDirection: "row"}]}>
+                <TouchableOpacity
+                    style={Styles.navButton}
+                    onPress= {null}
+                    underlayColor='#fff'>
+                    <Text style = {Styles.navButtonText} > Back</Text>
+                </TouchableOpacity>
+
+                <View style={Styles.buttonSpace} />
+
+                <TouchableOpacity
+                    style={Styles.navButton}
+                    onPress= {null}
+                    underlayColor='#fff'>
+                    <Text style = {Styles.navButtonText} >Search Another Item</Text>
+                </TouchableOpacity>
+            </View>
             <Text style={[Styles.labelText, {marginLeft: 0}, {position: 'absolute'}, {bottom: 50}]}>{disclaimer}</Text>
         </View>
     )

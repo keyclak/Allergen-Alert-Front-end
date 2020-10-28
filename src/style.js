@@ -101,7 +101,23 @@ const Styles = StyleSheet.create({
         paddingVertical: 25,
         borderRadius: 20,
         backgroundColor: '#FF403D'
-    }
+    },
+    navButton: {
+        marginBottom: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        marginTop: 20,
+        backgroundColor: "#00C4FF",
+        borderRadius: 20
+        },
+    navButtonText: {
+        fontSize: 16,
+        color: "black"
+        },
+    buttonSpace: {
+        width: 20, 
+        height: 20,
+        },
 });
 
 export { Colors, StyleConstants, Styles };
