@@ -20,8 +20,8 @@ export default function SelectRestriction({navigation}) {
     ]);
     
     function addRestriction() {
-        //navigation.navigate('SelectRestriction');
-        console.log('test');
+        navigation.navigate('ViewDiet');
+        console.log(currentDiet[1].key);
     }
 
     return (
@@ -29,21 +29,24 @@ export default function SelectRestriction({navigation}) {
         <View style={[Styles.container, {justifyContent: 'top', paddingTop:40}]}>
             <View style={{width: StyleConstants.FormWidth}}>
                 <Text style={{fontSize: 20, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Select Dietary Restrictions</Text>
-                <FlatList
-                    data={currentDiet}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            style={Styles.button}
-                            onPress={addRestriction}
-                            >
-        
-                            <Text
-                            style={[Styles.buttonText]}>
-                            {item.title}
-                            </Text>
-                        </TouchableOpacity>
-                    )}
-                />
+                <View>
+                    <FlatList
+                        data={currentDiet}
+                        renderItem={({ item }) => (
+                            <View style={{paddingBottom: 30}}>
+                            <TouchableOpacity
+                                style={Styles.button}
+                                onPress={addRestriction}
+                                >
+                                <Text
+                                style={[Styles.buttonText]}>
+                                {item.title}
+                                </Text>
+                            </TouchableOpacity>
+                            </View>
+                        )}
+                    />
+                </View>
             </View>  
         </View>
     );

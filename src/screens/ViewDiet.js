@@ -39,7 +39,6 @@ export default function ViewDiet({navigation}) {
                     style={Styles.button}
                     onPress={addRestriction}
                     >
-
                     <Text>Add a Dietary Restriction</Text>
                 </TouchableOpacity>
             </View>  
