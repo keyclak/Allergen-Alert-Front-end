@@ -65,6 +65,11 @@ const Styles = StyleSheet.create({
         marginTop: 160,
         paddingBottom: StyleConstants.FormItemHeight
     },
+    subtitleText: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
     avatar: {
         width: StyleConstants.AvatarRadius,
         height: StyleConstants.AvatarRadius,
@@ -74,7 +79,29 @@ const Styles = StyleSheet.create({
         alignSelf:'center',
         position: 'absolute',
         marginTop: 30
-      },
+    },
+    alertBox: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 40,
+        paddingVertical: 20,
+        borderRadius: 20,
+        backgroundColor: '#00FF99'
+    },
+    alert: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 40,
+        paddingVertical: 20,
+        borderRadius: 20,
+        backgroundColor: '#FF403D'
+    }
 });
 
 export { Colors, StyleConstants, Styles };
