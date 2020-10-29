@@ -5,10 +5,9 @@ import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
 import { useLogin } from '../hooks/api';
 import { AuthContext } from '../context';
-import { ListItem, Icon } from 'react-native-elements'
 
 export default function ViewDiet({navigation}) {
-    const context = useContext(AuthContext);
+    //const context = useContext(AuthContext);
 
     const [currentDiet, setDiets] = useState([
         { title: 'Vegetarian', key: '1' },
@@ -23,7 +22,7 @@ export default function ViewDiet({navigation}) {
     }
 
     return (
-        <View style={[Styles.container, {justifyContent: 'top', paddingTop:40}]}>
+         <View style={[Styles.container, /*{justifyContent: 'top', paddingTop:40}*/]}>
             <View style={{width: StyleConstants.FormWidth}}>
                 <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
                 <FlatList
@@ -41,7 +40,7 @@ export default function ViewDiet({navigation}) {
                     >
                     <Text>Add a Dietary Restriction</Text>
                 </TouchableOpacity>
-            </View>  
+            </View>
         </View>
     );
 }

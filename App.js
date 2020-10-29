@@ -19,8 +19,8 @@ const Tabs = createBottomTabNavigator();
 function TabScreen() {
     return (
         <Tabs.Navigator>
-            <Tabs.Screen name = "Search" component = {SearchStackScreen}/>
             <Tabs.Screen name = "Home" component = {HomeStackScreen}/>
+            <Tabs.Screen name = "Search" component = {SearchStackScreen}/>
         </Tabs.Navigator>
     )
 }
