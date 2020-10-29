@@ -51,7 +51,7 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <SearchStack.Screen name="FoodPage" component={Food} />
+            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
             <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
