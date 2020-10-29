@@ -3,7 +3,7 @@ import {ImageBackground, View, Text, Pressable, StyleSheet, ActivityIndicator, T
 import LoadingButton from '../../components/LoadingButton';
 import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles } from '../../style';
-import { useLogin } from '../../hooks/api';
+import { useLogin, useCreateAccount } from '../../hooks/api';
 import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
 
@@ -14,24 +14,21 @@ export default function CreateAccount() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const login = useLogin(username, password);
+    const createAccount = useCreateAccount(username, email, password);
 
     function onSubmit() {
-        login.execute()
-            .then(r => context.logIn(r.token))
+        createAccount.execute()
             .catch(e => {});
     }
 
     return (
         <View style={Styles.container}>
             <View style={{width: StyleConstants.FormWidth}}>
-                <FormTextInput placeholder="Username" onChangeText={setUsername}/>
-                <FormTextInput placeholder="Email" onChangeText={setEmail}/>
-                <FormTextInput placeholder="Password" onChangeText={setPassword} />
-                <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
-            </View>
-            <View style={{position: 'absolute', bottom:110, width: StyleConstants.FormWidth}}>
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Create Account" isLoading={login.loading} onPress={onSubmit} />
+                <FormTextInput label="Username" onChangeText={setUsername}/>
+                <FormTextInput label="Email" onChangeText={setEmail}/>
+                <FormTextInput label="Password" onChangeText={setPassword} />
+                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Create Account" isLoading={createAccount.loading} onPress={onSubmit} />
+                <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{createAccount.error}</Text>
             </View>
         </View>
     );

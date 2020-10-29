@@ -12,13 +12,16 @@ const Colors = {
     Input: '#0034f5',
     ButtonBorder: '#683604',
     ButtonBackground: '#cc6f04',
-    Error: '#ef0909',
+    Border: '#AAA',
+    Error: '#F44',
+    MainText: '#666'
 };
 const StyleConstants = {
     Radius: 25,
     FormItemHeight: 50,
     FormWidth: '80%',
-    FormItemTextSize: 18
+    FormItemTextSize: 16,
+    AvatarRadius: 120
 };
 
 const Styles = StyleSheet.create({
@@ -74,9 +77,67 @@ const Styles = StyleSheet.create({
     labelText: {
         color: Colors.InputBorder,
         marginLeft: StyleConstants.Radius,
-        fontSize: StyleConstants.FormItemTextSize,
-        fontWeight: 'bold'
-    }
+        fontSize: StyleConstants.FormItemTextSize
+    },
+    titleText: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingBottom: StyleConstants.FormItemHeight
+    },
+    subtitleText: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    avatar: {
+        width: StyleConstants.AvatarRadius,
+        height: StyleConstants.AvatarRadius,
+        borderRadius: 63,
+        borderWidth: 2,
+        borderColor: "white",
+        alignSelf:'center',
+        marginTop: 30, 
+        marginBottom: 20
+    },
+    alertBox: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 25,
+        borderRadius: 20,
+        backgroundColor: '#00FF99'
+    },
+    alert: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 25,
+        borderRadius: 20,
+        backgroundColor: '#FF403D'
+    },
+    navButton: {
+        marginBottom: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        marginTop: 20,
+        backgroundColor: "#00C4FF",
+        borderRadius: 20
+        },
+    navButtonText: {
+        fontSize: 16,
+        color: "black"
+        },
+    buttonSpace: {
+        width: 20, 
+        height: 20,
+        },
 });
 
 export { Colors, StyleConstants, Styles };

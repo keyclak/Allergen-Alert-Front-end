@@ -31,6 +31,10 @@ export default function Login({navigation}) {
     function onForgotPass() {
         navigation.navigate('ForgotPass');
     }
+    function onTest() {
+        navigation.navigate('Scanner');
+    }
+
 
     return (
         <ImageBackground source={require('../../../assets/background.png')}  style={[Styles.backgroundImage, {justifyContent: 'flex-start'}]}>
@@ -47,10 +51,7 @@ export default function Login({navigation}) {
                     <Text style={Styles.buttonText}>Create an Account</Text>
                 </Pressable>
                 <View style={{paddingTop: 1}}></View>
-                <TextLoadingButton 
-                    text="Test"
-                    isLoading={dummy.loading} 
-                    onPress={() => dummy.background()} />
+                <TextLoadingButton text="Test Scanner" isLoading={dummy.loading} onPress={onCreateAccount}/>
                 <View style={{paddingTop: 20}}></View>
                 <Pressable style={Styles.button} onPress={onForgotPass}>
                     <Text style={Styles.buttonText}>Forgot Password</Text>
