@@ -11,6 +11,7 @@ import Settings from './src/screens/Settings'
 import Login from './src/screens/auth/Login';
 import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
+import Scanner from './src/screens/Scanner';
 
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
@@ -49,6 +50,7 @@ function AuthStackScreen() {
         <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
             <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
+            <AuthStack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/>
         </AuthStack.Navigator>
     )
 }

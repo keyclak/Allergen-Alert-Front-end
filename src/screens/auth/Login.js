@@ -28,6 +28,10 @@ export default function Login({navigation}) {
         navigation.navigate('CreateAccount');
     }
 
+    function onTest() {
+        navigation.navigate('Scanner');
+    }
+
 
     return (
         <View style={[Styles.container, {justifyContent: 'center'}]}>
@@ -43,10 +47,7 @@ export default function Login({navigation}) {
                     <Text style={Styles.buttonText}>Create an Account</Text>
                 </Pressable>
 
-                <TextLoadingButton 
-                    text="Test"
-                    isLoading={dummy.loading} 
-                    onPress={() => dummy.background()} />
+                <TextLoadingButton text="Test Scanner" isLoading={dummy.loading} onPress={onTest}/>
             </View>
         </View>
     );
