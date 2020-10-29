@@ -10,7 +10,7 @@ export default function LandingPage() {
         {
             title: 'View My Diet',
             icon: 'sort',
-            navTo: 'Diet'
+            navTo: 'ViewDiet'
         },
         {
             title: 'Settings',
