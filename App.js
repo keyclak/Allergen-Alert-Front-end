@@ -27,7 +27,7 @@ const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
         <SearchStack.Navigator>
-            {/* Add Scanning Page */}
+            <SearchStack.Screen name="Scanner" component={Scanner} />
             {/* Add Food Page */}
         </SearchStack.Navigator>
     );
