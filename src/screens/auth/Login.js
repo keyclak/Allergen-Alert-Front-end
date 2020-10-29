@@ -47,7 +47,7 @@ export default function Login({navigation}) {
                     <Text style={Styles.buttonText}>Create an Account</Text>
                 </Pressable>
 
-                <TextLoadingButton text="Test Scanner" isLoading={dummy.loading} onPress={onTest}/>
+                <TextLoadingButton text="Test Scanner" isLoading={dummy.loading} onPress={onCreateAccount}/>
             </View>
         </View>
     );

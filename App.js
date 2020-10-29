@@ -25,6 +25,17 @@ function TabScreen() {
     )
 }
 
+const AuthStack = createStackNavigator();
+function AuthStackScreen() {
+    return (
+        <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
+            <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+            <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
+            <AuthStack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/>
+        </AuthStack.Navigator>
+    )
+}
+
 const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
@@ -35,11 +46,12 @@ function SearchStackScreen() {
     );
 }
 
+
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
+            <SearchStack.Screen name="FoodPage" component={Food} />
             <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
@@ -48,16 +60,6 @@ function HomeStackScreen() {
     );
 }
 
-const AuthStack = createStackNavigator();
-function AuthStackScreen() {
-    return (
-        <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
-            <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
-            <AuthStack.Screen name="Scanner" component={Scanner}/>
-        </AuthStack.Navigator>
-    )
-}
 
 export default function App() {
     const [authToken, setAuthToken] = useState('abc');
