@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, createTabNavigator } from '@react-navigation/bottom-tabs';
 import { AuthContext } from './src/context';
 
-// import Food from './src/screens/Food'; 
+import Food from './src/screens/Food'; 
 import LandingPage from './src/screens/LandingPage';
 import Settings from './src/screens/Settings'
 import ViewDiet from './src/screens/ViewDiet'
@@ -18,7 +18,7 @@ import Scanner from './src/screens/Scanner';
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
     return (
-        <Tabs.Navigator>
+        <Tabs.Navigator tabBarOptions={{ style: navStyle.header, activeTintColor: Colors.Accent, inactiveTintColor: Colors.Foreground }}>
             <Tabs.Screen name = "Home" component = {HomeStackScreen}/>
             <Tabs.Screen name = "Search" component = {SearchStackScreen}/>
         </Tabs.Navigator>
@@ -28,7 +28,7 @@ function TabScreen() {
 const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
-        <SearchStack.Navigator>
+        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
             <SearchStack.Screen name="Scanner" component={Scanner} />
             {/* Add Food Page */}
         </SearchStack.Navigator>
@@ -38,8 +38,8 @@ function SearchStackScreen() {
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
-        <HomeStack.Navigator>
-            {/* <HomeStack.Screen name="FoodPage" component={Food} /> */}
+        <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
+            <SearchStack.Screen name="FoodPage" component={Food} />
             <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>

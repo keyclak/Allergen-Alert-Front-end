@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable, Image, TouchableOpacity} from 'react
 import { StyleConstants, Styles, Colors } from '../style';
 import Ingredients from '../components/Ingredients'
 import { color } from 'react-native-reanimated';
+import { useDummy } from '../hooks/api';
 
 export default function Food() {
     const [foodName, setFoodName] = useState("Cheerios"); 
@@ -26,6 +27,26 @@ export default function Food() {
         safe: true
     })
 
+    const food = useDummy({
+        name: 'food1',
+        ingredients: [
+            {
+                name: 'salt',
+                key: 1
+            },
+            {
+                name: 'pepper',
+                key: 2
+            },
+            {
+                name: 'mono and diglycerides',
+                key: 3
+            }
+        ],
+       // safe: false
+        safe: true
+    });
+
     // TODO: will need to make a component to display 
     const [ingredients, setIngredients] = useState(foodObj.ingredients);
     
@@ -38,7 +59,7 @@ export default function Food() {
                 <Text style={Styles.subtitleText}>{(foodObj.safe ? 'This food is safe!' : 'This food is not safe!')}</Text>
             </View>
             <Ingredients content={ingredients} />
-            <View style={[{flexDirection: "row"}]}>
+            {/* <View style={[{flexDirection: "row"}]}>
                 <TouchableOpacity
                     style={Styles.navButton}
                     onPress= {null}
@@ -54,7 +75,7 @@ export default function Food() {
                     underlayColor='#fff'>
                     <Text style = {Styles.navButtonText} >Search Another Item</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
             <Text style={[Styles.labelText, {marginLeft: 0}, {position: 'absolute'}, {bottom: 50}]}>{disclaimer}</Text>
         </View>
     )
