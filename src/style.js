@@ -12,7 +12,7 @@ const Colors = {
     Input: '#0034f5',
     ButtonBorder: '#683604',
     ButtonBackground: '#cc6f04',
-    Error: '#F44',
+    Error: '#ef0909',
 };
 const StyleConstants = {
     Radius: 25,

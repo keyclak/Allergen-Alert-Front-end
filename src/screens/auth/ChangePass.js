@@ -16,7 +16,10 @@ export default function ChangePass({navigation}) {
         if (pass1 !== pass2)
             errorState(1)
         else
-            navigation.navigate('Login');
+        {
+            errorState(0)
+            navigation.navigate('Login')
+        }
     }
 
     return (
