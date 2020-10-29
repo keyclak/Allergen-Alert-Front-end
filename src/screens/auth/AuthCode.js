@@ -8,7 +8,7 @@ import FormTextInput from '../../components/FormTextInput';
 export default function ForgotPasss({navigation}) {
     const context = useContext(AuthContext);
 
-    const [email, setCode] = useState();
+    const [code, setCode] = useState();
 
     function onConfirm() {
         navigation.navigate('ChangePass');
