@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, createTabNavigator } from '@react-navigation/bottom-tabs';
 import { AuthContext } from './src/context';
 
-import Food from './src/screens/Food'; 
+import Food from './src/screens/search/Food'; 
 import LandingPage from './src/screens/LandingPage';
 import Settings from './src/screens/Settings'
 import ViewDiet from './src/screens/ViewDiet'
@@ -13,7 +13,7 @@ import SelectRestriction from './src/screens/SelectRestriction'
 import Login from './src/screens/auth/Login';
 import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
-import Scanner from './src/screens/Scanner';
+import Scanner from './src/screens/search/Scanner';
 
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
@@ -39,7 +39,7 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <SearchStack.Screen name="FoodPage" component={Food} />
+            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
             <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
@@ -54,7 +54,7 @@ function AuthStackScreen() {
         <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
             <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
-            <AuthStack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/>
+            <AuthStack.Screen name="Scanner" component={Scanner}/>
         </AuthStack.Navigator>
     )
 }
