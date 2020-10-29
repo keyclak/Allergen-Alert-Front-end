@@ -24,12 +24,16 @@ export default function LandingPage() {
 
     return(
         <View style={[Styles.container, {backgroundColor: 'white'}]}>   
-            {/* TODO: onPress user can pick an image to change profile pic */}
-            <Pressable>
-                <Image style={[Styles.avatar]} source={image} />
-            </Pressable>
-            <Text style={[Styles.titleText]}>{username}</Text>
-            <IconFlatlist content={list} />
+            <View style={{display: 'flex', alignItems: 'center'}}>
+                {/* TODO: onPress user can pick an image to change profile pic */}
+                <Pressable>
+                    <Image style={[Styles.avatar]} source={image} />
+                </Pressable>
+                <Text style={[Styles.titleText]}>{username}</Text>
+            </View>
+            <View style={{display: 'flex', alignItems: 'center', width: '100%'}}>
+                <IconFlatlist content={list} />
+            </View>
         </View>
     )
 }

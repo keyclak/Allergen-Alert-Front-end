@@ -62,7 +62,6 @@ const Styles = StyleSheet.create({
         color: Colors.MainText,
         fontWeight: 'bold',
         fontSize: 20,
-        marginTop: 160,
         paddingBottom: StyleConstants.FormItemHeight
     },
     subtitleText: {
@@ -77,8 +76,8 @@ const Styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "white",
         alignSelf:'center',
-        position: 'absolute',
-        marginTop: 30
+        marginTop: 30, 
+        marginBottom: 20
     },
     alertBox: {
         alignContent: 'center',

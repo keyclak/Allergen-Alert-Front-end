@@ -22,7 +22,7 @@ export default function ViewDiet({navigation}) {
     }
 
     return (
-         <View style={[Styles.container, /*{justifyContent: 'top', paddingTop:40}*/]}>
+    <View style={[Styles.container/*, {justifyContent: 'top', paddingTop:40} */]}>
             <View style={{width: StyleConstants.FormWidth}}>
                 <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
                 <FlatList

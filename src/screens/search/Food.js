@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, Pressable, Image, TouchableOpacity} from 'react-native';
-import { StyleConstants, Styles, Colors } from '../style';
-import Ingredients from '../components/Ingredients'
+import { StyleConstants, Styles, Colors } from '../../style';
+import Ingredients from '../../components/Ingredients'
 import { color } from 'react-native-reanimated';
-import { useDummy } from '../hooks/api';
+import { useDummy } from '../../hooks/api';
 
 export default function Food() {
-    const [foodName, setFoodName] = useState("Cheerios"); 
     const [foodObj, setFoodObj] = useState({
         name: 'food1',
         ingredients: [
@@ -47,18 +46,21 @@ export default function Food() {
         safe: true
     });
 
-    // TODO: will need to make a component to display 
     const [ingredients, setIngredients] = useState(foodObj.ingredients);
     
     const disclaimer = "Basic legal disclaimer"
 
     return(
-        <View style={Styles.container}>  
-            <Text style={[Styles.titleText, {marginTop: 130}, {fontSize: 45}]}>{foodObj.name}</Text> 
-            <View style={[Styles.alertBox, (foodObj.safe ? null : Styles.alert), {marginTop: -30}]}>
-                <Text style={Styles.subtitleText}>{(foodObj.safe ? 'This food is safe!' : 'This food is not safe!')}</Text>
+        <View style={[Styles.container, {justifyContent:'space-evenly'}]}>  
+            <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
+                <Text style={[Styles.titleText, {fontSize: 45}]}>{foodObj.name}</Text> 
+                <View style={[Styles.alertBox, (foodObj.safe ? null : Styles.alert)]}>
+                    <Text style={Styles.subtitleText}>{(foodObj.safe ? 'This food is safe!' : 'This food is not safe!')}</Text>
+                </View>
             </View>
-            <Ingredients content={ingredients} />
+            <View style={{display: 'flex', alignItems: 'center'}}>
+                <Ingredients content={ingredients} />
+            </View>
             {/* <View style={[{flexDirection: "row"}]}>
                 <TouchableOpacity
                     style={Styles.navButton}
@@ -76,7 +78,9 @@ export default function Food() {
                     <Text style = {Styles.navButtonText} >Search Another Item</Text>
                 </TouchableOpacity>
             </View> */}
-            <Text style={[Styles.labelText, {marginLeft: 0}, {position: 'absolute'}, {bottom: 50}]}>{disclaimer}</Text>
+            <View style={{alignSelf: 'auto'}}>
+                <Text style={[Styles.labelText, {marginLeft: 0}]}>{disclaimer}</Text>
+            </View>
         </View>
     )
 }
