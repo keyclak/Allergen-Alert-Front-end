@@ -25,29 +25,6 @@ function TabScreen() {
     )
 }
 
-const SearchStack = createStackNavigator();
-function SearchStackScreen() {
-    return (
-        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <SearchStack.Screen name="Scanner" component={Scanner} />
-            {/* Add Food Page */}
-        </SearchStack.Navigator>
-    );
-}
-
-const HomeStack = createStackNavigator();
-function HomeStackScreen() {
-    return (
-        <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <SearchStack.Screen name="FoodPage" component={Food} />
-            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
-            <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
-            <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
-            <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Select Dietary Restriction" }}/>
-        </HomeStack.Navigator>
-    );
-}
-
 const AuthStack = createStackNavigator();
 function AuthStackScreen() {
     return (
@@ -58,6 +35,31 @@ function AuthStackScreen() {
         </AuthStack.Navigator>
     )
 }
+
+const SearchStack = createStackNavigator();
+function SearchStackScreen() {
+    return (
+        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
+            <SearchStack.Screen name="Scanner" component={Scanner} />
+            <SearchStack.Screen name="FoodPage" component={Food} />
+            {/* Add Food Page */}
+        </SearchStack.Navigator>
+    );
+}
+
+
+const HomeStack = createStackNavigator();
+function HomeStackScreen() {
+    return (
+        <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
+            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
+            <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
+            <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
+            <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Select Dietary Restriction" }}/>
+        </HomeStack.Navigator>
+    );
+}
+
 
 export default function App() {
     const [authToken, setAuthToken] = useState('abc');

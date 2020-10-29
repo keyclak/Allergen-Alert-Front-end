@@ -57,9 +57,29 @@ const login = {
     ]
 }
 
+const create = {
+    url: '/Account/Create/',
+    method: 'POST',
+    // body: o => JSON.stringify(o),
+    // contentType: 'application/json',
+    open: true,
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => 'Invalid username, password, or email' },
+        { when: r => r.status == 500, then: r => 'Please enter your username, password, or email' }
+    ]
+}
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
+}
+
+export function useCreateAccount( username, email, password ) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, create, undefined, { username, email, password }));
 }
 
 function sleep(ms) {
