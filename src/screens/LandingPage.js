@@ -1,10 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../style';
 import avatar from '../../assets/avatar.png'
 import IconFlatlist from '../components/IconFlatlist'
+import { useGetUsername } from '../hooks/api';
 
-export default function LandingPage() {
+
+export default function LandingPage({navigation}) {
+
+    const getUsername = useGetUsername();
+
+    useEffect(() => {
+        navigation.addListener('focus', () =>  getUsername.background());
+    }, [navigation]);
 
     const list = [
         {
@@ -20,7 +28,6 @@ export default function LandingPage() {
     ]
     
     const [image, setImage] = useState(avatar);
-    const username = useState("TODO: Pull Username");
 
     return(
         <View style={[Styles.container, {paddingTop: 0}]}>
@@ -29,7 +36,7 @@ export default function LandingPage() {
                 <Pressable>
                     <Image style={[Styles.avatar]} source={image} />
                 </Pressable>
-                <Text style={[Styles.titleText]}>{username}</Text>
+                <Text style={[Styles.titleText]}>{getUsername.response?.username}</Text>
             </View>
             <View style={{display: 'flex', alignItems: 'center', width: '100%'}}>
                 <IconFlatlist content={list} />

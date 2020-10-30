@@ -42,7 +42,7 @@ export default function Login({navigation}) {
                 <View style={{paddingTop: 30}}></View>
                 <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
                 <TextLoadingButton style={Styles.button} text="Log In" isLoading={login.loading} onPress={onSubmit} />
-                <Pressable style={{alignItems: 'center'}} onPress={onForgotPass}>
+                <Pressable style={{paddingTop: 20, alignItems: 'center'}} onPress={onForgotPass}>
                     <Text style={Styles.buttonText}>Forgot Password?</Text>
                 </Pressable>
                 <View style={{flexDirection: 'row', paddingTop: 20, justifyContent: 'center'}}>

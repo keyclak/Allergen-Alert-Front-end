@@ -86,7 +86,7 @@ function HomeStackScreen() {
 
 
 export default function App() {
-    const [authToken, setAuthToken] = useState('abca');
+    const [authToken, setAuthToken] = useState(null);
 
     const authContext = {
         token: authToken,
