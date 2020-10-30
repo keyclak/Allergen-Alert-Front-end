@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, createTabNavigator } from '@react-navigation/bottom-tabs';
 import { AuthContext } from './src/context';
+import { ListItem, Icon } from 'react-native-elements'
 
 import Food from './src/screens/search/Food'; 
 import LandingPage from './src/screens/LandingPage';
@@ -21,9 +22,27 @@ import Scanner from './src/screens/search/Scanner';
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
     return (
-        <Tabs.Navigator tabBarOptions={{ style: navStyle.header, activeTintColor: Colors.Accent, inactiveTintColor: Colors.Foreground }}>
-            <Tabs.Screen name = "Home" component = {HomeStackScreen}/>
-            <Tabs.Screen name = "Search" component = {SearchStackScreen}/>
+        <Tabs.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === 'Home') {
+                iconName = 'home';
+              } else if (route.name === 'Search') {
+                iconName = 'search';
+              }
+  
+              // You can return any component that you like here!
+              return <Icon name={iconName} size={30} color={color} style={{paddingTop: 10}}/>;
+            },
+          })} 
+          tabBarOptions={{ 
+            style: navStyle.header, 
+            activeTintColor: Colors.Foreground, 
+            inactiveTintColor: Colors.Accent, 
+        }}>
+            <Tabs.Screen name = "Home" component = {HomeStackScreen} options={{title: ""}}/>
+            <Tabs.Screen name = "Search" component = {SearchStackScreen} options={{title: ""}}/>
         </Tabs.Navigator>
     )
 }
@@ -31,12 +50,12 @@ function TabScreen() {
 const AuthStack = createStackNavigator();
 function AuthStackScreen() {
     return (
-        <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
+        <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
             <AuthStack.Screen name="ForgotPass" component={ForgotPass} options={{title: "", headerTransparent: true}}/>
             <AuthStack.Screen name="ChangePass" component={ChangePass} options={{title: "", headerTransparent: true}}/>
             <AuthStack.Screen name="AuthCode" component={AuthCode} options={{title: "", headerTransparent: true}}/>
-            <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
+            <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{title: "", headerTransparent: true}}/>
             <AuthStack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/>
         </AuthStack.Navigator>
     )
@@ -45,7 +64,7 @@ function AuthStackScreen() {
 const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
-        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
+        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
             <SearchStack.Screen name="Scanner" component={Scanner} />
             <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
         </SearchStack.Navigator>
@@ -56,18 +75,18 @@ function SearchStackScreen() {
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
-        <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
-            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home" }}/>
+        <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent}}>
+            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home"}}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
-            <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Select Dietary Restriction" }}/>
+            <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Add Dietary Restriction" }}/>
         </HomeStack.Navigator>
     );
 }
 
 
 export default function App() {
-    const [authToken, setAuthToken] = useState('abc');
+    const [authToken, setAuthToken] = useState('abca');
 
     const authContext = {
         token: authToken,
@@ -95,6 +114,6 @@ export default function App() {
 
 const navStyle = StyleSheet.create({
     header: {
-        backgroundColor: Colors.BackgroundBlur,
+        backgroundColor: Colors.Secondary,
     }
 });
