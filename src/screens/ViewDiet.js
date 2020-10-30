@@ -23,7 +23,8 @@ export default function ViewDiet({navigation}) {
     }
     
     function onDelete(id) {
-        deleteRestriction.execute(id);
+        deleteRestriction.execute(id)
+            .then(() => getDiet.background());
     }
 
     return (
