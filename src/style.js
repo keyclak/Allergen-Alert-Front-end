@@ -110,7 +110,7 @@ const Styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         paddingHorizontal: 45,
-        paddingVertical: 25,
+        paddingVertical: 20,
         borderRadius: 20,
         backgroundColor: '#00FF99'
     },

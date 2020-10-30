@@ -29,7 +29,7 @@ export default function Food({ navigation, route }) {
         var text = ""; 
 
         for(x in ingredients) {
-            text += "- " + ingredients[x].name + "\n"
+            text += ingredients[x] + "\n"
         }
 
         return(
@@ -37,19 +37,19 @@ export default function Food({ navigation, route }) {
         )
     }
 
-    const disclaimer = "Basic legal disclaimer"
+    const disclaimer = "Basic Legal Disclaimer"
 
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
             <ScrollView style={{display: 'flex', flexDirection: 'column', width: StyleConstants.FormWidth}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
-                    <Text style={[Styles.titleText, {marginTop: 100, fontSize: 45}]}>{getUpcSearch.response?.name}</Text> 
+                    <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{getUpcSearch.response?.name}</Text> 
                 </View>
                 <View style={[Styles.alertBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
-                    <Text style={Styles.subtitleText}>{(getUpcSearch.response?.safe ? 'This food is safe!' : 'This food is not safe!')}</Text>
+                    <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
                 <View>
-                    <Text style={[{ paddingTop: 50, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
+                    <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
                     {listIngredients(getUpcSearch.response?.ingredients)}
                 </View>
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
