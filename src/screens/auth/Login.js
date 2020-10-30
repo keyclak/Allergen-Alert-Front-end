@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import {Image, ImageBackground, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 import LoadingButton from '../../components/LoadingButton';
 import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles, Colors } from '../../style';
@@ -28,27 +28,35 @@ export default function Login({navigation}) {
         navigation.navigate('CreateAccount');
     }
 
+    function onForgotPass() {
+        navigation.navigate('ForgotPass');
+    }
     function onTest() {
         navigation.navigate('Scanner');
     }
 
 
     return (
-        <View style={[Styles.container, {justifyContent: 'center'}]}>
+        <ImageBackground source={require('../../../assets/background.png')}  style={[Styles.backgroundImage, {justifyContent: 'flex-start'}]}>
+            <View style={{paddingTop: 170}}></View>
+            <Image source={require('../../../assets/title.png')} style={{width: 350, height: 100}}></Image>
             <View style={{width: StyleConstants.FormWidth}}>
-                <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Allergen Alert</Text>
-
-                <FormTextInput label="Username" onChangeText={setUsername}/>
-                <FormTextInput label="Password" onChangeText={setPassword} />
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text="Log In" isLoading={login.loading} onPress={onSubmit} />
+                <FormTextInput placeholder="Username" onChangeText={setUsername}/>
+                <FormTextInput placeholder="Password" onChangeText={setPassword} />
+                <View style={{paddingTop: 30}}></View>
+                <TextLoadingButton style={Styles.button} text="Log In" isLoading={login.loading} onPress={onSubmit} />
                 <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
 
-                <Pressable style={[Styles.button, {backgroundColor: Colors.Background}]} onPress={onCreateAccount}>
+                <Pressable style={Styles.button} onPress={onCreateAccount}>
                     <Text style={Styles.buttonText}>Create an Account</Text>
                 </Pressable>
-
+                <View style={{paddingTop: 1}}></View>
                 <TextLoadingButton text="Test Scanner" isLoading={dummy.loading} onPress={onCreateAccount}/>
+                <View style={{paddingTop: 20}}></View>
+                <Pressable style={Styles.button} onPress={onForgotPass}>
+                    <Text style={Styles.buttonText}>Forgot Password</Text>
+                </Pressable>
             </View>
-        </View>
+        </ImageBackground>
     );
 }

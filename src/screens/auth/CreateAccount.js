@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import {ImageBackground, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 import LoadingButton from '../../components/LoadingButton';
 import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles } from '../../style';

@@ -6,7 +6,7 @@ export default function FormTextInput({label, error, ...params}) {
     return (
         <View>
             <Text style={[Styles.labelText, error && { color: Colors.Error }]}>{label}</Text>
-            <TextInput {...params} style={[Styles.textInput, error && { borderColor: Colors.Error }]}/>
+            <TextInput {...params} placeholderTextColor={Colors.Input} style={[Styles.textInput, error && { borderColor: Colors.Error }]}/>
         </View>
     )
 }

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 
 const Colors = {
-    Foreground: '#FFF',
-    Accent: '#68F',
-    AccentForeground: '#FFF',
-    Background: '#222',
+    Foreground: '#001dbd',
+    Accent: '#FFF',
+    AccentForeground: '#683604',
+    Background: '#0060ff',
     BackgroundBlur: '#444',
+    InputBorder: '#0034f5',
+    InputBackground: '#FFF',
+    Input: '#0034f5',
+    ButtonBorder: '#683604',
+    ButtonBackground: '#cc6f04',
     Border: '#AAA',
     Error: '#F44',
     MainText: '#666'
@@ -25,28 +30,44 @@ const Styles = StyleSheet.create({
         height: '100%',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: Colors.Background
+        backgroundColor: Colors.Background,
+        paddingTop: 100
+    },
+    backgroundImage: {
+        justifyContent: 'center',     
+        alignItems: 'center',     
+        flex: 1,     
+        resizeMode: 'contain'
     },
     textInput: {
         height: StyleConstants.FormItemHeight,
         borderRadius: StyleConstants.Radius,
         borderWidth: 2,
-        borderColor: Colors.Border,
+        borderColor: Colors.InputBorder,
         paddingLeft: StyleConstants.Radius,
         paddingRight: StyleConstants.Radius,
-        color: Colors.Foreground,
-        fontSize: StyleConstants.FormItemTextSize
+        color: Colors.Input,
+        fontSize: StyleConstants.FormItemTextSize,
+        backgroundColor: Colors.InputBackground,
+        elevation: 10, //Android
+        shadowRadius: 5, //iOS
+        shadowColor: 'black', //iOS
     },
     button: {
         borderRadius: StyleConstants.Radius,
+        borderWidth: 2,
         height: StyleConstants.FormItemHeight,
-        backgroundColor: Colors.Accent,
+        backgroundColor: Colors.ButtonBackground,
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: Colors.ButtonBorder,
+        elevation: 10, //Android
+        shadowRadius: 5, //iOS
+        shadowColor: 'black' //iOS
     },
     buttonText: {
-        color: Colors.AccentForeground,
+        color: Colors.Accent,
         fontSize: StyleConstants.FormItemTextSize
     },
     errorText: {
@@ -54,7 +75,7 @@ const Styles = StyleSheet.create({
         fontSize: StyleConstants.FormItemTextSize
     },
     labelText: {
-        color: Colors.Border,
+        color: Colors.InputBorder,
         marginLeft: StyleConstants.Radius,
         fontSize: StyleConstants.FormItemTextSize
     },

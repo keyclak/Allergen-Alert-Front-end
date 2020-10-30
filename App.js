@@ -13,6 +13,9 @@ import SelectRestriction from './src/screens/SelectRestriction'
 import Login from './src/screens/auth/Login';
 import { Colors, StyleConstants } from './src/style';
 import CreateAccount from './src/screens/auth/CreateAccount';
+import ForgotPass from './src/screens/auth/ForgotPass';
+import ChangePass from './src/screens/auth/ChangePass';
+import AuthCode from './src/screens/auth/AuthCode';
 import Scanner from './src/screens/search/Scanner';
 
 const Tabs = createBottomTabNavigator(); 
@@ -30,6 +33,9 @@ function AuthStackScreen() {
     return (
         <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Foreground }}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+            <AuthStack.Screen name="ForgotPass" component={ForgotPass} options={{title: "", headerTransparent: true}}/>
+            <AuthStack.Screen name="ChangePass" component={ChangePass} options={{title: "", headerTransparent: true}}/>
+            <AuthStack.Screen name="AuthCode" component={AuthCode} options={{title: "", headerTransparent: true}}/>
             <AuthStack.Screen name="CreateAccount" component={CreateAccount}/>
             <AuthStack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/>
         </AuthStack.Navigator>
