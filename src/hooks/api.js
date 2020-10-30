@@ -116,6 +116,14 @@ const getUpcSearch = {
     ]
 }
 
+const getUsername = {
+    url: '/Account',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+}
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -154,6 +162,11 @@ export function useAddRestriction() {
 export function useGetUpcSearch() {
     const context = useContext(AuthContext);
     return useAsync(upc => api(context, getUpcSearch, { upc }))
+}
+
+export function useGetUsername() {
+    const context = useContext(AuthContext); 
+    return useAsync(() => api(context, getUsername));
 }
 
 function sleep(ms) {
