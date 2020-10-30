@@ -24,11 +24,11 @@ export default function ForgotPasss({navigation}) {
     return (
         <View style={Styles.container}>
             <View style={{width: StyleConstants.FormWidth}}>
-            <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold"}}>Forgot your password?</Text>
-            <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 20}}>Please enter the email you used to create your account.</Text>
-            <FormTextInput placeholder="Email" onChangeText={setEmail}/>
+                <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold"}}>Forgot your password?</Text>
+                <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 20}}>Please enter the email you used to create your account.</Text>
+                <FormTextInput placeholder="Email" onChangeText={setEmail}/>
             </View>
-            {error === 1 && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Not a valid email address</Text>}
+                {error === 1 && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Not a valid email address</Text>}
             <View style={{position: 'absolute', bottom:110, width: StyleConstants.FormWidth}}>
                 <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Send" onPress={onSend}/>
             </View>

@@ -19,11 +19,11 @@ export default function LandingPage() {
         }
     ]
     
-    const [image, setImage] = useState(avatar); 
-    const username = "catalinasandoval";
+    const [image, setImage] = useState(avatar);
+    const username = useState("TODO: Pull Username");
 
     return(
-        <View style={[Styles.container, {backgroundColor: 'white'}]}>   
+        <View style={[Styles.container, {paddingTop: 0}]}>
             <View style={{display: 'flex', alignItems: 'center'}}>
                 {/* TODO: onPress user can pick an image to change profile pic */}
                 <Pressable>

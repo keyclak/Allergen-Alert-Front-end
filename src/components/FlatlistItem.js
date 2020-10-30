@@ -9,12 +9,12 @@ export default function FlatlistItem(props) {
     const navigation = useNavigation(); 
     
     return(
-        <ListItem key={props.i} bottomDivider onPress={() => { navigation.navigate(props.item.navTo) }}>
-            <Icon name={props.item.icon} color={"#666"}/>
-            <ListItem.Content>
-            <ListItem.Title style={[Styles.labelText, {color:"#666"}]}>{props.item.title}</ListItem.Title>
+        <ListItem containerStyle = {{backgroundColor: Colors.Background}} key={props.i} bottomDivider onPress={() => { navigation.navigate(props.item.navTo) }}>
+            <Icon name={props.item.icon} color={Colors.Accent}/>
+            <ListItem.Content >
+            <ListItem.Title style={[Styles.labelText, {color:Colors.Accent}]}>{props.item.title}</ListItem.Title>
             </ListItem.Content>
-            <ListItem.Chevron color="#666"/>
+            <ListItem.Chevron color= {Colors.Accent}/>
         </ListItem>
     )
 }

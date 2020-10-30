@@ -7,7 +7,7 @@ import FlatlistItem from './FlatlistItem'
 export default function IconFlatlist(props, {navigation}){
 
     return(
-        <View style={{width: '100%'}}>
+        <View style={{width: '100%', backgroundColor: Colors.Background}}>
         {
             (props.content).map((item, i) => (
                 <FlatlistItem item={item} i={i}/>

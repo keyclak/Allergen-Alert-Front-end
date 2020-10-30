@@ -26,13 +26,14 @@ export default function CreateAccount() {
     }
 
     return (
-        <View style={Styles.container}>
+        <View style={[Styles.container]}>
             <View style={{width: StyleConstants.FormWidth}}>
-                <FormTextInput label="Username" error={createAccount.error?.PropertyHint == 'username'} onChangeText={setUsername}/>
-                <FormTextInput label="Email" error={createAccount.error?.PropertyHint == 'email'} onChangeText={setEmail}/>
-                <FormTextInput label="Password" error={createAccount.error?.PropertyHint == 'password'} onChangeText={setPassword} />
+                <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold", paddingBottom: 20}}>Create Account</Text>
+                <FormTextInput placeholder="Username" error={createAccount.error?.PropertyHint == 'username'} onChangeText={setUsername}/>
+                <FormTextInput placeholder="Email" error={createAccount.error?.PropertyHint == 'email'} onChangeText={setEmail}/>
+                <FormTextInput placeholder="Password" error={createAccount.error?.PropertyHint == 'password'} onChangeText={setPassword} />
                 <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Create Account" isLoading={createAccount.loading} onPress={onSubmit} />
-                <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{createAccount.error?.Error}</Text>
+                <Text style={[Styles.errorText, {alignSelf: 'center', paddingTop: 10}]}>{createAccount.error?.Error}</Text>
             </View>
         </View>
     );

@@ -14,7 +14,9 @@ const Colors = {
     ButtonBackground: '#cc6f04',
     Border: '#AAA',
     Error: '#F44',
-    MainText: '#666'
+    MainText: '#666', 
+    Secondary: '#00C4FF', 
+    SecondaryAccent: '#00b0e6'
 };
 const StyleConstants = {
     Radius: 25,
@@ -80,7 +82,7 @@ const Styles = StyleSheet.create({
         fontSize: StyleConstants.FormItemTextSize
     },
     titleText: {
-        color: Colors.MainText,
+        color: Colors.Foreground,
         fontWeight: 'bold',
         fontSize: 20,
         paddingBottom: StyleConstants.FormItemHeight
@@ -95,13 +97,14 @@ const Styles = StyleSheet.create({
         height: StyleConstants.AvatarRadius,
         borderRadius: 63,
         borderWidth: 2,
-        borderColor: "white",
+        borderColor: Colors.Background,
         alignSelf:'center',
         marginTop: 30, 
         marginBottom: 20
     },
     alertBox: {
         alignContent: 'center',
+        alignItems: 'center', 
         justifyContent: 'center',
         color: Colors.MainText,
         fontWeight: 'bold',
@@ -138,6 +141,12 @@ const Styles = StyleSheet.create({
         width: 20, 
         height: 20,
         },
+    ingredientList: {
+        color: Colors.Accent,
+        paddingLeft: 10, 
+        paddingTop: 5,
+        fontSize: 17
+    }
 });
 
 export { Colors, StyleConstants, Styles };

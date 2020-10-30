@@ -41,7 +41,7 @@ export default function Scanner({navigation}) {
                     <Text style={Styles.labelText, {marginTop: StyleConstants.FormItemTextSize, textAlign: "center"}}>
                         AllergenAlert needs permission to access the camera before you can use scanner
                     </Text>
-                    {/* <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text='Back to Search' onPress={onGoToSearch}/> */}
+                    <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }} text='Back to Search' onPress={onGoToSearch}/>
                 </View>
             </View>  
         )
@@ -60,7 +60,7 @@ export default function Scanner({navigation}) {
             style={StyleSheet.absoluteFillObject}
         />
 
-        <TextLoadingButton text={'Back to Search'} onPress={onGoToSearch} style={{borderRadius: null, fontSize: 30}}/>
+        {/* <TextLoadingButton text={'Back to Search'} onPress={onGoToSearch} style={{borderRadius: null, fontSize: 30}}/> */}
         </View>
     );
 }
