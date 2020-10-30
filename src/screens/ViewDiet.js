@@ -3,7 +3,7 @@ import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 're
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
-import { useLogin } from '../hooks/api';
+import { useGetDiet } from '../hooks/api';
 import { AuthContext } from '../context';
 
 export default function ViewDiet({navigation}) {
@@ -16,6 +16,14 @@ export default function ViewDiet({navigation}) {
         { title: 'Gluten Free', key: '4' },
         { title: 'Peanut Free', key: '5' },
     ]);
+
+    const getDiet = useGetDiet();
+
+    useEffect(() => {
+        navigation.addListener('focus', () =>  getDiet.background());
+    }, [navigation]);
+
+    useEffect(() => console.log(getDiet.response), [ getDiet.response ]);
     
     function addRestriction() {
         navigation.navigate('SelectRestriction');
@@ -26,13 +34,14 @@ export default function ViewDiet({navigation}) {
             <View style={{width: StyleConstants.FormWidth}}>
                 <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
                 <FlatList
-                    data={currentDiet}
+                    data={getDiet.response?.restrictions}
                     renderItem={({ item }) => (
                         <Text
-                        style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}>
-                        {item.title}
+                            style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}>
+                            {item.name}
                         </Text>
                     )}
+                    keyExtractor={item => `${item.id}`}
                 />
                 <TouchableOpacity
                     style={Styles.button}

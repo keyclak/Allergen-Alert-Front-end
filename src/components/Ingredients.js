@@ -15,10 +15,11 @@ export default function Ingredients(props) {
                 renderItem={({item}) => (
                     <View>
                         <Text style={[{ color: "white" }, {paddingLeft: 10}, {paddingTop: 2.5}, {fontSize: 14}]}> 
-                            {item.name}
+                            {item}
                         </Text>
                     </View>
                 )}
+                keyExtractor={item => item}
             />
         </View>
     )

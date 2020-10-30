@@ -10,7 +10,7 @@ function api(authContext, endpoint, urlParams, bodyParams) {
     };
 
     if(!endpoint.open)
-        headers['Authorization'] = `Bearer ${AuthContext.token}`;
+        headers['Authorization'] = `Bearer ${authContext.token}`;
 
     let url;
     if(typeof(endpoint.url) === 'string')
@@ -25,11 +25,11 @@ function api(authContext, endpoint, urlParams, bodyParams) {
             body: endpoint.body ? endpoint.body(bodyParams) : JSON.stringify(bodyParams)
         })
         .then(r => {
-           for (const c of endpoint.accept)
+           for (const c of endpoint.accept ?? [])
                if(c.when(r)) return c.then(r);
 
-            for(const c of endpoint.reject)
-                if(c.when(r)) throw c.then(r);
+            for(const c of endpoint.reject ?? [])
+                if(c.when(r)) return Promise.resolve(c.then(r)).then(v => { throw v });
             
             if(r.status == 401) {
                 authContext.logOut();
@@ -53,9 +53,8 @@ const login = {
     ],
     reject: [
         { when: r => r.status == 400, then: r => 'Invalid username or password' },
-        { when: r => r.status == 500, then: r => 'Please enter your username and password' }
     ]
-}
+};
 
 const create = {
     url: '/Account/Create/',
@@ -67,8 +66,45 @@ const create = {
         { when: r => r.status == 200, then: r => null }
     ],
     reject: [
-        { when: r => r.status == 400, then: r => 'Invalid username, password, or email' },
-        { when: r => r.status == 500, then: r => 'Please enter your username, password, or email' }
+        { when: r => r.status == 400, then: r => r.json() },
+    ]
+};
+
+const getDiet = {
+    url: '/Diet',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+};
+
+const getRestrictions = {
+    url: '/CategoricalRestriction',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+};
+
+const addRestriction = {
+    url: '/Diet/Categorical',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => "Restriction is already in the diet" }
+    ]
+};
+
+const getUpcSearch = {
+    url: p => `/Search/Upc?upc=${p.upc}`,
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [
+        { when: r => r.status == 404, then: r => "Unknown UPC" }
     ]
 }
 
@@ -80,6 +116,26 @@ export function useLogin(username, password) {
 export function useCreateAccount( username, email, password ) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, create, undefined, { username, email, password }));
+}
+
+export function useGetDiet() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getDiet));
+}
+
+export function useGetRestrictions() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getRestrictions));
+}
+
+export function useAddRestriction() {
+    const context = useContext(AuthContext);
+    return useAsync(id => api(context, addRestriction, undefined, { id }));
+}
+
+export function useGetUpcSearch() {
+    const context = useContext(AuthContext);
+    return useAsync(upc => api(context, getUpcSearch, { upc }))
 }
 
 function sleep(ms) {

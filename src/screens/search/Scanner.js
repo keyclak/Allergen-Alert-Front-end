@@ -8,6 +8,10 @@ export default function Scanner({navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
+    useEffect(() => {
+        navigation.addListener('focus', () =>  setScanned(false));
+    }, [navigation]);
+
     const [code, setCode] = useState();
 
     useEffect(() => {
@@ -19,7 +23,9 @@ export default function Scanner({navigation}) {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        alert(`Barcode has type ${type} and data ${data}`)
+        console.log(`Barcode type: ${type}`);
+        navigation.navigate('FoodPage', { upc: data });
+        //alert(`Barcode has type ${type} and data ${data}`)
         // TODO: Search food and go to display
     };
 
