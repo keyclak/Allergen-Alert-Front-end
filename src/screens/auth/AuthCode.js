@@ -30,7 +30,7 @@ export default function ForgotPasss({navigation}) {
             <FormTextInput placeholder="Enter code" onChangeText={setCode}/>
             </View>
             {error === 1 && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Code is invalid</Text>}
-            <View style={{position: 'absolute', bottom:110, width: StyleConstants.FormWidth}}>
+            <View style={{width: StyleConstants.FormWidth}}>
                 <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Confirm" onPress={onConfirm}/>
             </View>
         </View>

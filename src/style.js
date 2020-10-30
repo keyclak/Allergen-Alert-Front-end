@@ -33,7 +33,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: Colors.Background,
-        paddingTop: 100
+        paddingTop: 30
     },
     backgroundImage: {
         justifyContent: 'center',     
