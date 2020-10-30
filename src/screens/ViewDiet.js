@@ -3,30 +3,27 @@ import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 're
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
-import { useGetDiet } from '../hooks/api';
+import { useGetDiet, useDeleteDiet,  } from '../hooks/api';
 import { AuthContext } from '../context';
 
 export default function ViewDiet({navigation}) {
-    //const context = useContext(AuthContext);
-
-    const [currentDiet, setDiets] = useState([
-        { title: 'Vegetarian', key: '1' },
-        { title: 'Vegan', key: '2' },
-        { title: 'Lactose Intolerant', key: '3' },
-        { title: 'Gluten Free', key: '4' },
-        { title: 'Peanut Free', key: '5' },
-    ]);
 
     const getDiet = useGetDiet();
+    const deleteRestriction = useDeleteDiet();
+
+    const [dietState, setDietState] = useState();
+
 
     useEffect(() => {
         navigation.addListener('focus', () =>  getDiet.background());
     }, [navigation]);
 
-    useEffect(() => console.log(getDiet.response), [ getDiet.response ]);
-    
     function addRestriction() {
         navigation.navigate('SelectRestriction');
+    }
+    
+    function onDelete(id) {
+        deleteRestriction.execute(id);
     }
 
     return (
@@ -36,10 +33,18 @@ export default function ViewDiet({navigation}) {
                 <FlatList
                     data={getDiet.response?.restrictions}
                     renderItem={({ item }) => (
-                        <Text
-                            style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}>
-                            {item.name}
-                        </Text>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
+                            <Text
+                                style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}>
+                                {item.name}
+                            </Text>
+                            <TouchableOpacity
+                                style={Styles.button}
+                                onPress={() => onDelete(item.id)}
+                                >
+                                <Text> Delete </Text>
+                            </TouchableOpacity>
+                        </View>
                     )}
                     keyExtractor={item => `${item.id}`}
                 />
