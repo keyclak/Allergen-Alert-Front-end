@@ -79,7 +79,7 @@ const getDiet = {
 };
 
 const getRestrictions = {
-    url: '/CategoricalRestriction',
+    url: '/Diet/AvailableRestrictions',
     method: 'GET',
     accept: [
         { when: r => r.status == 200, then: r => r.json() }
