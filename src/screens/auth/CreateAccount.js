@@ -26,7 +26,7 @@ export default function CreateAccount() {
     }
 
     return (
-        <View style={[Styles.container]}>
+        <View style={[Styles.container, {paddingTop: 30}]}>
             <View style={{width: StyleConstants.FormWidth}}>
                 <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold", paddingBottom: 20}}>Create Account</Text>
                 <FormTextInput placeholder="Username" error={createAccount.error?.PropertyHint == 'username'} onChangeText={setUsername}/>

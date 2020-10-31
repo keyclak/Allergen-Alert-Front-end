@@ -10,7 +10,7 @@ export default function IconFlatlist(props, {navigation}){
         <View style={{width: '100%', backgroundColor: Colors.Background}}>
         {
             (props.content).map((item, i) => (
-                <FlatlistItem item={item} i={i}/>
+                <FlatlistItem key={item.key} item={item} i={i}/>
             ))
         }
         </View>

@@ -31,10 +31,6 @@ export default function Login({navigation}) {
     function onForgotPass() {
         navigation.navigate('ForgotPass');
     }
-    function onTest() {
-        navigation.navigate('Scanner');
-    }
-
 
     return (
         <ImageBackground source={require('../../../assets/background.png')}  style={[Styles.backgroundImage, {justifyContent: 'flex-start'}]}>
@@ -46,17 +42,12 @@ export default function Login({navigation}) {
                 <View style={{paddingTop: 30}}></View>
                 <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
                 <TextLoadingButton style={Styles.button} text="Log In" isLoading={login.loading} onPress={onSubmit} />
-                <Pressable style={{paddingTop: 20, alignItems: 'center'}} onPress={onForgotPass}>
-                    <Text style={Styles.buttonText}>Forgot Password?</Text>
-                </Pressable>
                 <View style={{flexDirection: 'row', paddingTop: 20, justifyContent: 'center'}}>
                     <Text style={[Styles.buttonText]}>Don't have an account? </Text>
                     <Pressable onPress={onCreateAccount}>
                         <Text style={[Styles.buttonText, { fontWeight: 'bold', color: Colors.ButtonBackground}]}>Sign up</Text>
                     </Pressable>
                 </View>
-                <View style={{paddingTop: 100}}></View>
-                <TextLoadingButton text="Test Scanner" isLoading={dummy.loading} onPress={onTest}/>
             </View>
         </ImageBackground>
     );

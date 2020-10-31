@@ -25,8 +25,6 @@ export default function Scanner({navigation}) {
         setScanned(true);
         console.log(`Barcode type: ${type}`);
         navigation.navigate('FoodPage', { upc: data });
-        //alert(`Barcode has type ${type} and data ${data}`)
-        // TODO: Search food and go to display
     };
 
     if (hasPermission === null) {
@@ -47,20 +45,12 @@ export default function Scanner({navigation}) {
         )
     }
 
-    function onGoToSearch() {
-        // TODO: Insert navigation here
-        navigation.navigate('Login');
-    }
-
-
     return (
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-end',}}>
         <BarCodeScanner
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
             style={StyleSheet.absoluteFillObject}
         />
-
-        {/* <TextLoadingButton text={'Back to Search'} onPress={onGoToSearch} style={{borderRadius: null, fontSize: 30}}/> */}
         </View>
     );
 }
