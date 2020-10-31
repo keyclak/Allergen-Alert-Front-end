@@ -13,7 +13,7 @@ const Colors = {
     ButtonBorder: '#683604',
     ButtonBackground: '#cc6f04',
     Border: '#AAA',
-    Error: '#F44',
+    Error: '#ff8f8f',
     MainText: '#666', 
     Secondary: '#00C4FF', 
     SecondaryAccent: '#00b0e6'
@@ -74,7 +74,8 @@ const Styles = StyleSheet.create({
     },
     errorText: {
         color: Colors.Error,
-        fontSize: StyleConstants.FormItemTextSize
+        fontSize: StyleConstants.FormItemTextSize,
+        fontWeight: 'bold'
     },
     labelText: {
         color: Colors.InputBorder,
