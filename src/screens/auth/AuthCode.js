@@ -27,7 +27,7 @@ export default function ForgotPasss({navigation}) {
             <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold"}}>Verification</Text>
             <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 20}}>A verification code has been sent to the account associated
                 with this email</Text>
-            <FormTextInput placeholder="Enter code" onChangeText={setCode}/>
+            <FormTextInput placeholder="Enter code" onChangeText={setCode} error={(error === 1) ? 'true' : ''}/>
             </View>
             {error === 1 && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Code is invalid</Text>}
             <View style={{width: StyleConstants.FormWidth}}>

@@ -27,8 +27,8 @@ export default function ChangePass({navigation}) {
             <View style={{width: StyleConstants.FormWidth}}>
             <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold"}}>Change your password</Text>
             <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 20}}>Enter a new password that hasn't been used recently</Text>
-            <FormTextInput placeholder="Password" onChangeText={setPass1}/>
-            <FormTextInput placeholder="Confirm password" onChangeText={setPass2}/>
+            <FormTextInput placeholder="Password" onChangeText={setPass1} error={(error === 1) ? 'true' : ''}/>
+            <FormTextInput placeholder="Confirm password" onChangeText={setPass2} error={(error === 1) ? 'true' : ''}/>
             </View>
             {error === 1 && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Passwords do not match</Text>}
             <View style={{position: 'absolute', bottom:110, width: StyleConstants.FormWidth}}>
