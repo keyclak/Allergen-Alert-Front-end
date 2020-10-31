@@ -18,12 +18,14 @@ export default function LandingPage({navigation}) {
         {
             title: 'View My Diet',
             icon: 'sort',
-            navTo: 'ViewDiet'
+            navTo: 'ViewDiet',
+            key: '1'
         },
         {
             title: 'Settings',
             icon: 'settings',
-            navTo: 'Settings'
+            navTo: 'Settings',
+            key: '2'
         }
     ]
     
