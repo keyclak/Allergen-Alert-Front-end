@@ -37,17 +37,31 @@ export default function Food({ navigation, route }) {
         )
     }
 
+    //TODO:
+    const addToGroceryList = () => {
+        return (
+            console.log("add item " + getUpcSearch.response?.name)
+        )
+    }
+
     const disclaimer = "Basic Legal Disclaimer"
 
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
-            <ScrollView style={{display: 'flex', flexDirection: 'column', width: StyleConstants.FormWidth}}> 
+            <ScrollView style={{display: 'flex', flexDirection: 'column'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{getUpcSearch.response?.name}</Text> 
                 </View>
                 <View style={[Styles.alertBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
                     <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
+
+                <Pressable 
+                    style={[Styles.button]}
+                    onPress={addToGroceryList}>
+                        <Text>Add to Grocery List</Text>
+                </Pressable>
+
                 <View>
                     <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
                     {listIngredients(getUpcSearch.response?.ingredients)}

@@ -23,7 +23,7 @@ export default function LandingPage({navigation}) {
         },
         {
             title: 'Grocery List',
-            icon: 'settings',
+            icon: 'shopping-cart',
             navTo: 'GroceryList',
             key: '2'
         },
