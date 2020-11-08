@@ -22,10 +22,16 @@ export default function LandingPage({navigation}) {
             key: '1'
         },
         {
+            title: 'Grocery List',
+            icon: 'settings',
+            navTo: 'GroceryList',
+            key: '2'
+        },
+        {
             title: 'Settings',
             icon: 'settings',
             navTo: 'Settings',
-            key: '2'
+            key: '3'
         }
     ]
     
