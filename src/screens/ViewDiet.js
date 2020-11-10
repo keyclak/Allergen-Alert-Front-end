@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
+import { Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
@@ -21,6 +21,12 @@ export default function ViewDiet({navigation}) {
     function addRestriction() {
         navigation.navigate('SelectRestriction');
     }
+
+    function viewRestriction(id) {
+        return function() {
+            navigation.navigate('RestrictionInfo', id);
+        }
+    }
     
     function onDelete(id) {
         deleteRestriction.execute(id)
@@ -35,15 +41,24 @@ export default function ViewDiet({navigation}) {
                     data={getDiet.response?.restrictions}
                     renderItem={({ item }) => (
                         <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
-                            <Text
-                                style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}>
-                                {item.name}
-                            </Text>
+                            <TouchableOpacity
+                                style={[Styles.button, {width: '75%'}]}
+                                onPress={viewRestriction(item.id)}
+                                >
+                                <Text
+                                    style={[Styles.buttonText]}
+                                    //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
+                                    >
+                                    { item.name }
+                                </Text>
+                            </TouchableOpacity>
                             <TouchableOpacity
                                 style={Styles.button}
                                 onPress={() => onDelete(item.id)}
                                 >
-                                <Text> Delete </Text>
+                                <Text
+                                    style={[Styles.buttonText]}
+                                >  Delete  </Text>
                             </TouchableOpacity>
                         </View>
                     )}
@@ -53,7 +68,17 @@ export default function ViewDiet({navigation}) {
                     style={Styles.button}
                     onPress={addRestriction}
                     >
-                    <Text>Add a Dietary Restriction</Text>
+                    <Text
+                        style={[Styles.buttonText]}
+                    >Add a Dietary Restriction</Text>
+                </TouchableOpacity>
+                <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Other Restrictions</Text>
+                <TouchableOpacity
+                    style={Styles.button}
+                    >
+                    <Text
+                        style={[Styles.buttonText]}
+                    >Add a Food</Text>
                 </TouchableOpacity>
             </View>
         </View>
