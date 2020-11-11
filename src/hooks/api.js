@@ -86,6 +86,14 @@ const getRestrictions = {
     ]
 };
 
+const ingredients = {
+    url: '/CategoricalRestriction/${id}/',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+};
+
 const deleteDiet = {
     url: '/Diet/Categorical/${id}/',
     method: 'DELETE',
@@ -122,6 +130,17 @@ const getUsername = {
     accept: [
         { when: r => r.status == 200, then: r => r.json() }
     ]
+}
+
+function getIngredients(id) {
+    ingredients.url = `/CategoricalRestriction/${id}/`;
+    return ingredients;
+}
+
+export function useGetIngredients() {
+    const context = useContext(AuthContext);
+    //return useAsync(id => api(context, getIngredients(id), undefined, { id }));
+    return useAsync(id => api(context, getIngredients(id), { id }));
 }
 
 export function useLogin(username, password) {
