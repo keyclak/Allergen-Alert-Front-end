@@ -4,6 +4,7 @@ import { StyleConstants, Styles, Colors } from '../../style';
 import Ingredients from '../../components/Ingredients'
 import { color } from 'react-native-reanimated';
 import { useDummy, useGetUpcSearch } from '../../hooks/api';
+import DialogInput from 'react-native-dialog-input';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
@@ -40,6 +41,8 @@ export default function Food({ navigation, route }) {
     const disclaimer = "Basic Legal Disclaimer"
 
     const [flag, flagState] = useState(0);
+    const [flagReason, changeFlagReason] = useState();
+    const [dialog, dialogState] = useState(0);
 
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
@@ -54,15 +57,16 @@ export default function Food({ navigation, route }) {
                 {flag === 1 &&
                     <View style={[Styles.flagBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
                     <Image source={require('../../../assets/flag.png')} style={{width: 20, height: 20}}></Image>
-                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{'You have flagged this food.'}</Text>
+                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{'You have flagged this food for the following reason(s): '}</Text>
+                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{flagReason}</Text>
                 </View>}
                 <View style={{alignItems: 'center', paddingTop: 5}}>
                     {flag === 1 &&
-                        <Pressable style={Styles.flagButton} onPress={() => flagState(0)}>
+                    <Pressable style={Styles.flagButton} onPress={() => {flagState(0), changeFlagReason()}}>
                         <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Unflag food</Text>
                     </Pressable>}
                     {flag === 0 &&
-                        <Pressable style={Styles.flagButton} onPress={() => flagState(1)}>
+                    <Pressable style={Styles.flagButton} onPress={() => {flagState(1), dialogState(1)}}>
                         <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Flag food</Text>
                     </Pressable>}
                 </View>
@@ -73,6 +77,14 @@ export default function Food({ navigation, route }) {
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
                 </View>
+                <DialogInput isDialogVisible={dialog ? true : false}
+                    title={"Flag Food"}
+                    message={"Why would you like to flag this food?"}
+                    hintInput ={"Ex: Caused bloating, is unappealing, etc."}
+                    submitInput={ (inputText) => {changeFlagReason(inputText), dialogState(0)} }
+                    closeDialog={ () => {dialogState(0)}}
+                   >
+                </DialogInput>
             </ScrollView>
         </SafeAreaView>
     )

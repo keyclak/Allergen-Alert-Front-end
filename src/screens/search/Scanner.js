@@ -47,11 +47,10 @@ export default function Scanner({navigation}) {
 
     return (
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-end',}}>
-        <Button title={"Test"}onPress={handleBarCodeScanned}></Button>
-        {/* <BarCodeScanner
+        <BarCodeScanner
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
             style={StyleSheet.absoluteFillObject}
-        /> */}
+        />
         </View>
     );
 }
