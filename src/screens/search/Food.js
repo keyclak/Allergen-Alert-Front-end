@@ -39,6 +39,8 @@ export default function Food({ navigation, route }) {
 
     const disclaimer = "Basic Legal Disclaimer"
 
+    const [flag, flagState] = useState(0);
+
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
             <ScrollView style={{display: 'flex', flexDirection: 'column', width: StyleConstants.FormWidth}}> 
@@ -49,14 +51,20 @@ export default function Food({ navigation, route }) {
                     <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
                 <View style={{paddingTop: 20}}></View>
-                <View style={[Styles.flagBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
+                {flag === 1 &&
+                    <View style={[Styles.flagBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
                     <Image source={require('../../../assets/flag.png')} style={{width: 20, height: 20}}></Image>
                     <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{'You have flagged this food.'}</Text>
-                </View>
+                </View>}
                 <View style={{alignItems: 'center', paddingTop: 5}}>
-                    <Pressable style={Styles.flagButton}>
+                    {flag === 1 &&
+                        <Pressable style={Styles.flagButton} onPress={() => flagState(0)}>
                         <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Unflag food</Text>
-                    </Pressable>
+                    </Pressable>}
+                    {flag === 0 &&
+                        <Pressable style={Styles.flagButton} onPress={() => flagState(1)}>
+                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Flag food</Text>
+                    </Pressable>}
                 </View>
                 <View>
                     <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>

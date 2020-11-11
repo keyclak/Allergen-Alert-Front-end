@@ -46,7 +46,7 @@ export default function ViewFlags({navigation}) {
                                 <TouchableOpacity
                                     onPress={() => onDelete(item.id)}
                                     >
-                                    <Image source={require('../../assets/bin.png')} style={{width: 20, height: 20}}></Image>
+                                    <Image source={require('../../assets/bin.png')} style={{width: 25, height: 25}}></Image>
                                 </TouchableOpacity>
                             </View>
                         )}
