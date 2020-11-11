@@ -6,6 +6,7 @@ import { Colors, StyleConstants, Styles } from '../style';
 import { useGetIngredients } from '../hooks/api';
 import { AuthContext } from '../context';
 import { ListItem, Icon } from 'react-native-elements'
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function SelectRestriction({navigation, route}) {
@@ -50,9 +51,12 @@ export default function SelectRestriction({navigation, route}) {
         <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:40}]}>
             
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>{getIngredients.response?.name}</Text>
-            <View>
-                {listIngredients(getIngredients.response?.ingredients)}
-            </View>
+            
+            <ScrollView>
+                <View>
+                    {listIngredients(getIngredients.response?.ingredients)}
+                </View>
+            </ScrollView>
         </View>
     );
 }

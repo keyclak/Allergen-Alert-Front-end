@@ -10,6 +10,7 @@ import Food from './src/screens/search/Food';
 import LandingPage from './src/screens/LandingPage';
 import Settings from './src/screens/Settings'
 import ViewDiet from './src/screens/ViewDiet'
+import TypeRestriction from './src/screens/TypeRestriction'
 import SelectRestriction from './src/screens/SelectRestriction'
 import Login from './src/screens/auth/Login';
 import RestrictionInfo from './src/screens/RestrictionInfo';
@@ -78,6 +79,7 @@ function HomeStackScreen() {
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
             <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Add Dietary Restriction" }}/>
             <HomeStack.Screen name="RestrictionInfo" component={RestrictionInfo} options={{ title: "Edit Dietary Restrictions" }}/>
+            <HomeStack.Screen name="TypeRestriction" component={TypeRestriction} options={{ title: "Type an Ingredient" }}/>
         </HomeStack.Navigator>
     );
 }

@@ -13,7 +13,6 @@ export default function ViewDiet({navigation}) {
 
     const [dietState, setDietState] = useState();
 
-
     useEffect(() => {
         navigation.addListener('focus', () =>  getDiet.background());
     }, [navigation]);
@@ -27,6 +26,10 @@ export default function ViewDiet({navigation}) {
             navigation.navigate('RestrictionInfo', id);
         }
     }
+
+    function typeRestriction() {
+        navigation.navigate('TypeRestriction');
+    }
     
     function onDelete(id) {
         deleteRestriction.execute(id)
@@ -35,6 +38,7 @@ export default function ViewDiet({navigation}) {
 
     return (
     <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:40}]}>
+            
             <View style={{width: StyleConstants.FormWidth}}>
                 <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
                 <FlatList
@@ -75,10 +79,11 @@ export default function ViewDiet({navigation}) {
                 <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Other Restrictions</Text>
                 <TouchableOpacity
                     style={Styles.button}
+                    onPress={typeRestriction}
                     >
                     <Text
                         style={[Styles.buttonText]}
-                    >Add a Food</Text>
+                    >Add an Ingredient</Text>
                 </TouchableOpacity>
             </View>
         </View>
