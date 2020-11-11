@@ -57,6 +57,17 @@ const login = {
     ]
 }
 
+const sendPassReset = {
+    url: '/Account/SendPasswordReset/',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => r.json() }
+    ]
+};
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -72,8 +83,9 @@ export function useDummy(value) {
     });
 }
 
-export function validateResetToken(token) {
-
+export function sendPasswordReset(username) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, sendPassReset, undefined, {username}));
 }
 
 export function resetPassword(token) {
