@@ -17,7 +17,7 @@ import CreateAccount from './src/screens/auth/CreateAccount';
 import ForgotPass from './src/screens/auth/ForgotPass';
 import ChangePass from './src/screens/auth/ChangePass';
 import AuthCode from './src/screens/auth/AuthCode';
-import Scanner from './src/screens/search/Scanner';
+import FoodSearch from './src/screens/search/FoodSearch';
 
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
@@ -61,7 +61,7 @@ const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
         <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
-            <SearchStack.Screen name="Scanner" component={Scanner} />
+            <SearchStack.Screen name="FoodSearch" component={FoodSearch} />
             <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
         </SearchStack.Navigator>
     );
