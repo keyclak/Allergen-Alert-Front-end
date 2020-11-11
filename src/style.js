@@ -12,13 +12,18 @@ const Colors = {
     Input: '#0034f5',
     ButtonBorder: '#683604',
     ButtonBackground: '#cc6f04',
-    Error: '#ef0909',
+    Border: '#AAA',
+    Error: '#ff8f8f',
+    MainText: '#666', 
+    Secondary: '#00C4FF', 
+    SecondaryAccent: '#00b0e6'
 };
 const StyleConstants = {
     Radius: 25,
     FormItemHeight: 50,
     FormWidth: '80%',
-    FormItemTextSize: 18
+    FormItemTextSize: 16,
+    AvatarRadius: 120
 };
 
 const Styles = StyleSheet.create({
@@ -28,7 +33,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: Colors.Background,
-        paddingTop: 100
+        paddingTop: 30
     },
     backgroundImage: {
         justifyContent: 'center',     
@@ -69,13 +74,112 @@ const Styles = StyleSheet.create({
     },
     errorText: {
         color: Colors.Error,
-        fontSize: StyleConstants.FormItemTextSize
+        fontSize: StyleConstants.FormItemTextSize,
+        fontWeight: 'bold'
     },
     labelText: {
         color: Colors.InputBorder,
         marginLeft: StyleConstants.Radius,
-        fontSize: StyleConstants.FormItemTextSize,
-        fontWeight: 'bold'
+        fontSize: StyleConstants.FormItemTextSize
+    },
+    titleText: {
+        color: Colors.Foreground,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingBottom: StyleConstants.FormItemHeight
+    },
+    subtitleText: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    avatar: {
+        width: StyleConstants.AvatarRadius,
+        height: StyleConstants.AvatarRadius,
+        borderRadius: 63,
+        borderWidth: 2,
+        borderColor: Colors.Background,
+        alignSelf:'center',
+        marginTop: 30, 
+        marginBottom: 20
+    },
+    alertBox: {
+        alignContent: 'center',
+        alignItems: 'center', 
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 20,
+        borderRadius: 20,
+        backgroundColor: '#00FF99'
+    },
+    alert: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 25,
+        borderRadius: 20,
+        backgroundColor: '#FF403D'
+    },
+    flagBox: {
+        alignContent: 'center',
+        alignItems: 'center', 
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 20,
+        borderRadius: 20,
+        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: "#ff0000"
+    },
+    flagMessage: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 13,
+    },
+    flagButton: {
+        borderRadius: StyleConstants.Radius,
+        borderWidth: 2,
+        height: StyleConstants.FormItemHeight,
+        backgroundColor: '#ff0000',
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: 'black',
+        elevation: 10, //Android
+        shadowRadius: 5, //iOS
+        shadowColor: 'black', //iOS
+        width: 150
+    },
+    navButton: {
+        marginBottom: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        marginTop: 20,
+        backgroundColor: "#00C4FF",
+        borderRadius: 20
+        },
+    navButtonText: {
+        fontSize: 16,
+        color: "black"
+        },
+    buttonSpace: {
+        width: 20, 
+        height: 20,
+        },
+    ingredientList: {
+        color: Colors.Accent,
+        paddingLeft: 10, 
+        paddingTop: 5,
+        fontSize: 17
     }
 });
 

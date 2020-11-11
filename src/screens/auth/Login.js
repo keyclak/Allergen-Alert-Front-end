@@ -40,21 +40,17 @@ export default function Login({navigation}) {
                 <FormTextInput placeholder="Username" onChangeText={setUsername}/>
                 <FormTextInput placeholder="Password" onChangeText={setPassword} />
                 <View style={{paddingTop: 30}}></View>
-                <TextLoadingButton style={Styles.button} text="Log In" isLoading={login.loading} onPress={onSubmit} />
                 <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
-
-                <Pressable style={Styles.button} onPress={onCreateAccount}>
-                    <Text style={Styles.buttonText}>Create an Account</Text>
+                <TextLoadingButton style={Styles.button} text="Log In" isLoading={login.loading} onPress={onSubmit} />
+                <Pressable style={{alignItems: 'center'}} onPress={onForgotPass}>
+                    <Text style={Styles.buttonText}>Forgot Password?</Text>
                 </Pressable>
-                <View style={{paddingTop: 1}}></View>
-                <TextLoadingButton 
-                    text="Test"
-                    isLoading={dummy.loading} 
-                    onPress={() => dummy.background()} />
-                <View style={{paddingTop: 20}}></View>
-                <Pressable style={Styles.button} onPress={onForgotPass}>
-                    <Text style={Styles.buttonText}>Forgot Password</Text>
-                </Pressable>
+                <View style={{flexDirection: 'row', paddingTop: 20, justifyContent: 'center'}}>
+                    <Text style={[Styles.buttonText]}>Don't have an account? </Text>
+                    <Pressable onPress={onCreateAccount}>
+                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: Colors.ButtonBackground}]}>Sign up</Text>
+                    </Pressable>
+                </View>
             </View>
         </ImageBackground>
     );
