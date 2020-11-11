@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
+import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
 import Ingredients from '../../components/Ingredients'
 import { color } from 'react-native-reanimated';
@@ -47,6 +47,16 @@ export default function Food({ navigation, route }) {
                 </View>
                 <View style={[Styles.alertBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
                     <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
+                </View>
+                <View style={{paddingTop: 20}}></View>
+                <View style={[Styles.flagBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
+                    <Image source={require('../../../assets/flag.png')} style={{width: 20, height: 20}}></Image>
+                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{'You have flagged this food.'}</Text>
+                </View>
+                <View style={{alignItems: 'center', paddingTop: 5}}>
+                    <Pressable style={Styles.flagButton}>
+                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Unflag food</Text>
+                    </Pressable>
                 </View>
                 <View>
                     <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>

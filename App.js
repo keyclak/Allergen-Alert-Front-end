@@ -18,6 +18,7 @@ import ForgotPass from './src/screens/auth/ForgotPass';
 import ChangePass from './src/screens/auth/ChangePass';
 import AuthCode from './src/screens/auth/AuthCode';
 import Scanner from './src/screens/search/Scanner';
+import ViewFlags from './src/screens/ViewFlags';
 
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
@@ -79,6 +80,7 @@ function HomeStackScreen() {
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
             <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Add Dietary Restriction" }}/>
+            <HomeStack.Screen name="ViewFlags" component={ViewFlags} options={{ title: "Your Flagged Foods" }}/>
         </HomeStack.Navigator>
     );
 }
