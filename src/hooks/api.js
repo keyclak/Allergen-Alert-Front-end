@@ -125,13 +125,13 @@ const getUsername = {
 }
 
 const getFoodSearch = {
-    url: p => `/Search/Search?query=${p.query}`,
+    url: p => `/Search?query=${p.search}`,
     method: 'GET',
     accept: [
         { when: r => r.status == 200, then: r => r.json() }
     ],
     reject: [
-        { when: r => r.status == 404, then: r => "No Food Matches" }
+        { when: r => r.status == 404, then: r => "No Foods Found" }
     ]
 }
 
@@ -199,6 +199,8 @@ export function resetPassword(token) {
 }
 
 export function useGetFoodSearch(search) {
+    //correctly gets search from FoodSearch.js
+    //console.log(search);
     const context = useContext(AuthContext);
-    return useAsync(() => api(context, getFoodSearch, { search }))
+    return useAsync(search => api(context, getFoodSearch, { search }))
 }

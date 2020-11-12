@@ -13,25 +13,28 @@ export default function FoodSearch({navigation}) {
 
     const [searchValue, setSearchValue] = useState("");
     const [results, setResults] = useState([]);
-    const [food, setFood] = useState ([]);
+    
 
      //const query = route.params.query;
-     const getFoodSearch = useGetFoodSearch();
+
+     const getFoodSearch = useGetFoodSearch(searchValue);
 
     const fetchData = async (t) => {
-        const res = await getFoodSearch.execute(t); //NOT RIGHT
-        const json = await res.json();
-        setResults(json);
-        setFood(json.slice());
-        console.log("hi")
+        //console.log(t)
+        setSearchValue(t);
+        getFoodSearch.background(); //NOT RIGHT 
+        setResults(getFoodSearch.response)
+        //console.log(getFoodSearch)
       };
 
     useEffect(() => {
     fetchData();
     }, []);
 
+    useEffect(() => {
+        console.log(getFoodSearch.response)
+    }, [getFoodSearch.response]);
 
-   
 
     //creates an item object from data for flatlist
     const Item = ({ item }) => (
@@ -46,18 +49,18 @@ export default function FoodSearch({navigation}) {
 
    // useEffect(() => console.log(getFoodSearch.response), [getFoodSearch.response]);
 
-    function search(query) {
-        //setSearchValue(query);
-        console.log(results);
-        // if(query === '') {
-        //    setResults([]);
+    // function search(query) {
+    //     //setSearchValue(query);
+    //     console.log(results);
+    //     // if(query === '') {
+    //     //    setResults([]);
 
-        // } else {
-        //     setResults(query)
-        //    // useGetFoodSearch(query);
-        //    //results
-        // }
-    }
+    //     // } else {
+    //     //     setResults(query)
+    //     //    // useGetFoodSearch(query);
+    //     //    //results
+    //     // }
+    // }
 
 
     return (
