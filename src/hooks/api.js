@@ -143,6 +143,7 @@ const getGroceryList = {
     ]
 };
 
+// TODO: 
 const getFoodByID = {
     url: '/Food/${id}/',
     method: 'GET',
@@ -161,6 +162,14 @@ const deleteGrocery = {
         { when: r => r.status == 200, then: r => null }
     ]
 };
+
+const togglePurchased = {
+    url: p => `/GroceryList/${p.foodId}/Purchased`,
+    method: 'PUT',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+}
 
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
@@ -217,11 +226,13 @@ export function useGetGroceryList() {
     return useAsync(() => api(context, getGroceryList));
 }
 
+// TODO: 
 function getFoodId(id) {
     getFoodByID.url = `/Food/${id}/`;
     return getFoodByID;
 }
 
+// TODO: 
 export function useGetFoodByID() {
     const context = useContext(AuthContext);
     return useAsync(id => api(context, getFoodId(id), undefined, { id }));
@@ -235,6 +246,11 @@ function getDeleteGrocery(foodId) {
 export function useDeleteGrocery() {
     const context = useContext(AuthContext);
     return useAsync(foodId => api(context, getDeleteGrocery(foodId), undefined, { foodId }));
+}
+
+export function useTogglePurchased() {
+    const context = useContext(AuthContext);
+    return useAsync((foodId, purchased) => api(context, togglePurchased, { foodId }, { purchased }))
 }
 
 function sleep(ms) {
