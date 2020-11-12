@@ -52,11 +52,21 @@ export default function SelectRestriction({navigation, route}) {
             
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>{getIngredients.response?.name}</Text>
             
-            <ScrollView>
-                <View>
-                    {listIngredients(getIngredients.response?.ingredients)}
-                </View>
-            </ScrollView>
-        </View>
+            
+
+            <FlatList
+                data={getIngredients.response?.ingredients}
+                renderItem={({ item }) => (
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignSelf: 'center', paddingBottom: 40 }}>
+                        <Text
+                            style={[Styles.buttonText]}
+                            >
+                            {item}
+                        </Text>
+                    </View>
+                )}
+                keyExtractor={(item, index) => 'key'+index}
+                />
+            </View>
     );
 }
