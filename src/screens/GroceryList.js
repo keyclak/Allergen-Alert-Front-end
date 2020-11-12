@@ -35,8 +35,7 @@ export default function GroceryList({navigation}) {
                         <ListItem containerStyle={{backgroundColor: Colors.Background, padding: 2}}>
                             <CheckBox
                                 containerStyle={{width: '72%', borderRadius: 15}}
-                                // TODO: use item.name
-                                title={item.foodId}
+                                title={item.name}
                                 checked={item.purchased}
                                 onIconPress={() => onCheck(item)}
                             />
