@@ -21,48 +21,44 @@ export default function SelectRestriction({navigation, route}) {
         navigation.addListener('focus', () =>  getIngredients.execute(id));
     }, [navigation]);
 
-    function changeButtonText(key, exception) {
-        return function() {
-
-            if(exception == 1) {
-
-
-            } else {
-
-            }
-        }
-    }
-
-    const listIngredients = (ingredients) => {
-        var x;
-        var text = ""; 
-
-        for(x in ingredients) {
-            text += ingredients[x] + "\n"
-        }
-
+    FlatListItemSeparator = () => {
         return(
-            <Text style={[Styles.ingredientList]}>{text}</Text>
+
+            <View>
+                style={{
+                height: 1,
+                width: "100%",
+                backgroundColor: "#607D8B",
+                }}
+            </View>
         )
     }
     
     return (
 
-        <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:40}]}>
-            
+        <View style={[Styles.containerIngredient, {justifyContent: 'flex-start', paddingTop:40}]}>   
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>{getIngredients.response?.name}</Text>
-            
-            
-
             <FlatList
                 data={getIngredients.response?.ingredients}
                 renderItem={({ item }) => (
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignSelf: 'center', paddingBottom: 40 }}>
-                        <Text
-                            style={[Styles.buttonText]}
-                            >
-                            {item}
-                        </Text>
+
+                    <View style={Styles.flatListRow}>
+                        <View style={Styles.flatListRowSpacing}>
+                            <Text
+                                style={[Styles.buttonText, {paddingLeft: 25}]}
+                                >
+                                {item}
+                            </Text>
+                            <View style={{paddingRight: 25}}>
+                                <TouchableOpacity
+                                    style={[Styles.button,{width: "100%"}]}
+                                    >
+                                    <Text
+                                        style={[Styles.buttonText]}
+                                    >  Enabled  </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                 )}
                 keyExtractor={(item, index) => 'key'+index}

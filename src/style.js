@@ -35,6 +35,13 @@ const Styles = StyleSheet.create({
         backgroundColor: Colors.Background,
         paddingTop: 30
     },
+    containerIngredient: {
+        display: 'flex',
+        height: '100%',
+        flexDirection: 'column',
+        backgroundColor: Colors.Background,
+        paddingTop: 30
+    },
     backgroundImage: {
         justifyContent: 'center',     
         alignItems: 'center',     
@@ -147,6 +154,17 @@ const Styles = StyleSheet.create({
         paddingLeft: 10, 
         paddingTop: 5,
         fontSize: 17
+    },
+    flatListRow: {
+        borderBottomColor: '#fff',
+        marginBottom: 15,
+        paddingBottom: 15,
+        borderBottomWidth: 0.5
+    },
+    flatListRowSpacing: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "baseline"
     }
 });
 
