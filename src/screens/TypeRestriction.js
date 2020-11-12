@@ -35,8 +35,8 @@ export default function TypeRestriction({navigation}) {
             <View style={{width: StyleConstants.FormWidth}}>
                 <FormTextInput placeholder="Ingredient" onChangeText={setIngredient}/>
                 <View style={{flexDirection: "row", justifyContent: "space-between",paddingTop: 20}}>
-                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add to Diet Type 1" isLoading={addModification.loading} onPress={onAddType0} />
-                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add to Diet Type 2" isLoading={addModification.loading} onPress={onAddType1} />
+                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add to Diet Type 0" isLoading={addModification.loading} onPress={onAddType0} />
+                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add to Diet Type 1" isLoading={addModification.loading} onPress={onAddType1} />
                 </View>
             </View>
         </View>
