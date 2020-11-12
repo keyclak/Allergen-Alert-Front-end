@@ -132,6 +132,19 @@ const getUsername = {
     ]
 }
 
+const addModification = {
+    url: '/Diet/Modification',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+}
+
+export function useAddModification(ingredient, type) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, addModification, undefined, { ingredient, type }));
+}
+
 function getIngredients(id) {
     ingredients.url = `/CategoricalRestriction/${id}/`;
     return ingredients;

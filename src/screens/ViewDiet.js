@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} f
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
-import { useGetDiet, useDeleteDiet,  } from '../hooks/api';
+import { useGetDiet, useDeleteDiet, useAddRestriction } from '../hooks/api';
 import { AuthContext } from '../context';
 
 export default function ViewDiet({navigation}) {
@@ -17,7 +17,7 @@ export default function ViewDiet({navigation}) {
         navigation.addListener('focus', () =>  getDiet.background());
     }, [navigation]);
 
-    function addRestriction() {
+    function selectRestriction() {
         navigation.navigate('SelectRestriction');
     }
 
@@ -37,55 +37,54 @@ export default function ViewDiet({navigation}) {
     }
 
     return (
-    <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:40}]}>
-            
-            <View style={{width: StyleConstants.FormWidth}}>
-                <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
-                <FlatList
-                    data={getDiet.response?.restrictions}
-                    renderItem={({ item }) => (
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
-                            <TouchableOpacity
-                                style={[Styles.button, {width: '75%'}]}
-                                onPress={viewRestriction(item.id)}
+    <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:40}]}>  
+        <View style={{width: StyleConstants.FormWidth}}>
+            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
+            <FlatList
+                data={getDiet.response?.restrictions}
+                renderItem={({ item }) => (
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
+                        <TouchableOpacity
+                            style={[Styles.button, {width: '75%'}]}
+                            onPress={viewRestriction(item.id)}
+                            >
+                            <Text
+                                style={[Styles.buttonText]}
+                                //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
                                 >
-                                <Text
-                                    style={[Styles.buttonText]}
-                                    //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
-                                    >
-                                    { item.name }
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={Styles.button}
-                                onPress={() => onDelete(item.id)}
-                                >
-                                <Text
-                                    style={[Styles.buttonText]}
-                                >  Delete  </Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    keyExtractor={item => `${item.id}`}
-                />
-                <TouchableOpacity
-                    style={Styles.button}
-                    onPress={addRestriction}
-                    >
-                    <Text
-                        style={[Styles.buttonText]}
-                    >Add a Dietary Restriction</Text>
-                </TouchableOpacity>
-                <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Other Restrictions</Text>
-                <TouchableOpacity
-                    style={Styles.button}
-                    onPress={typeRestriction}
-                    >
-                    <Text
-                        style={[Styles.buttonText]}
-                    >Add an Ingredient</Text>
-                </TouchableOpacity>
-            </View>
+                                { item.name }
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={Styles.button}
+                            onPress={() => onDelete(item.id)}
+                            >
+                            <Text
+                                style={[Styles.buttonText]}
+                            >  Delete  </Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+                keyExtractor={item => `${item.id}`}
+            />
+            <TouchableOpacity
+                style={Styles.button}
+                onPress={selectRestriction}
+                >
+                <Text
+                    style={[Styles.buttonText]}
+                >Add a Dietary Restriction</Text>
+            </TouchableOpacity>
+            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Other Restrictions</Text>
+            <TouchableOpacity
+                style={Styles.button}
+                onPress={typeRestriction}
+                >
+                <Text
+                    style={[Styles.buttonText]}
+                >Add an Ingredient</Text>
+            </TouchableOpacity>
         </View>
+    </View>
     );
 }

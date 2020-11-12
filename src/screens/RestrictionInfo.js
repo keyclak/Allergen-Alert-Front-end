@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
+import { CheckBox,TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
