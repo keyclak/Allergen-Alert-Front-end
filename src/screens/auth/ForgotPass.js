@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,  useEffect} from 'react';
 import {View, Text} from 'react-native';
 import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles, Colors } from '../../style';
@@ -11,6 +11,8 @@ export default function ForgotPass({navigation}) {
 
     const [username, setUsername] = useState();
     const sendPassReset = sendPasswordReset(username);
+
+    useEffect(() => console.log(sendPassReset.response), [sendPassReset.response]);
 
     function onSend() {
         sendPassReset.execute()

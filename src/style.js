@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import { Directions } from 'react-native-gesture-handler';
 
 const Colors = {
     Foreground: '#001dbd',
@@ -157,7 +158,8 @@ const Styles = StyleSheet.create({
         elevation: 10, //Android
         shadowRadius: 5, //iOS
         shadowColor: 'black', //iOS
-        width: 150
+        width: 150,
+        flexDirection: 'row'
     },
     navButton: {
         marginBottom: 20,

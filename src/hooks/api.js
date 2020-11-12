@@ -139,7 +139,7 @@ const validToken = {
     url: '/Account/ValidatePasswordResetToken/',
     method: 'POST',
     accept: [
-        { when: r => r.status == 200, then: r => null }
+        { when: r => r.status == 200, then: r => r.json() }
     ],
     reject: [
         { when: r => r.status == 400, then: r => r.json() }

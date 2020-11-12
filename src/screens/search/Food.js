@@ -53,6 +53,12 @@ export default function Food({ navigation, route }) {
                 <View style={[Styles.alertBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
                     <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
+                <View style={{paddingBottom: 20}}></View>
+                {flag === 0 &&
+                    <Pressable style={Styles.flagButton} onPress={() => {flagState(1), dialogState(1)}}>
+                        <Image source={require('../../../assets/flag.png')} style={{width: 30, height: 30}}></Image>
+                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Flag food</Text>                    
+                    </Pressable>}
                 <View style={{paddingTop: 20}}></View>
                 {flag === 1 &&
                     <View style={[Styles.flagBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
@@ -63,11 +69,8 @@ export default function Food({ navigation, route }) {
                 <View style={{alignItems: 'center', paddingTop: 5}}>
                     {flag === 1 &&
                     <Pressable style={Styles.flagButton} onPress={() => {flagState(0), changeFlagReason()}}>
+                        <Image source={require('../../../assets/flag.png')} style={{width: 30, height: 30}}></Image>
                         <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Unflag food</Text>
-                    </Pressable>}
-                    {flag === 0 &&
-                    <Pressable style={Styles.flagButton} onPress={() => {flagState(1), dialogState(1)}}>
-                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Flag food</Text>
                     </Pressable>}
                 </View>
                 <View>
@@ -82,7 +85,7 @@ export default function Food({ navigation, route }) {
                     message={"Why would you like to flag this food?"}
                     hintInput ={"Ex: Caused bloating, is unappealing, etc."}
                     submitInput={ (inputText) => {changeFlagReason(inputText), dialogState(0)} }
-                    closeDialog={ () => {dialogState(0)}}
+                    closeDialog={ () => {dialogState(0), flagState(0)}}
                    >
                 </DialogInput>
             </ScrollView>
