@@ -1,9 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StatusBar, StyleSheet, Text, TouchableOpacity, Image, TextInput, SafeAreaView, FlatList } from "react-native";
 import { StyleConstants, Styles, Colors } from '../../style';
+import { useGetFoodSearch } from '../../hooks/api';
+import { useDummy } from '../../hooks/api';
+
+function searchHelper(query) {
+    return useDummy([]);
+}
 
 export default function FoodSearch({navigation}) {
-    //const getFoodSearch = useFoodSearch();
+    //const getFoodSearch = useDummy();
+
+    const [searchValue, setSearchValue] = useState("");
+    const [results, setResults] = useState([]);
+    const [food, setFood] = useState ([]);
+
+     //const query = route.params.query;
+     const getFoodSearch = useGetFoodSearch();
+
+    const fetchData = async (t) => {
+        const res = await getFoodSearch.execute(t); //NOT RIGHT
+        const json = await res.json();
+        setResults(json);
+        setFood(json.slice());
+        console.log("hi")
+      };
+
+    useEffect(() => {
+    fetchData();
+    }, []);
+
+
+   
 
     //creates an item object from data for flatlist
     const Item = ({ item }) => (
@@ -12,26 +40,23 @@ export default function FoodSearch({navigation}) {
         </TouchableOpacity>
     );
 
-    const [results, setResults] = useState([
-        
-    ]);
-    
-    function search(query) {
-        console.log(results);
-        if(query === '')
-           setResults([]);
+    // useEffect(() => {
+    //      getFoodSearch.execute('Oats');
+    // });
 
-        else
-            setResults([
-                {
-                    name: 'food1',
-                    key: 1
-                }, 
-                {
-                    name: 'food2',
-                    key: 2
-                }
-            ]);
+   // useEffect(() => console.log(getFoodSearch.response), [getFoodSearch.response]);
+
+    function search(query) {
+        //setSearchValue(query);
+        console.log(results);
+        // if(query === '') {
+        //    setResults([]);
+
+        // } else {
+        //     setResults(query)
+        //    // useGetFoodSearch(query);
+        //    //results
+        // }
     }
 
 
@@ -41,7 +66,7 @@ export default function FoodSearch({navigation}) {
                 <View style={{width: '100%', borderRadius: 20}}>
                     <TextInput style={styles.inputFood}
                         placeholder="  Search Food"
-                        onChangeText={t => search(t)}
+                        onChangeText={t => fetchData(t)}
                     />
                 </View>
             </View>
