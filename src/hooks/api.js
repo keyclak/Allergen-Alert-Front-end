@@ -202,5 +202,5 @@ export function useGetFoodSearch(search) {
     //correctly gets search from FoodSearch.js
     //console.log(search);
     const context = useContext(AuthContext);
-    return useAsync(search => api(context, getFoodSearch, { search }))
+    return useAsync(() => api(context, getFoodSearch, { search }))
 }

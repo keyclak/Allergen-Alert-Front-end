@@ -13,18 +13,14 @@ export default function FoodSearch({navigation}) {
 
     const [searchValue, setSearchValue] = useState("");
     const [results, setResults] = useState([]);
-    
-
-     //const query = route.params.query;
-
-     const getFoodSearch = useGetFoodSearch(searchValue);
+    const getFoodSearch = useGetFoodSearch(searchValue);
 
     const fetchData = async (t) => {
         //console.log(t)
         setSearchValue(t);
-        getFoodSearch.background(); //NOT RIGHT 
+        getFoodSearch.background(); //
         setResults(getFoodSearch.response)
-        //console.log(getFoodSearch)
+        //console.log(results)
       };
 
     useEffect(() => {
@@ -38,30 +34,10 @@ export default function FoodSearch({navigation}) {
 
     //creates an item object from data for flatlist
     const Item = ({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => null}>
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('FoodPage', { upc: item.id })}>
             <Text style={{fontSize: 20}}>{item.name}</Text>
         </TouchableOpacity>
     );
-
-    // useEffect(() => {
-    //      getFoodSearch.execute('Oats');
-    // });
-
-   // useEffect(() => console.log(getFoodSearch.response), [getFoodSearch.response]);
-
-    // function search(query) {
-    //     //setSearchValue(query);
-    //     console.log(results);
-    //     // if(query === '') {
-    //     //    setResults([]);
-
-    //     // } else {
-    //     //     setResults(query)
-    //     //    // useGetFoodSearch(query);
-    //     //    //results
-    //     // }
-    // }
-
 
     return (
         <View style={Styles.container}>
@@ -75,7 +51,7 @@ export default function FoodSearch({navigation}) {
             </View>
             <FlatList
                 data={results}
-                keyExtractor={item => item.key}
+                keyExtractor={item => item.id}
                 renderItem={Item} />
         </View>
     );
@@ -95,8 +71,8 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: '#FC9F24',
         padding: 15,
-        marginVertical: 10,
-        width: '100%',
+        marginVertical: 5,
+        width: '95%',
         justifyContent: 'center',
         alignSelf: 'center',
         borderRadius: 20,
