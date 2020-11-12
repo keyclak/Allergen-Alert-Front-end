@@ -143,18 +143,6 @@ const getGroceryList = {
     ]
 };
 
-// TODO: 
-const getFoodByID = {
-    url: p => `/Food/${p.id}`,    
-    method: 'GET',
-    accept: [
-        { when: r => r.status == 200, then: r => r.json() }
-    ],
-    reject: [
-        { when: r => r.status == 404, then: r => "No food matches given ID" }
-    ]
-};
-
 const deleteGrocery = {
     url: '/GroceryList/${foodId}/',
     method: 'DELETE',
@@ -224,18 +212,6 @@ export function useAddToGroceryList() {
 export function useGetGroceryList() {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, getGroceryList));
-}
-
-// // TODO: 
-// function getFoodId(id) {
-//     getFoodByID.url = `/Food/${id}`;
-//     return getFoodByID;
-// }
-
-// TODO: 
-export function useGetFoodByID() {
-    const context = useContext(AuthContext);
-    return useAsync(id => api(context, getFoodByID, { id }));
 }
 
 function getDeleteGrocery(foodId) {

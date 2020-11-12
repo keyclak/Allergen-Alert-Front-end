@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {SafeAreaView, ScrollView, View, Text, FlatList, Pressable} from 'react-native'
 import { StyleConstants, Styles, Colors } from '../style';
-import { useDeleteGrocery, useGetFoodByID, useGetGroceryList, useTogglePurchased } from '../hooks/api';
+import { useDeleteGrocery, useGetGroceryList, useTogglePurchased } from '../hooks/api';
 import { ListItem, CheckBox } from 'react-native-elements'
 
 export default function GroceryList({navigation}) {
 
     const getGroceryList = useGetGroceryList();
-    const getFoodByID = useGetFoodByID(); 
     const deleteGrocery = useDeleteGrocery(); 
     const togglePurchased = useTogglePurchased(); 
 
