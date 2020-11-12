@@ -14,7 +14,7 @@ export default function ForgotPasss({navigation}) {
 
     function onSend() {
         sendPassReset.execute()
-            .then(r => {navigation.navigate('AuthCode')})
+            .then(r => {navigation.navigate('AuthCode', { user: username })})
             .catch(e => {});
 
         

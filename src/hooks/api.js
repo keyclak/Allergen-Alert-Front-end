@@ -135,6 +135,28 @@ const sendPassReset = {
     ]
 };
 
+const validToken = {
+    url: '/Account/*TBD*/',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => r.json() }
+    ]
+};
+
+const resetPass = {
+    url: '/Account/ResetPassword/',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => r.json() }
+    ]
+};
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -195,6 +217,12 @@ export function sendPasswordReset(username) {
     return useAsync(() => api(context, sendPassReset, undefined, {username}));
 }
 
-export function resetPassword(token) {
-    
+export function validateToken(token) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, validToken, undefined, {token}));
+}
+
+export function resetPassword(username, token, password) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, resetPass, undefined, {username, token, password}));
 }
