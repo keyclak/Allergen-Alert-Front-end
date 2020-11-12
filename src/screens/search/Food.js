@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
-import Ingredients from '../../components/Ingredients'
+import TextLoadingButton from '../../components/TextLoadingButton'
 import { color } from 'react-native-reanimated';
 import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
 
@@ -40,9 +40,10 @@ export default function Food({ navigation, route }) {
 
     function onAdd(id) {
         addToGroceryList.execute(id) 
-            .catch(e => {});
+        .then (getUpcSearch.background(upc))
+        .catch(e => {});
     }
-    
+
     const disclaimer = "Basic Legal Disclaimer"
 
     return(
@@ -57,9 +58,9 @@ export default function Food({ navigation, route }) {
 
                 <View style={{paddingTop: 20, alignItems: 'center'}}>
                     <Pressable 
-                        style={[Styles.button, {width: '80%'}]}
-                        onPress={() => onAdd(getUpcSearch.response?.id)}>
-                        <Text>Add to Grocery List</Text>
+                        style={getUpcSearch.response?.inGroceryList ? null : [Styles.button, {width: '80%'}]}
+                        onPress={getUpcSearch.response?.inGroceryList ? null : () => onAdd(getUpcSearch.response?.id)}>
+                        <Text style={{color: Colors.Accent}}>{getUpcSearch.response?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
                     </Pressable>
                 </View>
                 <View>

@@ -11,22 +11,22 @@ export default function GroceryList({navigation}) {
     const deleteGrocery = useDeleteGrocery(); 
     const togglePurchased = useTogglePurchased(); 
 
-    const [foodName, setFoodName] = useState();
-
     useEffect(() => {
         navigation.addListener('focus', () =>  getGroceryList.background());
     }, [navigation]);
 
     function onDelete(id) {
         deleteGrocery.execute(id)
-            .then(() => getGroceryList.background());
+            .then(() => getGroceryList.background())
+            .catch(e => {});
     }
 
     function onCheck(food) {
         togglePurchased.execute(food.foodId, !food.purchased)
-            .then(() => getGroceryList.background()); 
-    } 
-    
+            .then(() => getGroceryList.background())
+            .catch(e => {});    
+    }
+
     return (
         <SafeAreaView style={[Styles.container, {flex: 1, alignItems: 'flex-start', justifyContent:'space-evenly'}]}>
             <View style={{paddingTop: 15}}>
@@ -36,7 +36,8 @@ export default function GroceryList({navigation}) {
                         <ListItem containerStyle={{backgroundColor: Colors.Background, padding: 2}}>
                             <CheckBox
                                 containerStyle={{width: '72%', borderRadius: 15}}
-                                title= {item.foodId}
+                                // TODO: use item.name
+                                title={item.foodId}
                                 checked={item.purchased}
                                 onIconPress={() => onCheck(item)}
                             />
