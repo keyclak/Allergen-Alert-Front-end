@@ -6,7 +6,7 @@ import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
 import { sendPasswordReset } from '../../hooks/api';
 
-export default function ForgotPasss({navigation}) {
+export default function ForgotPass({navigation}) {
     const context = useContext(AuthContext);
 
     const [username, setUsername] = useState();

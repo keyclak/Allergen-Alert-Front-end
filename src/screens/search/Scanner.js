@@ -24,7 +24,7 @@ export default function Scanner({navigation}) {
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
         console.log(`Barcode type: ${type}`);
-        navigation.navigate('FoodPage', { upc: data });
+        navigation.navigate('FoodPage', { upc: '1' });
     };
 
     if (hasPermission === null) {
@@ -47,10 +47,11 @@ export default function Scanner({navigation}) {
 
     return (
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-end',}}>
-        <BarCodeScanner
+        <Button title={'test'} onPress={handleBarCodeScanned}></Button>
+        {/* <BarCodeScanner
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
             style={StyleSheet.absoluteFillObject}
-        />
+        /> */}
         </View>
     );
 }

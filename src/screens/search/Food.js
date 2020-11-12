@@ -56,7 +56,7 @@ export default function Food({ navigation, route }) {
                 <View style={{paddingTop: 20}}></View>
                 {flag === 1 &&
                     <View style={[Styles.flagBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
-                    <Image source={require('../../../assets/flag.png')} style={{width: 20, height: 20}}></Image>
+                    <Image source={require('../../../assets/flagCircle.png')} style={{width: 20, height: 20}}></Image>
                     <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{'You have flagged this food for the following reason(s): '}</Text>
                     <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{flagReason}</Text>
                 </View>}

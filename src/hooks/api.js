@@ -136,7 +136,7 @@ const sendPassReset = {
 };
 
 const validToken = {
-    url: '/Account/*TBD*/',
+    url: '/Account/ValidatePasswordResetToken/',
     method: 'POST',
     accept: [
         { when: r => r.status == 200, then: r => null }
@@ -217,9 +217,9 @@ export function sendPasswordReset(username) {
     return useAsync(() => api(context, sendPassReset, undefined, {username}));
 }
 
-export function validateToken(token) {
+export function validatePasswordResetToken(username, token) {
     const context = useContext(AuthContext);
-    return useAsync(() => api(context, validToken, undefined, {token}));
+    return useAsync(() => api(context, validToken, undefined, {username, token}));
 }
 
 export function resetPassword(username, token, password) {

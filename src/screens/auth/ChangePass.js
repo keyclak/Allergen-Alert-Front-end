@@ -15,7 +15,7 @@ export default function ChangePass({navigation, route}) {
     const [pass2, setPass2] = useState();
     const [error, errorState] = useState(0);
 
-    const resetPass = resetPassword(username, token, pass2);
+    const resetPass = ChangePass(username, token, pass2);
 
     function onReset() {
         if (pass1 !== pass2)

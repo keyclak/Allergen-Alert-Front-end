@@ -4,20 +4,21 @@ import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles } from '../../style';
 import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
-//import { resetPassword, validateToken } from '../../hooks/api';
+import { validatePasswordResetToken } from '../../hooks/api';
 
-export default function ForgotPasss({navigation, route}) {
+export default function AuthCode({navigation, route}) {
     const context = useContext(AuthContext);
     const username = route.params.user;
 
     const [code, setCode] = useState();
-    //const resetPass = validateToken(code);
+    const validToken = validatePasswordResetToken(username, code);
+
+    useEffect(() => console.log(validToken.response), [validToken.response]);
 
     function onConfirm() {
-        //resetPass.execute()
-            //.then(r => {navigation.navigate('ChangePass')})
-            //.catch(e => {});
-        navigation.navigate('ChangePass', { token: code, user: username });
+        validToken.execute()
+            .then(r => {})
+            .catch(e => {});
     }
 
     return (
@@ -26,10 +27,9 @@ export default function ForgotPasss({navigation, route}) {
             <Text style={{textAlign: 'center', fontSize: 20, fontWeight: "bold"}}>Verification</Text>
             <Text style={{textAlign: 'center', fontSize: 18, paddingTop: 20}}>A verification code has been sent to the account associated
                 with this email</Text>
-            {/* <FormTextInput placeholder="Enter code" error={resetPass.error?.PropertyHint == 'token'} onChangeText={setCode}/> */}
-            <FormTextInput placeholder="Enter code" onChangeText={setCode}/>
+            <FormTextInput placeholder="Enter code" error={(validToken.response?.valid === false) ? 'true' : ''} onChangeText={setCode}/>
             </View>         
-            {/* <Text style={[Styles.errorText, {alignSelf: 'center', paddingTop: 10}]}>{resetPass.error?.Error}</Text>             */}
+            {(validToken.response?.valid === false) && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Invalid code</Text>}         
             <View style={{width: StyleConstants.FormWidth}}>
                 <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Confirm" onPress={onConfirm}/>
             </View>
