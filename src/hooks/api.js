@@ -124,6 +124,44 @@ const getUsername = {
     ]
 }
 
+const addToGroceryList = {
+    url: '/GroceryList',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => "Food is already in Grocery List" }
+    ]
+}
+
+const getGroceryList = {
+    url: '/GroceryList',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+};
+
+const getFoodByID = {
+    url: '/Food/${id}/',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [
+        { when: r => r.status == 404, then: r => "No food matches given ID" }
+    ]
+};
+
+const deleteGrocery = {
+    url: '/GroceryList/${foodId}/',
+    method: 'DELETE',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+};
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -167,6 +205,36 @@ export function useGetUpcSearch() {
 export function useGetUsername() {
     const context = useContext(AuthContext); 
     return useAsync(() => api(context, getUsername));
+}
+
+export function useAddToGroceryList() {
+    const context = useContext(AuthContext);
+    return useAsync(foodId => api(context, addToGroceryList, undefined, { foodId }));
+}
+
+export function useGetGroceryList() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getGroceryList));
+}
+
+function getFoodId(id) {
+    getFoodByID.url = `/Food/${id}/`;
+    return getFoodByID;
+}
+
+export function useGetFoodByID() {
+    const context = useContext(AuthContext);
+    return useAsync(id => api(context, getFoodId(id), undefined, { id }));
+}
+
+function getDeleteGrocery(foodId) {
+    deleteGrocery.url = `/GroceryList/${foodId}/`;
+    return deleteGrocery;
+}
+
+export function useDeleteGrocery() {
+    const context = useContext(AuthContext);
+    return useAsync(foodId => api(context, getDeleteGrocery(foodId), undefined, { foodId }));
 }
 
 function sleep(ms) {

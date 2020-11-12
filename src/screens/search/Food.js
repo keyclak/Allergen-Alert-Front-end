@@ -3,11 +3,12 @@ import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, Tou
 import { StyleConstants, Styles, Colors } from '../../style';
 import Ingredients from '../../components/Ingredients'
 import { color } from 'react-native-reanimated';
-import { useDummy, useGetUpcSearch } from '../../hooks/api';
+import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
     const getUpcSearch = useGetUpcSearch();
+    const addToGroceryList = useAddToGroceryList(); 
 
     useEffect(() => {
         navigation.addListener('focus', () => 
@@ -37,13 +38,11 @@ export default function Food({ navigation, route }) {
         )
     }
 
-    //TODO:
-    const addToGroceryList = () => {
-        return (
-            console.log("add item " + getUpcSearch.response?.name)
-        )
+    function onAdd(id) {
+        addToGroceryList.execute(id) 
+            .catch(e => {});
     }
-
+    
     const disclaimer = "Basic Legal Disclaimer"
 
     return(
@@ -56,12 +55,13 @@ export default function Food({ navigation, route }) {
                     <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
 
-                <Pressable 
-                    style={[Styles.button]}
-                    onPress={addToGroceryList}>
+                <View style={{paddingTop: 20, alignItems: 'center'}}>
+                    <Pressable 
+                        style={[Styles.button, {width: '80%'}]}
+                        onPress={() => onAdd(getUpcSearch.response?.id)}>
                         <Text>Add to Grocery List</Text>
-                </Pressable>
-
+                    </Pressable>
+                </View>
                 <View>
                     <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
                     {listIngredients(getUpcSearch.response?.ingredients)}
