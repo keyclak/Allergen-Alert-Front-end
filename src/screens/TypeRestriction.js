@@ -16,17 +16,23 @@ export default function TypeRestriction({navigation}) {
     const addModification = useAddModification(ingredient, type);
 
     function onAddType0() {
-        setType(0);
-        addModification.execute()
+        setType(0)
+        if (type === 0)
+        {
+            addModification.execute()
             .then(() => navigation.pop())
             .catch(e => {});
+        }
     }
 
     function onAddType1() {
-        setType(1);
-        addModification.execute()
+        setType(1)
+        if (type === 1)
+        {
+            addModification.execute()
             .then(() => navigation.pop())
             .catch(e => {});
+        }
     }
 
     return (
