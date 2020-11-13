@@ -15,28 +15,19 @@ export default function TypeRestriction({navigation}) {
     const [type, setType] = useState();
     const addModification = useAddModification(ingredient, type);
 
-    function onAddType0() {
-        setType(0)
-        if (type === 0)
-        {
-            addModification.execute()
-            .then(() => navigation.pop())
-            .catch(e => {});
-        }
-        else
-            onAddtype0()
+    useEffect(() => {
+        addModification.execute()
+        .then(() => navigation.pop())
+        .catch(e => {});
+
+    }, [type]);
+
+    function onAddException() {
+        setType(0);
     }
 
-    function onAddType1() {
-        setType(1)
-        if (type === 1)
-        {
-            addModification.execute()
-            .then(() => navigation.pop())
-            .catch(e => {});
-        }
-        else 
-            onAddtype1();
+    function onAddRestriction() {
+        setType(1);
     }
 
     return (
@@ -45,8 +36,8 @@ export default function TypeRestriction({navigation}) {
             <View style={{width: StyleConstants.FormWidth}}>
                 <FormTextInput placeholder="Ingredient" onChangeText={setIngredient}/>
                 <View style={{flexDirection: "row", justifyContent: "space-between",paddingTop: 20}}>
-                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add to Diet Type 0" isLoading={addModification.loading} onPress={onAddType0} />
-                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add to Diet Type 1" isLoading={addModification.loading} onPress={onAddType1} />
+                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add an Exception" isLoading={addModification.loading} onPress={onAddException} />
+                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add a Restriction" isLoading={addModification.loading} onPress={onAddRestriction} />
                 </View>
             </View>
         </View>
