@@ -4,7 +4,6 @@ import { StyleConstants, Styles, Colors } from '../../style';
 import Ingredients from '../../components/Ingredients'
 import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
 import { color } from 'react-native-reanimated';
-import { useDummy, useGetUpcSearch } from '../../hooks/api';
 import DialogInput from 'react-native-dialog-input';
 
 export default function Food({ navigation, route }) {

@@ -24,7 +24,7 @@ export default function Scanner({navigation}) {
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
         console.log(`Barcode type: ${type}`);
-        navigation.navigate('FoodPage', { upc: '0' });
+        navigation.navigate('FoodPage', { upc: data });
     };
 
     if (hasPermission === null) {
