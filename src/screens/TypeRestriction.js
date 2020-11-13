@@ -23,6 +23,11 @@ export default function TypeRestriction({navigation}) {
             addModification.execute()
             .then(() => navigation.pop())
             .catch(e => {});
+
+            // mimicking behavior of initial render if there is an error on 
+            // submission
+            initialRender.current = true;
+            setType(2);
         }
 
     }, [type]);
