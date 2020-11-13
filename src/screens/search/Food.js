@@ -14,11 +14,8 @@ export default function Food({ navigation, route }) {
     const getUpcSearch = useGetUpcSearch();
     const getFood = useGetFood();
 
-    const ID = "food_apbiecqaagd3bvbkn6r9nb1qv113 poppy seed dressing"
-
     function refresh() {
         if(foodId) {
-            console.log(foodId);
             getFood.execute(foodId)
                 .then(r => setFood(r))
                 .catch(e => 
