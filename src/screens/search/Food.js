@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
-import { ListItem } from 'react-native-elements'
 import Ingredients from '../../components/Ingredients'
-import { color } from 'react-native-reanimated';
 import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
 
 export default function Food({ navigation, route }) {
