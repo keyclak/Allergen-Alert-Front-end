@@ -16,9 +16,9 @@ export default function AuthCode({navigation, route}) {
     useEffect(() => console.log(validToken.response), [validToken.response]);
 
     function onConfirm() {
-        validToken.execute()
-            .then(r => {})
-            .catch(e => {});
+            validToken.execute()
+                .then(r => {(validToken.response?.valid) ? navigation.navigate('ChangePass', { user: username, token: code }) : {}})
+                .catch(e => {});
     }
 
     return (
@@ -31,7 +31,7 @@ export default function AuthCode({navigation, route}) {
             </View>         
             {(validToken.response?.valid === false) && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Invalid code</Text>}         
             <View style={{width: StyleConstants.FormWidth}}>
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Confirm" onPress={onConfirm}/>
+                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Confirm" isLoading={validToken.loading} onPress={onConfirm}/>
             </View>
         </View>
     );

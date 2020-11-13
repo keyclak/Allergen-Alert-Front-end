@@ -15,7 +15,7 @@ export default function ChangePass({navigation, route}) {
     const [pass2, setPass2] = useState();
     const [error, errorState] = useState(0);
 
-    const resetPass = ChangePass(username, token, pass2);
+    const resetPass = resetPassword(username, token, pass2);
 
     function onReset() {
         if (pass1 !== pass2)
@@ -38,7 +38,7 @@ export default function ChangePass({navigation, route}) {
             <FormTextInput placeholder="Confirm password" onChangeText={setPass2} error={(error === 1) ? 'true' : resetPass.error?.PropertyHint == 'password'}/>
             {error === 1 && <Text style={[Styles.errorText, {alignSelf: 'center'}]}>Passwords do not match</Text>}
             {error === 0 && <Text style={[Styles.errorText, {alignSelf: 'center', paddingTop: 10}]}>{resetPass.error?.Error}</Text>}
-            <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Reset Password" onPress={onReset}/>
+            <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Reset Password" isLoading={resetPass.loading} onPress={onReset}/>
             </View>
         </View>
     );

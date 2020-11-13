@@ -6,7 +6,7 @@ import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
 import { sendPasswordReset } from '../../hooks/api';
 
-export default function ForgotPass({navigation}) {
+export default function ForgotPass({navigation, route}) {
     const context = useContext(AuthContext);
 
     const [username, setUsername] = useState();
@@ -31,7 +31,7 @@ export default function ForgotPass({navigation}) {
             </View>
             <Text style={[Styles.errorText, {alignSelf: 'center', paddingTop: 10}]}>{sendPassReset.error?.Error}</Text>
             <View style={{width: StyleConstants.FormWidth}}>
-                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Send" onPress={onSend}/>
+                <TextLoadingButton style={{ marginTop: StyleConstants.FormItemTextSize }}text="Send" isLoading={sendPassReset.loading} onPress={onSend}/>
             </View>
         </View>
     );
