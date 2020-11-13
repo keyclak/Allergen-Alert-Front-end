@@ -23,6 +23,8 @@ export default function TypeRestriction({navigation}) {
             .then(() => navigation.pop())
             .catch(e => {});
         }
+        else
+            onAddtype0()
     }
 
     function onAddType1() {
@@ -33,6 +35,8 @@ export default function TypeRestriction({navigation}) {
             .then(() => navigation.pop())
             .catch(e => {});
         }
+        else 
+            onAddtype1();
     }
 
     return (
