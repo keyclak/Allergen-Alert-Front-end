@@ -78,6 +78,7 @@ function HomeStackScreen() {
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
             <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Add Dietary Restriction" }}/>
             <HomeStack.Screen name="GroceryList" component={GroceryList} options={{ title: "Grocery List" }}/>
+            <HomeStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
         </HomeStack.Navigator>
     );
 }

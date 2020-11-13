@@ -3,16 +3,21 @@ import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, Tou
 import { StyleConstants, Styles, Colors } from '../../style';
 import TextLoadingButton from '../../components/TextLoadingButton'
 import { color } from 'react-native-reanimated';
-import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
+import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
+    const foodId = route.params.foodId;
+    const [food, setFood] = useState(null);
+
     const getUpcSearch = useGetUpcSearch();
+    const getFood = useGetFood();
     const addToGroceryList = useAddToGroceryList(); 
 
-    useEffect(() => {
-        navigation.addListener('focus', () => 
-            getUpcSearch.execute(upc)
+    function refresh() {
+        if(foodId) {
+            getFood.execute(foodId)
+                .then(r => setFood(r))
                 .catch(e => 
                     Alert.alert(
                         e,
@@ -20,10 +25,24 @@ export default function Food({ navigation, route }) {
                         [
                             { text: "OK", onPress: () => navigation.pop() }
                         ]
-                    )));
-    }, [navigation]);
+                    ));
+        } else {
+            getUpcSearch.execute(upc)
+                .then(r => setFood(r))
+                .catch(e => 
+                    Alert.alert(
+                        e,
+                        null,
+                        [
+                            { text: "OK", onPress: () => navigation.pop() }
+                        ]
+                    ));
+        }
+    }
 
-    useEffect(() => console.log(getUpcSearch.response), [getUpcSearch.response]);
+    useEffect(() => {
+        navigation.addListener('focus', () => refresh())
+    }, [navigation]);
 
     const listIngredients = (ingredients) => {
         var x;
@@ -40,7 +59,7 @@ export default function Food({ navigation, route }) {
 
     function onAdd(id) {
         addToGroceryList.execute(id) 
-        .then (getUpcSearch.background(upc))
+        .then (refresh())
         .catch(e => {});
     }
 
@@ -50,22 +69,22 @@ export default function Food({ navigation, route }) {
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
             <ScrollView style={{display: 'flex', flexDirection: 'column'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
-                    <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{getUpcSearch.response?.name}</Text> 
+                    <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{food?.name}</Text> 
                 </View>
-                <View style={[Styles.alertBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
-                    <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
+                <View style={[Styles.alertBox, (food?.safe ? null : Styles.alert)]}>
+                    <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(food?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
 
                 <View style={{paddingTop: 20, alignItems: 'center'}}>
                     <Pressable 
-                        style={getUpcSearch.response?.inGroceryList ? null : [Styles.button, {width: '80%'}]}
-                        onPress={getUpcSearch.response?.inGroceryList ? null : () => onAdd(getUpcSearch.response?.id)}>
-                        <Text style={{color: Colors.Accent}}>{getUpcSearch.response?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
+                        style={food?.inGroceryList ? null : [Styles.button, {width: '80%'}]}
+                        onPress={food?.inGroceryList ? null : () => onAdd(food?.id)}>
+                        <Text style={{color: Colors.Accent}}>{food?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
                     </Pressable>
                 </View>
                 <View>
                     <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
-                    {listIngredients(getUpcSearch.response?.ingredients)}
+                    {listIngredients(food?.ingredients)}
                 </View>
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
