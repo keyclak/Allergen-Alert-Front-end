@@ -151,6 +151,18 @@ const getUsername = {
     ]
 };
 
+const getFood = {
+    url: p => `/Food/${p.id}`,
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [
+        { when: r => r.status == 404, then: r => "Unknown Food ID" }
+    ]
+}
+
+
 const addToGroceryList = {
     url: '/GroceryList',
     method: 'POST',
@@ -232,6 +244,11 @@ export function useCreateAccount( username, email, password ) {
 export function useGetDiet() {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, getDiet));
+}
+
+export function useGetFood() {
+    const context = useContext(AuthContext);
+    return useAsync(id => api(context, getFood, { id }));
 }
 
 export function useGetRestrictions() {

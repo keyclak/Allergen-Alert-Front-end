@@ -32,11 +32,13 @@ export default function GroceryList({navigation}) {
                 <FlatList
                     data={getGroceryList.response}
                     renderItem={({ item }) => (
-                        <ListItem containerStyle={{backgroundColor: Colors.Background, padding: 2}}>
+                        <ListItem containerStyle={{backgroundColor: 'Colors.Background', padding: 2}}
+                        >
                             <CheckBox
                                 containerStyle={{width: '72%', borderRadius: 15}}
                                 title={item.name}
                                 checked={item.purchased}
+                                onPress={() => navigation.navigate('FoodPage', { foodId: item.foodId })}
                                 onIconPress={() => onCheck(item)}
                             />
                             <Pressable 
