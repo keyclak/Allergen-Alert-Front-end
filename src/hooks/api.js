@@ -145,6 +145,9 @@ const addModification = {
     method: 'POST',
     accept: [
         { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => "Duplicate or blank ingredients cannot be added" }
     ]
 }
 

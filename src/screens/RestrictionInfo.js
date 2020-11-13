@@ -32,10 +32,7 @@ export default function SelectRestriction({navigation, route}) {
         } else {
             addModification.execute()
             .then(() => navigation.pop())
-            .catch(e => {
-
-                console.error(error);
-            });
+            .catch(e => {});
         }
 
     }, [ingredient]);
@@ -51,6 +48,7 @@ export default function SelectRestriction({navigation, route}) {
 
         <View style={[Styles.containerIngredient, {justifyContent: 'flex-start', paddingTop:40}]}>   
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>{getIngredients.response?.name}</Text>
+            <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{addModification.error}</Text>
             <FlatList
                 data={getIngredients.response?.ingredients}
                 renderItem={({ item }) => (
