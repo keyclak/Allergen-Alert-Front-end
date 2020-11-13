@@ -124,6 +124,17 @@ const getUsername = {
     ]
 }
 
+const getFood = {
+    url: p => `/Food/${p.id}`,
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [
+        { when: r => r.status == 404, then: r => "Unknown Food ID" }
+    ]
+}
+
 const getFoodSearch = {
     url: p => `/Search?query=${p.search}`,
     method: 'GET',
@@ -173,6 +184,11 @@ export function useAddRestriction() {
 export function useGetUpcSearch() {
     const context = useContext(AuthContext);
     return useAsync(upc => api(context, getUpcSearch, { upc }))
+}
+
+export function useGetFood() {
+    const context = useContext(AuthContext);
+    return useAsync(id => api(context, getFood, { id }));
 }
 
 export function useGetUsername() {
