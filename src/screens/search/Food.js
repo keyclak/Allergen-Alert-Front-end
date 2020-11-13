@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
-import TextLoadingButton from '../../components/TextLoadingButton'
+import Ingredients from '../../components/Ingredients'
 import { color } from 'react-native-reanimated';
 import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
 
@@ -25,19 +25,6 @@ export default function Food({ navigation, route }) {
 
     useEffect(() => console.log(getUpcSearch.response), [getUpcSearch.response]);
 
-    const listIngredients = (ingredients) => {
-        var x;
-        var text = ""; 
-
-        for(x in ingredients) {
-            text += ingredients[x] + "\n"
-        }
-
-        return(
-            <Text style={[Styles.ingredientList]}>{text}</Text>
-        )
-    }
-
     function onAdd(id) {
         addToGroceryList.execute(id) 
         .then (getUpcSearch.background(upc))
@@ -48,7 +35,7 @@ export default function Food({ navigation, route }) {
 
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
-            <ScrollView style={{display: 'flex', flexDirection: 'column'}}> 
+            <ScrollView style={{display: 'flex', width: '90%'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{getUpcSearch.response?.name}</Text> 
                 </View>
@@ -63,10 +50,8 @@ export default function Food({ navigation, route }) {
                         <Text style={{color: Colors.Accent}}>{getUpcSearch.response?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
                     </Pressable>
                 </View>
-                <View>
-                    <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
-                    {listIngredients(getUpcSearch.response?.ingredients)}
-                </View>
+                <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
+                <Ingredients content={getUpcSearch.response?.ingredients} />
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
                 </View>
