@@ -42,6 +42,17 @@ function api(authContext, endpoint, urlParams, bodyParams) {
         });
 }
 
+const addRestriction = {
+    url: '/Diet/Categorical',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => "Restriction is already in the diet" }
+    ]
+};
+
 const login = {
     url: '/Account/Login/',
     method: 'POST',
@@ -55,6 +66,33 @@ const login = {
         { when: r => r.status == 400, then: r => 'Invalid username or password' },
     ]
 };
+
+const deleteModification = {
+    url: '/Diet/Modification/${id}/',
+    method: 'DELETE',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+};
+
+const getRestrictions = {
+    url: '/Diet/AvailableRestrictions',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+};
+
+const addModification = {
+    url: '/Diet/Modification',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => "Duplicate or blank ingredients cannot be added" }
+    ]
+}
 
 const create = {
     url: '/Account/Create/',
@@ -78,14 +116,6 @@ const getDiet = {
     ]
 };
 
-const getRestrictions = {
-    url: '/Diet/AvailableRestrictions',
-    method: 'GET',
-    accept: [
-        { when: r => r.status == 200, then: r => r.json() }
-    ]
-};
-
 const ingredients = {
     url: '/CategoricalRestriction/${id}/',
     method: 'GET',
@@ -99,25 +129,6 @@ const deleteDiet = {
     method: 'DELETE',
     accept: [
         { when: r => r.status == 200, then: r => null }
-    ]
-};
-
-const deleteModification = {
-    url: '/Diet/Modification/${id}/',
-    method: 'DELETE',
-    accept: [
-        { when: r => r.status == 200, then: r => null }
-    ]
-};
-
-const addRestriction = {
-    url: '/Diet/Categorical',
-    method: 'POST',
-    accept: [
-        { when: r => r.status == 200, then: r => null }
-    ],
-    reject: [
-        { when: r => r.status == 400, then: r => "Restriction is already in the diet" }
     ]
 };
 
@@ -138,43 +149,6 @@ const getUsername = {
     accept: [
         { when: r => r.status == 200, then: r => r.json() }
     ]
-}
-
-const addModification = {
-    url: '/Diet/Modification',
-    method: 'POST',
-    accept: [
-        { when: r => r.status == 200, then: r => null }
-    ],
-    reject: [
-        { when: r => r.status == 400, then: r => "Duplicate or blank ingredients cannot be added" }
-    ]
-}
-
-function getDeleteModification(id) {
-    deleteModification.url = `/Diet/Modification/${id}/`;
-    return deleteModification;
-}
-
-export function useDeleteModification() {
-    const context = useContext(AuthContext);
-    return useAsync(id => api(context, getDeleteModification(id), undefined, { id }));
-}
-
-export function useAddModification(ingredient, type) {
-    const context = useContext(AuthContext);
-    return useAsync(() => api(context, addModification, undefined, { ingredient, type }));
-}
-
-function getIngredients(id) {
-    ingredients.url = `/CategoricalRestriction/${id}/`;
-    return ingredients;
-}
-
-export function useGetIngredients() {
-    const context = useContext(AuthContext);
-    //return useAsync(id => api(context, getIngredients(id), undefined, { id }));
-    return useAsync(id => api(context, getIngredients(id), { id }));
 }
 
 export function useLogin(username, password) {
@@ -230,6 +204,32 @@ export function useDummy(value) {
     return useAsync(async () => {
         return sleep(500).then(() => value);
     });
+}
+
+function getDeleteModification(id) {
+    deleteModification.url = `/Diet/Modification/${id}/`;
+    return deleteModification;
+}
+
+export function useDeleteModification() {
+    const context = useContext(AuthContext);
+    return useAsync(id => api(context, getDeleteModification(id), undefined, { id }));
+}
+
+export function useAddModification(ingredient, type) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, addModification, undefined, { ingredient, type }));
+}
+
+function getIngredients(id) {
+    ingredients.url = `/CategoricalRestriction/${id}/`;
+    return ingredients;
+}
+
+export function useGetIngredients() {
+    const context = useContext(AuthContext);
+    //return useAsync(id => api(context, getIngredients(id), undefined, { id }));
+    return useAsync(id => api(context, getIngredients(id), { id }));
 }
 
 export function validateResetToken(token) {
