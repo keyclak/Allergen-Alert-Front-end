@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
+import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
 import Ingredients from '../../components/Ingredients'
 import { useDummy, useGetUpcSearch, useAddToGroceryList } from '../../hooks/api';
+import { color } from 'react-native-reanimated';
+import { useDummy, useGetUpcSearch } from '../../hooks/api';
+import DialogInput from 'react-native-dialog-input';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
@@ -67,6 +70,9 @@ export default function Food({ navigation, route }) {
                         onPress={getUpcSearch.response?.inGroceryList ? null : () => onAdd(getUpcSearch.response?.id)}>
                         <Text style={{color: Colors.Accent}}>{getUpcSearch.response?.inGroceryList ? 'This food has been added to your grocery list' : 'Add to Grocery List'}</Text>
                     </Pressable>
+                </View>
+                <View style={{paddingTop: 20}}></View>
+                <View style={{alignItems: 'center', paddingTop: 5}}>
                 </View>
                 <View>
                     {listRestrictions(getUpcSearch.response?.violatedRestrictions)}

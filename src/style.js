@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import { Directions } from 'react-native-gesture-handler';
 
 const Colors = {
     Foreground: '#001dbd',
@@ -132,6 +133,40 @@ const Styles = StyleSheet.create({
         paddingVertical: 25,
         borderRadius: 20,
         backgroundColor: '#FF403D'
+    },
+    flagBox: {
+        alignContent: 'center',
+        alignItems: 'center', 
+        justifyContent: 'center',
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 45,
+        paddingVertical: 20,
+        borderRadius: 20,
+        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: "#ff0000"
+    },
+    flagMessage: {
+        color: Colors.MainText,
+        fontWeight: 'bold',
+        fontSize: 13,
+    },
+    flagButton: {
+        borderRadius: StyleConstants.Radius,
+        borderWidth: 2,
+        height: StyleConstants.FormItemHeight,
+        backgroundColor: '#ff0000',
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: 'black',
+        elevation: 10, //Android
+        shadowRadius: 5, //iOS
+        shadowColor: 'black', //iOS
+        width: 150,
+        flexDirection: 'row'
     },
     navButton: {
         marginBottom: 20,

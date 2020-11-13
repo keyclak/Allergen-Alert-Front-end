@@ -92,7 +92,7 @@ const addModification = {
     reject: [
         { when: r => r.status == 400, then: r => "Duplicate or blank ingredients cannot be added" }
     ]
-}
+};
 
 const create = {
     url: '/Account/Create/',
@@ -141,7 +141,7 @@ const getUpcSearch = {
     reject: [
         { when: r => r.status == 404, then: r => "Unknown UPC" }
     ]
-}
+};
 
 const getUsername = {
     url: '/Account',
@@ -149,7 +149,7 @@ const getUsername = {
     accept: [
         { when: r => r.status == 200, then: r => r.json() }
     ]
-}
+};
 
 const addToGroceryList = {
     url: '/GroceryList',
@@ -160,7 +160,7 @@ const addToGroceryList = {
     reject: [
         { when: r => r.status == 400, then: r => "Food is already in Grocery List" }
     ]
-}
+};
 
 const getGroceryList = {
     url: '/GroceryList',
@@ -184,7 +184,40 @@ const togglePurchased = {
     accept: [
         { when: r => r.status == 200, then: r => null }
     ]
-}
+};
+
+const sendPassReset = {
+    url: '/Account/SendPasswordReset/',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => r.json() }
+    ]
+};
+
+const validToken = {
+    url: '/Account/ValidatePasswordResetToken/',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => r.json() }
+    ]
+};
+
+const resetPass = {
+    url: '/Account/ResetPassword/',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => r.json() }
+    ]
+};
 
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
@@ -292,10 +325,17 @@ export function useGetIngredients() {
     return useAsync(id => api(context, getIngredients(id), { id }));
 }
 
-export function validateResetToken(token) {
-
+export function sendPasswordReset(username) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, sendPassReset, undefined, {username}));
 }
 
-export function resetPassword(token) {
-    
+export function validatePasswordResetToken(username, token) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, validToken, undefined, {username, token}));
+}
+
+export function resetPassword(username, token, password) {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, resetPass, undefined, {username, token, password}));
 }
