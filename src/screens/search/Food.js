@@ -32,6 +32,26 @@ export default function Food({ navigation, route }) {
         .catch(e => {});
     }
 
+    const listRestrictions = (restrictions) => {
+        var x;
+        var text = ""; 
+
+        for(x in restrictions) {
+            text += restrictions[x].name + "\n"
+        }
+
+        if (text.length == 0 ) {
+            return null 
+        }
+
+        return(
+            <View>
+                <Text style={{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}}>Violated Restrictions:</Text>
+                <Text style={[Styles.ingredientList]}>{text}</Text>
+            </View>
+        )
+    }
+
     const disclaimer = "Basic Legal Disclaimer"
 
     return(
@@ -41,15 +61,17 @@ export default function Food({ navigation, route }) {
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{getUpcSearch.response?.name}</Text> 
                 </View>
                 <View style={[Styles.alertBox, (getUpcSearch.response?.safe ? null : Styles.alert)]}>
-                    <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
+                    <Text style={getUpcSearch.response?.safe ? [Styles.subtitleText,{textAlign: 'center'}] : [Styles.subtitleText,{textAlign: 'center', color: Colors.Accent}]}>{(getUpcSearch.response?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
                 </View>
-
-                <View style={{paddingTop: 20, alignItems: 'center'}}>
+                <View style={{paddingTop: 10, alignItems: 'center'}}>
                     <Pressable 
                         style={getUpcSearch.response?.inGroceryList ? null : [Styles.button, {width: '80%'}]}
                         onPress={getUpcSearch.response?.inGroceryList ? null : () => onAdd(getUpcSearch.response?.id)}>
-                        <Text style={{color: Colors.Accent}}>{getUpcSearch.response?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
+                        <Text style={{color: Colors.Accent}}>{getUpcSearch.response?.inGroceryList ? 'This food has been added to your grocery list' : 'Add to Grocery List'}</Text>
                     </Pressable>
+                </View>
+                <View>
+                    {listRestrictions(getUpcSearch.response?.violatedRestrictions)}
                 </View>
                 <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
                 <Ingredients content={getUpcSearch.response?.ingredients} />
