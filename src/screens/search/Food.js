@@ -32,19 +32,6 @@ export default function Food({ navigation, route }) {
         .catch(e => {});
     }
 
-    const listIngredients = (ingredients) => {
-        // console.log("food: " + ingredients[0].ingredient)
-        return (
-            (ingredients).map((item, i) => (
-            <ListItem key={i} containerStyle={{backgroundColor: Colors.Background, padding: 2}}>
-                <ListItem.Content>
-                    <ListItem.Title style={item.safe ? [Styles.ingredientList] : [Styles.ingredientList, {color: Colors.Error}]}>{item.ingredient}</ListItem.Title>
-                </ListItem.Content>
-            </ListItem>
-            ))
-        )
-    }
-
     const disclaimer = "Basic Legal Disclaimer"
 
     return(
@@ -66,10 +53,6 @@ export default function Food({ navigation, route }) {
                 </View>
                 <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
                 <Ingredients content={getUpcSearch.response?.ingredients} />
-                {/* {
-                    // console.log("food: " + getUpcSearch.response?.ingredients[2].ingredient)
-                    listIngredients(getUpcSearch.response?.ingredients)
-                } */}
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
                 </View>
