@@ -124,6 +124,41 @@ const getUsername = {
     ]
 }
 
+const addToGroceryList = {
+    url: '/GroceryList',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [
+        { when: r => r.status == 400, then: r => "Food is already in Grocery List" }
+    ]
+}
+
+const getGroceryList = {
+    url: '/GroceryList',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ]
+};
+
+const deleteGrocery = {
+    url: '/GroceryList/${foodId}/',
+    method: 'DELETE',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+};
+
+const togglePurchased = {
+    url: p => `/GroceryList/${p.foodId}/Purchased`,
+    method: 'PUT',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+}
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -167,6 +202,31 @@ export function useGetUpcSearch() {
 export function useGetUsername() {
     const context = useContext(AuthContext); 
     return useAsync(() => api(context, getUsername));
+}
+
+export function useAddToGroceryList() {
+    const context = useContext(AuthContext);
+    return useAsync(foodId => api(context, addToGroceryList, undefined, { foodId }));
+}
+
+export function useGetGroceryList() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getGroceryList));
+}
+
+function getDeleteGrocery(foodId) {
+    deleteGrocery.url = `/GroceryList/${foodId}/`;
+    return deleteGrocery;
+}
+
+export function useDeleteGrocery() {
+    const context = useContext(AuthContext);
+    return useAsync(foodId => api(context, getDeleteGrocery(foodId), undefined, { foodId }));
+}
+
+export function useTogglePurchased() {
+    const context = useContext(AuthContext);
+    return useAsync((foodId, purchased) => api(context, togglePurchased, { foodId }, { purchased }))
 }
 
 function sleep(ms) {
