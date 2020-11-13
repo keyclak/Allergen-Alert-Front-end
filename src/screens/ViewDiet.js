@@ -42,7 +42,7 @@ export default function ViewDiet({navigation}) {
             .then(() => getDiet.background());
     }
 
-
+    
     return (
     <SafeAreaView>
     <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:30}]}>  
