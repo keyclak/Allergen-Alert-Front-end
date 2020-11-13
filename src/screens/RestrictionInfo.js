@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { CheckBox,TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
-import { useGetIngredients } from '../hooks/api';
+import { useGetIngredients, useAddModification } from '../hooks/api';
 import { AuthContext } from '../context';
 import { ListItem, Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
@@ -21,19 +21,32 @@ export default function SelectRestriction({navigation, route}) {
         navigation.addListener('focus', () =>  getIngredients.execute(id));
     }, [navigation]);
 
-    FlatListItemSeparator = () => {
-        return(
+    const [ingredient, setIngredient] = useState();
+    const [type, setType] = useState();
+    const addModification = useAddModification(ingredient, type);
+    const initialRender = useRef(true);
 
-            <View>
-                style={{
-                height: 1,
-                width: "100%",
-                backgroundColor: "#607D8B",
-                }}
-            </View>
-        )
+    useEffect(() => {
+        if(initialRender.current) {
+            initialRender.current = false;
+        } else {
+            addModification.execute()
+            .then(() => navigation.pop())
+            .catch(e => {
+
+                console.error(error);
+            });
+        }
+
+    }, [ingredient]);
+
+    function onAddException(ingredient) {
+        return function() {
+            setType(0);
+            setIngredient(ingredient);
+        }
     }
-    
+
     return (
 
         <View style={[Styles.containerIngredient, {justifyContent: 'flex-start', paddingTop:40}]}>   
@@ -52,10 +65,11 @@ export default function SelectRestriction({navigation, route}) {
                             <View style={{paddingRight: 25}}>
                                 <TouchableOpacity
                                     style={[Styles.button,{width: "100%"}]}
+                                    onPress={onAddException(item)}
                                     >
                                     <Text
                                         style={[Styles.buttonText]}
-                                    >  Enabled  </Text>
+                                    >  Make Exception  </Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

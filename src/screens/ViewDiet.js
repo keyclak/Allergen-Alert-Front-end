@@ -45,7 +45,7 @@ export default function ViewDiet({navigation}) {
 
     return (
     <SafeAreaView>
-    <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:40}]}>  
+    <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:30}]}>  
         <View style={{width: StyleConstants.FormWidth, flex: 1}}>
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
             <View style={{flex: 1}}>
@@ -92,12 +92,12 @@ export default function ViewDiet({navigation}) {
                     renderItem={({ item }) => (
                         <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
                             <View style={{}}>
-                                {(item.type == 1)&&<Text style={[Styles.ingredientList, {color: '#07bb02'}]}
+                                {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#07bb02'}]}
                                     //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
                                     >
                                     { item.ingredient }
                                 </Text>}
-                                {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#e50000'}]}
+                                {(item.type == 1)&&<Text style={[Styles.ingredientList, {color: '#e50000'}]}
                                     //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
                                     >
                                     { item.ingredient }
@@ -116,14 +116,16 @@ export default function ViewDiet({navigation}) {
                     keyExtractor={item => `${item.id}`}
                 />
             </View>
-            <TouchableOpacity
-                style={Styles.button}
-                onPress={typeRestriction}
-                >
-                <Text
-                    style={[Styles.buttonText]}
-                >Add an Ingredient</Text>
-            </TouchableOpacity>
+            <View style={{paddingBottom: 30}}>
+                <TouchableOpacity
+                    style={Styles.button}
+                    onPress={typeRestriction}
+                    >
+                    <Text
+                        style={[Styles.buttonText]}
+                    >Add an Ingredient</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     </View>
     </SafeAreaView>
