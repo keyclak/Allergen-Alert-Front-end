@@ -21,6 +21,7 @@ import ChangePass from './src/screens/auth/ChangePass';
 import AuthCode from './src/screens/auth/AuthCode';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
+import FoodSearch from './src/screens/search/FoodSearch';
 
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
@@ -31,6 +32,8 @@ function TabScreen() {
   
               if (route.name === 'Home') {
                 iconName = 'home';
+              } else if(route.name === 'Scan'){
+                iconName = "camera-alt"
               } else if (route.name === 'Search') {
                 iconName = 'search';
               }
@@ -45,6 +48,7 @@ function TabScreen() {
             inactiveTintColor: Colors.Accent, 
         }}>
             <Tabs.Screen name = "Home" component = {HomeStackScreen} options={{title: ""}}/>
+            <Tabs.Screen name = "Scan" component = {ScanStackScreen} options={{title: ""}}/>
             <Tabs.Screen name = "Search" component = {SearchStackScreen} options={{title: ""}}/>
         </Tabs.Navigator>
     )
@@ -67,12 +71,21 @@ const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
         <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
-            <SearchStack.Screen name="Scanner" component={Scanner} />
+            <SearchStack.Screen name="FoodSearch" component={FoodSearch} />
             <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
         </SearchStack.Navigator>
     );
 }
 
+const ScanStack = createStackNavigator();
+function ScanStackScreen() {
+    return (
+        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
+            <SearchStack.Screen name="Scanner" component={Scanner} />
+            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
+        </SearchStack.Navigator>
+    );
+}
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
