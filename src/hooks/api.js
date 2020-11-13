@@ -102,6 +102,14 @@ const deleteDiet = {
     ]
 };
 
+const deleteModification = {
+    url: '/Diet/Modification/${id}/',
+    method: 'DELETE',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ]
+};
+
 const addRestriction = {
     url: '/Diet/Categorical',
     method: 'POST',
@@ -138,6 +146,16 @@ const addModification = {
     accept: [
         { when: r => r.status == 200, then: r => null }
     ]
+}
+
+function getDeleteModification(id) {
+    deleteModification.url = `/Diet/Modification/${id}/`;
+    return deleteModification;
+}
+
+export function useDeleteModification() {
+    const context = useContext(AuthContext);
+    return useAsync(id => api(context, getDeleteModification(id), undefined, { id }));
 }
 
 export function useAddModification(ingredient, type) {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
@@ -14,11 +14,16 @@ export default function TypeRestriction({navigation}) {
     const [ingredient, setIngredient] = useState();
     const [type, setType] = useState();
     const addModification = useAddModification(ingredient, type);
+    const initialRender = useRef(true);
 
     useEffect(() => {
-        addModification.execute()
-        .then(() => navigation.pop())
-        .catch(e => {});
+        if(initialRender.current) {
+            initialRender.current = false;
+        } else {
+            addModification.execute()
+            .then(() => navigation.pop())
+            .catch(e => {});
+        }
 
     }, [type]);
 
@@ -36,8 +41,8 @@ export default function TypeRestriction({navigation}) {
             <View style={{width: StyleConstants.FormWidth}}>
                 <FormTextInput placeholder="Ingredient" onChangeText={setIngredient}/>
                 <View style={{flexDirection: "row", justifyContent: "space-between",paddingTop: 20}}>
-                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add an Exception" isLoading={addModification.loading} onPress={onAddException} />
-                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add a Restriction" isLoading={addModification.loading} onPress={onAddRestriction} />
+                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add an Exception" isLoading={addModification.loading} onPress={onAddRestriction} />
+                    <TextLoadingButton style={[Styles.button, {width: "47%"}]} text="Add a Restriction" isLoading={addModification.loading} onPress={onAddException} />
                 </View>
             </View>
         </View>

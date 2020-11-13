@@ -3,13 +3,14 @@ import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, 
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
-import { useGetDiet, useDeleteDiet, useAddRestriction } from '../hooks/api';
+import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification } from '../hooks/api';
 import { AuthContext } from '../context';
 
 export default function ViewDiet({navigation}) {
 
     const getDiet = useGetDiet();
     const deleteRestriction = useDeleteDiet();
+    const deleteModification = useDeleteModification();
 
     const [dietState, setDietState] = useState();
 
@@ -31,10 +32,16 @@ export default function ViewDiet({navigation}) {
         navigation.navigate('TypeRestriction');
     }
     
-    function onDelete(id) {
+    function onDeleteRestriction(id) {
         deleteRestriction.execute(id)
             .then(() => getDiet.background());
     }
+
+    function onDeleteModification(id) {
+        deleteModification.execute(id)
+            .then(() => getDiet.background());
+    }
+
 
     return (
     <SafeAreaView>
@@ -59,7 +66,7 @@ export default function ViewDiet({navigation}) {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={Styles.button}
-                                onPress={() => onDelete(item.id)}
+                                onPress={() => onDeleteRestriction(item.id)}
                                 >
                                 <Text
                                     style={[Styles.buttonText]}
@@ -78,7 +85,7 @@ export default function ViewDiet({navigation}) {
                     style={[Styles.buttonText]}
                 >Add a Dietary Restriction</Text>
             </TouchableOpacity>
-            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Other Restrictions</Text>
+            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Diet Modifications</Text>
             <View style={{flex: 1}}>
                 <FlatList
                     data={getDiet.response?.modifications}
@@ -96,9 +103,14 @@ export default function ViewDiet({navigation}) {
                                     { item.ingredient }
                                 </Text>}
                             </View>
-                            <View style={Styles.button}>
-                                <Text style={[Styles.buttonText]}>  Delete  </Text>
-                            </View>
+                            <TouchableOpacity
+                                style={Styles.button}
+                                onPress={() => onDeleteModification(item.id)}
+                                >
+                                <Text
+                                    style={[Styles.buttonText]}
+                                >  Delete  </Text>
+                            </TouchableOpacity>
                         </View>
                     )}
                     keyExtractor={item => `${item.id}`}
