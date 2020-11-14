@@ -151,17 +151,6 @@ const getUsername = {
     ]
 };
 
-const getFood = {
-    url: p => `/Food/${p.id}`,
-    method: 'GET',
-    accept: [
-        { when: r => r.status == 200, then: r => r.json() }
-    ],
-    reject: [
-        { when: r => r.status == 404, then: r => "Unknown Food ID" }
-    ]
-}
-
 
 const addToGroceryList = {
     url: '/GroceryList',
