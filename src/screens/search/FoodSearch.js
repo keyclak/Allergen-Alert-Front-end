@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StatusBar, StyleSheet, Text, TouchableOpacity, Button, TextInput, SafeAreaView, FlatList } from "react-native";
+import {Image, View, StatusBar, StyleSheet, Text, TouchableOpacity, Button, TextInput, SafeAreaView, FlatList } from "react-native";
 import { StyleConstants, Styles, Colors } from '../../style';
 import { useGetFoodSearch } from '../../hooks/api';
 import { useDummy } from '../../hooks/api';
@@ -36,15 +36,9 @@ export default function FoodSearch({navigation}) {
                         onChangeText= {t => setSearchValue(t)}
                         onSubmitEditing={() => fetchData()}
                     />
-
-                    <View style={{backgroundColor: Colors.ButtonBackground, borderRadius: 20, alignContent: 'center',justifyContent: 'center'}}> 
-                        <Button 
-                            button backgroundColor
-                            onPress={() => fetchData()}
-                            title="Search"
-                            color='#FFF'                        
-                        />
-                    </View>
+                    <TouchableOpacity onPress={fetchData} style={{paddingTop: 4, paddingLeft: 10}}>
+                        <Image source={require('../../../assets/search.png')} style={{width: 40, height: 40}} ></Image>
+                    </TouchableOpacity>
                 </View>
             </View>
             <FlatList
@@ -66,6 +60,7 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         fontSize: 25,
         height: 50,
+        paddingLeft: 20
     },
     item: {
         backgroundColor: Colors.ButtonBackground,

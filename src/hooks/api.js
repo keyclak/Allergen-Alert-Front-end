@@ -231,6 +231,17 @@ const resetPass = {
     ]
 };
 
+const getFoodSearch = {
+    url: p => `/Search?query=${p.search}`,
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [
+        { when: r => r.status == 404, then: r => "No Foods Found" }
+    ]
+};
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -329,6 +340,13 @@ export function useDeleteModification() {
 export function useAddModification(ingredient, type) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, addModification, undefined, { ingredient, type }));
+}
+
+export function useGetFoodSearch(search) {
+    //correctly gets search from FoodSearch.js
+    //console.log(search);
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getFoodSearch, { search }))
 }
 
 function getIngredients(id) {
