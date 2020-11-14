@@ -13,11 +13,9 @@ export default function AuthCode({navigation, route}) {
     const [code, setCode] = useState();
     const validToken = validatePasswordResetToken(username, code);
 
-    useEffect(() => console.log(validToken.response), [validToken.response]);
-
     function onConfirm() {
             validToken.execute()
-                .then(r => {(validToken.response?.valid) ? navigation.navigate('ChangePass', { user: username, token: code }) : {}})
+                .then(r => {(validToken.response?.valid == true) ? navigation.navigate('ChangePass', { user: username, token: code }) : {}})
                 .catch(e => {});
     }
 
