@@ -107,7 +107,7 @@ export default function Food({ navigation, route }) {
                     {listRestrictions(food?.violatedRestrictions)}
                 </View>
                 <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
-                <Ingredients content={getUpcSearch.response?.ingredients} />
+                <Ingredients content={food?.ingredients} />
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
                 </View>
