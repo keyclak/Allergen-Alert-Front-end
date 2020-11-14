@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import { View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
+import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
-import Ingredients from '../../components/Ingredients'
+import TextLoadingButton from '../../components/TextLoadingButton'
 import { color } from 'react-native-reanimated';
-import { useDummy, useGetUpcSearch, useGetFood } from '../../hooks/api';
+import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
+import Ingredients from '../../components/Ingredients'
+import DialogInput from 'react-native-dialog-input';
+
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
     const foodId = route.params.foodId;
-
     const [food, setFood] = useState(null);
 
     const getUpcSearch = useGetUpcSearch();
     const getFood = useGetFood();
+    const addToGroceryList = useAddToGroceryList(); 
 
     function refresh() {
         if(foodId) {
@@ -44,34 +47,67 @@ export default function Food({ navigation, route }) {
         navigation.addListener('focus', () => refresh())
     }, [navigation]);
 
-    const listIngredients = (ingredients) => {
+    function onAdd(id) {
+        addToGroceryList.execute(id) 
+        .then (getUpcSearch.background(upc))
+        .catch(e => {});
+    }
+
+    const listRestrictions = (restrictions) => {
         var x;
         var text = ""; 
 
-        for(x in ingredients) {
-            text += ingredients[x] + "\n"
+        for(x in restrictions) {
+            text += restrictions[x].name + "\n"
+        }
+
+        if (text.length == 0 ) {
+            return null 
         }
 
         return(
-            <Text style={[Styles.ingredientList]}>{text}</Text>
+            <View>
+                <Text style={{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}}>Violated Restrictions:</Text>
+                <Text style={[Styles.ingredientList]}>{text}</Text>
+            </View>
         )
+    }
+
+
+    function onAdd(id) {
+        addToGroceryList.execute(id) 
+        .then (refresh())
+        .catch(e => {});
     }
 
     const disclaimer = "Basic Legal Disclaimer"
 
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
-            <ScrollView style={{display: 'flex', flexDirection: 'column', width: StyleConstants.FormWidth}}> 
+            <ScrollView style={{display: 'flex', width: '90%'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{food?.name}</Text> 
+
                 </View>
                 <View style={[Styles.alertBox, (food?.safe ? null : Styles.alert)]}>
-                    <Text style={[Styles.subtitleText,{textAlign: 'center'}]}>{(food?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
+                    <Text style=
+                      {food?.safe ? [Styles.subtitleText,{textAlign: 'center'}] : [Styles.subtitleText,{textAlign: 'center', color: Colors.Accent}]}>{(food?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
+                </View>
+                <View style={{paddingTop: 10, alignItems: 'center'}}>
+                    <Pressable 
+                        style={food?.inGroceryList ? null : [Styles.button, {width: '80%'}]}
+                        onPress={food?.inGroceryList ? null : () => onAdd(food?.id)}>
+                        <Text style={{color: Colors.Accent}}>{food?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
+                    </Pressable>
+                </View>
+                <View style={{paddingTop: 20}}></View>
+                <View style={{alignItems: 'center', paddingTop: 5}}>
                 </View>
                 <View>
-                    <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
-                    {listIngredients(food?.ingredients)}
+                    {listRestrictions(food?.violatedRestrictions)}
                 </View>
+                <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
+                <Ingredients content={getUpcSearch.response?.ingredients} />
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
                 </View>

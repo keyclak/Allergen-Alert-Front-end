@@ -4,7 +4,7 @@ import { ListItem, Icon } from 'react-native-elements'
 import { StyleConstants, Styles, Colors } from '../style';
 import FlatlistItem from './FlatlistItem'
 
-export default function IconFlatlist(props, {navigation}){
+export default function IconFlatlist(props){
 
     return(
         <View style={{width: '100%', backgroundColor: Colors.Background}}>
