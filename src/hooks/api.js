@@ -241,7 +241,6 @@ const getFoodSearch = {
         { when: r => r.status == 404, then: r => "No Foods Found" }
     ]
 };
-}
 
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
