@@ -28,7 +28,7 @@ export default function FoodSearch({navigation}) {
     );
 
     return (
-        <View style={Styles.container}>
+        <View style={[Styles.container, {flex: 1}]}>
             <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                 <View style={{ borderRadius: 20, alignSelf: 'center', flexDirection: 'row', justifyContent:'space-evenly' }}>
                     <TextInput style={styles.inputFood }
@@ -45,7 +45,8 @@ export default function FoodSearch({navigation}) {
                 data={getFoodSearch.response}
                 keyExtractor={item => item.id}
                 renderItem={Item} 
-                extraData={getFoodSearch.response}/>
+                extraData={getFoodSearch.response}
+                style={{width: '100%', alignContent: 'center'}}/>
         </View>
     );
 }
@@ -57,19 +58,19 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 20,
         borderColor: Colors.ButtonBackground,
-        borderWidth: 5,
+        borderWidth: 3,
         fontSize: 25,
         height: 50,
-        paddingLeft: 20
+        paddingLeft: 20,
+        backgroundColor: Colors.Secondary
     },
     item: {
-        backgroundColor: Colors.ButtonBackground,
+        backgroundColor: Colors.Secondary,
         padding: 15,
         marginVertical: 5,
-        width: '95%',
+        width: '100%',
         justifyContent: 'center',
         alignSelf: 'center',
-        borderRadius: 20,
         fontSize: 20,
         fontWeight: "bold",
     }
