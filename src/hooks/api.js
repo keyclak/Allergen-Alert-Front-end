@@ -231,8 +231,6 @@ const resetPass = {
     ]
 };
 
-<<<<<<< HEAD
-=======
 const getFood = {
     url: p => `/Food/${p.id}`,
     method: 'GET',
@@ -244,7 +242,6 @@ const getFood = {
     ]
 }
 
->>>>>>> c229a4fa694c8dde2a37cc1a1b6e3774d784e666
 const getFoodSearch = {
     url: p => `/Search?query=${p.search}`,
     method: 'GET',
@@ -254,11 +251,8 @@ const getFoodSearch = {
     reject: [
         { when: r => r.status == 404, then: r => "No Foods Found" }
     ]
-<<<<<<< HEAD
 };
-=======
 }
->>>>>>> c229a4fa694c8dde2a37cc1a1b6e3774d784e666
 
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
@@ -370,10 +364,7 @@ export function useGetFoodSearch(search) {
     //console.log(search);
     const context = useContext(AuthContext);
     return useAsync(() => api(context, getFoodSearch, { search }))
-<<<<<<< HEAD
 }
-=======
->>>>>>> c229a4fa694c8dde2a37cc1a1b6e3774d784e666
 
 function getIngredients(id) {
     ingredients.url = `/CategoricalRestriction/${id}/`;
