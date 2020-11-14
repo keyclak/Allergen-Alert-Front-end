@@ -7,6 +7,7 @@ import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../.
 import Ingredients from '../../components/Ingredients'
 import DialogInput from 'react-native-dialog-input';
 
+
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
     const foodId = route.params.foodId;
@@ -86,6 +87,7 @@ export default function Food({ navigation, route }) {
             <ScrollView style={{display: 'flex', width: '90%'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{food?.name}</Text> 
+
                 </View>
                 <View style={[Styles.alertBox, (food?.safe ? null : Styles.alert)]}>
                     <Text style=
