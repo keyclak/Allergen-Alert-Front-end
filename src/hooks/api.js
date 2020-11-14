@@ -258,10 +258,6 @@ export function useGetDiet() {
     return useAsync(() => api(context, getDiet));
 }
 
-export function useGetFood() {
-    const context = useContext(AuthContext);
-    return useAsync(id => api(context, getFood, { id }));
-}
 
 export function useGetRestrictions() {
     const context = useContext(AuthContext);
