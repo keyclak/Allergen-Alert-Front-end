@@ -67,7 +67,7 @@ export default function Food({ navigation, route }) {
 
         return(
             <View>
-                <Text style={{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}}>Violated Restrictions:</Text>
+                <Text style={{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}}>Violated Restrictions</Text>
                 <Text style={[Styles.ingredientList]}>{text}</Text>
             </View>
         )
