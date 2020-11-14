@@ -22,7 +22,6 @@ import AuthCode from './src/screens/auth/AuthCode';
 import FoodSearch from './src/screens/search/FoodSearch';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
-import FoodSearch from './src/screens/search/FoodSearch';
 
 const Tabs = createBottomTabNavigator(); 
 function TabScreen() {
