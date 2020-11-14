@@ -87,16 +87,6 @@ function ScanStackScreen() {
     );
 }
 
-const ScanStack = createStackNavigator();
-function ScanStackScreen() {
-    return (
-        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
-            <SearchStack.Screen name="Scanner" component={Scanner} />
-            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
-        </SearchStack.Navigator>
-    );
-}
-
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
