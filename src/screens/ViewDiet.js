@@ -91,18 +91,30 @@ export default function ViewDiet({navigation}) {
                     data={getDiet.response?.modifications}
                     renderItem={({ item }) => (
                         <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
-                            <View style={{}}>
-                                {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#07bb02'}]}
-                                    //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
-                                    >
-                                    { item.ingredient }
-                                </Text>}
-                                {(item.type == 1)&&<Text style={[Styles.ingredientList, {color: '#e50000'}]}
-                                    //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
-                                    >
-                                    { item.ingredient }
-                                </Text>}
-                            </View>
+                            
+                            <TouchableOpacity
+                                style={[Styles.button, {width: '75%'}]}
+                                onPress={viewRestriction(item.id)}
+                                disabled={true}
+                                >
+                                <View style={{}}>
+                                    {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#07bb02'}]}
+                                        //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
+                                        >
+                                        { item.ingredient } (Exception)
+                                    </Text>}
+                                    {(item.type == 1)&&<Text style={[Styles.ingredientList, {color: '#e50000'}]}
+                                        //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
+                                        >
+                                        { item.ingredient } (Restriction)
+                                    </Text>}
+                                </View>
+                            </TouchableOpacity>
+                            
+                            
+                            
+                            
+                            
                             <TouchableOpacity
                                 style={Styles.button}
                                 onPress={() => onDeleteModification(item.id)}
