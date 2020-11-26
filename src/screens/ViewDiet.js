@@ -5,6 +5,7 @@ import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
 import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification } from '../hooks/api';
 import { AuthContext } from '../context';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function ViewDiet({navigation}) {
 
@@ -13,9 +14,11 @@ export default function ViewDiet({navigation}) {
     const deleteModification = useDeleteModification();
 
     const [dietState, setDietState] = useState();
+    const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
         navigation.addListener('focus', () =>  getDiet.background());
+        setInterval(() => {setSpinner(false)}, 500);
     }, [navigation]);
 
     function selectRestriction() {
@@ -46,6 +49,11 @@ export default function ViewDiet({navigation}) {
     return (
     <SafeAreaView>
     <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:30}]}>  
+        <Spinner
+            visible={spinner}
+            textContent={'Loading...'}
+            textStyle={Styles.spinnerTextStyle}
+        />
         <View style={{width: StyleConstants.FormWidth, flex: 1}}>
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
             <View style={{flex: 1}}>

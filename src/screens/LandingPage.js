@@ -4,14 +4,17 @@ import { StyleConstants, Styles, Colors } from '../style';
 import avatar from '../../assets/avatar.png'
 import IconFlatlist from '../components/IconFlatlist'
 import { useGetUsername } from '../hooks/api';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function LandingPage({navigation}) {
 
     const getUsername = useGetUsername();
 
+    const [spinner, setSpinner] = useState(true);
+
     useEffect(() => {
         navigation.addListener('focus', () =>  getUsername.background());
+        setInterval(() => {setSpinner(false)}, 500);
     }, [navigation]);
 
     const list = [
@@ -39,6 +42,11 @@ export default function LandingPage({navigation}) {
 
     return(
         <View style={[Styles.container, {paddingTop: 0}]}>
+            <Spinner
+                visible={spinner}
+                textContent={'Loading...'}
+                textStyle={Styles.spinnerTextStyle}
+            />
             <View style={{display: 'flex', alignItems: 'center'}}>
                 {/* TODO: onPress user can pick an image to change profile pic */}
                 <Pressable>

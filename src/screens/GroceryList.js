@@ -3,6 +3,7 @@ import {SafeAreaView, ScrollView, View, Text, FlatList, Pressable} from 'react-n
 import { StyleConstants, Styles, Colors } from '../style';
 import { useDeleteGrocery, useGetGroceryList, useTogglePurchased } from '../hooks/api';
 import { ListItem, CheckBox } from 'react-native-elements'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function GroceryList({navigation}) {
 
@@ -10,8 +11,11 @@ export default function GroceryList({navigation}) {
     const deleteGrocery = useDeleteGrocery(); 
     const togglePurchased = useTogglePurchased(); 
 
+    const [spinner, setSpinner] = useState(true);
+
     useEffect(() => {
         navigation.addListener('focus', () =>  getGroceryList.background());
+        setInterval(() => {setSpinner(false)}, 500);
     }, [navigation]);
 
     function onDelete(id) {
@@ -29,6 +33,11 @@ export default function GroceryList({navigation}) {
     return (
         <SafeAreaView style={[Styles.container, {flex: 1, alignItems: 'flex-start', justifyContent:'space-evenly'}]}>
             <View style={{paddingTop: 15}}>
+                <Spinner
+                    visible={spinner}
+                    textContent={'Loading...'}
+                    textStyle={Styles.spinnerTextStyle}
+                />
                 <FlatList
                     data={getGroceryList.response}
                     renderItem={({ item }) => (

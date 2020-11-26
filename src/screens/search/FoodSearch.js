@@ -3,22 +3,29 @@ import {Image, View, StatusBar, StyleSheet, Text, TouchableOpacity, Button, Text
 import { StyleConstants, Styles, Colors } from '../../style';
 import { useGetFoodSearch } from '../../hooks/api';
 import { useDummy } from '../../hooks/api';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { set } from "react-native-reanimated";
 
 function searchHelper(query) {
     return useDummy([]);
 }
 
 export default function FoodSearch({navigation}) {
-
+    const [spinner, setSpinner] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const getFoodSearch = useGetFoodSearch(searchValue);
   //  const [query, setQuery] = useState('');
 
+    useEffect(() => {
+        setInterval(() => {setSpinner(false)}, 500);
+        console.log('ttt');
+    }, [getFoodSearch.response]);
+
     const fetchData = async () => {
-   //     console.log(query);        
+   //     console.log(query);    
+        setSpinner(true);
         getFoodSearch.background(); 
       };
-
 
     //creates an item object from data for flatlist
     const Item = ({ item }) => (
@@ -29,14 +36,19 @@ export default function FoodSearch({navigation}) {
 
     return (
         <View style={[Styles.container, {flex: 1}]}>
+            <Spinner
+                visible={spinner}
+                textContent={'Loading...'}
+                textStyle={Styles.spinnerTextStyle}
+            />
             <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                 <View style={{ borderRadius: 20, alignSelf: 'center', flexDirection: 'row', justifyContent:'space-evenly' }}>
                     <TextInput style={styles.inputFood }
                         placeholder="  Search Food"
                         onChangeText= {t => setSearchValue(t)}
-                        onSubmitEditing={() => fetchData()}
+                        onSubmitEditing={() => {fetchData()}}
                     />
-                    <TouchableOpacity onPress={fetchData} style={{paddingTop: 4, paddingLeft: 10}}>
+                    <TouchableOpacity onPress={() => {fetchData()}} style={{paddingTop: 4, paddingLeft: 10}}>
                         <Image source={require('../../../assets/search.png')} style={{width: 40, height: 40}} ></Image>
                     </TouchableOpacity>
                 </View>

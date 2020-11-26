@@ -200,6 +200,9 @@ const Styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "baseline"
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
 });
 

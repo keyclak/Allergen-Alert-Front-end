@@ -6,12 +6,13 @@ import { color } from 'react-native-reanimated';
 import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
 import Ingredients from '../../components/Ingredients'
 import DialogInput from 'react-native-dialog-input';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
     const foodId = route.params.foodId;
     const [food, setFood] = useState(null);
+    const [spinner, setSpinner] = useState(true);
 
     const getUpcSearch = useGetUpcSearch();
     const getFood = useGetFood();
@@ -45,6 +46,7 @@ export default function Food({ navigation, route }) {
 
     useEffect(() => {
         navigation.addListener('focus', () => refresh())
+        setInterval(() => {setSpinner(false)}, 500);
     }, [navigation]);
 
     function onAdd(id) {
@@ -84,6 +86,11 @@ export default function Food({ navigation, route }) {
 
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
+            <Spinner
+                visible={spinner}
+                textContent={'Loading...'}
+                textStyle={Styles.spinnerTextStyle}
+            />
             <ScrollView style={{display: 'flex', width: '90%'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{food?.name}</Text> 
