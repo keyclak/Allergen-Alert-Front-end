@@ -33,25 +33,33 @@ export default function Login({navigation}) {
     }
 
     return (
-        <ImageBackground source={require('../../../assets/background.png')}  style={[Styles.backgroundImage, {justifyContent: 'flex-start'}]}>
-            <View style={{paddingTop: 170}}></View>
-            <Image source={require('../../../assets/title.png')} style={{width: 350, height: 100}}></Image>
+        <View style={Styles.container}>
             <View style={{width: StyleConstants.FormWidth}}>
-                <FormTextInput placeholder="Username" onChangeText={setUsername}/>
-                <FormTextInput placeholder="Password" onChangeText={setPassword} />
-                <View style={{paddingTop: 30}}></View>
-                <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{login.error}</Text>
-                <TextLoadingButton style={Styles.button} text="Log In" isLoading={login.loading} onPress={onSubmit} />
-                <Pressable style={{alignItems: 'center'}} onPress={onForgotPass}>
-                    <Text style={Styles.buttonText}>Forgot Password?</Text>
+
+                <Text style={Styles.logo}>Allergen Alert</Text>
+
+                <TextInput 
+                    placeholder="Username" 
+                    placeholderTextColor={Colors.Gray[5]} 
+                    style={Styles.formInput}/>
+
+                <TextInput 
+                    placeholder="Password" 
+                    placeholderTextColor={Colors.Gray[5]} 
+                    style={Styles.formInput}/>
+
+                <TextLoadingButton text="Log In" onPress={onSubmit} isLoading={login.loading}/>
+
+                <Pressable style={Styles.plainButton} onPress={onForgotPass}>
+                    <Text style={{color: Colors.Gray[6]}}>Forgot Password?</Text>
                 </Pressable>
-                <View style={{flexDirection: 'row', paddingTop: 20, justifyContent: 'center'}}>
-                    <Text style={[Styles.buttonText]}>Don't have an account? </Text>
-                    <Pressable onPress={onCreateAccount}>
-                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: Colors.ButtonBackground}]}>Sign up</Text>
-                    </Pressable>
-                </View>
+
+                <Pressable style={Styles.plainButton} onPress={onCreateAccount}>
+                    <Text style={{color: Colors.Gray[5]}}>Don't have an account? </Text>
+                    <Text style={{color: Colors.Gray[6]}}>Create One</Text>
+                </Pressable>
+
             </View>
-        </ImageBackground>
+        </View>
     );
 }

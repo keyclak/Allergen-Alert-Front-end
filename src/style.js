@@ -3,203 +3,108 @@ import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput }
 import { Directions } from 'react-native-gesture-handler';
 
 const Colors = {
-    Foreground: '#001dbd',
-    Accent: '#FFF',
-    AccentForeground: '#683604',
-    Background: '#0060ff',
-    BackgroundBlur: '#444',
-    InputBorder: '#0034f5',
-    InputBackground: '#FFF',
-    Input: '#0034f5',
-    ButtonBorder: '#683604',
-    ButtonBackground: '#cc6f04',
-    Border: '#AAA',
-    Error: '#ff8f8f',
-    MainText: '#666', 
-    Secondary: '#00C4FF', 
-    SecondaryAccent: '#00b0e6'
+    Background: 'white',
+    Gray: [
+        '#f8f9fa',
+        '#f1f3f5',
+        '#e9ecef',
+        '#dee2e6',
+        '#ced4da',
+        '#adb5bd',
+        '#868e96',
+        '#495057',
+        '#343a40',
+        '#212529'
+    ],
+    Red: [
+        '#fff5f5',
+        '#ffe3e3',
+        '#ffc9c9',
+        '#ffa8a8',
+        '#ff8787',
+        '#ff6b6b',
+        '#fa5252',
+        '#f03e3e',
+        '#e03131',
+        '#c92a2a'
+    ],
+    Blue: [
+        '#e7f5ff',
+        '#d0ebff',
+        '#a5d8ff',
+        '#74c0fc',
+        '#4dabf7',
+        '#339af0',
+        '#228be6',
+        '#1c7ed6',
+        '#1971c2',
+        '#1864ab'
+    ],
+    Green: [
+        '#ebfbee',
+        '#d3f9d8',
+        '#b2f2bb',
+        '#8ce99a',
+        '#69db7c',
+        '#51cf66',
+        '#40c057',
+        '#37b24d',
+        '#2f9e44',
+        '#2b8a3e'
+    ],
 };
+
 const StyleConstants = {
-    Radius: 25,
+    Radius: 15,
     FormItemHeight: 50,
     FormWidth: '80%',
     FormItemTextSize: 16,
-    AvatarRadius: 120
+    FormItemSpacing: 15
 };
 
 const Styles = StyleSheet.create({
     container: {
+        backgroundColor: Colors.Background,
         display: 'flex',
-        height: '100%',
-        flexDirection: 'column',
+        flexGrow: 1,
         alignItems: 'center',
-        backgroundColor: Colors.Background,
-        paddingTop: 30
+        justifyContent: 'center',
     },
-    containerIngredient: {
-        display: 'flex',
-        height: '100%',
-        flexDirection: 'column',
-        backgroundColor: Colors.Background,
-        paddingTop: 30
-    },
-    backgroundImage: {
-        justifyContent: 'center',     
-        alignItems: 'center',     
-        flex: 1,     
-        resizeMode: 'contain'
-    },
-    textInput: {
-        height: StyleConstants.FormItemHeight,
+    formInput: {
+        fontSize: StyleConstants.FormItemTextSize,
         borderRadius: StyleConstants.Radius,
-        borderWidth: 2,
-        borderColor: Colors.InputBorder,
         paddingLeft: StyleConstants.Radius,
         paddingRight: StyleConstants.Radius,
-        color: Colors.Input,
-        fontSize: StyleConstants.FormItemTextSize,
-        backgroundColor: Colors.InputBackground,
-        elevation: 10, //Android
-        shadowRadius: 5, //iOS
-        shadowColor: 'black', //iOS
+        height: StyleConstants.FormItemHeight,
+        backgroundColor: Colors.Gray[2],
+        color: Colors.Gray[7],
+        marginBottom: StyleConstants.FormItemSpacing,
+    },
+    logo: {
+        fontSize: 45,
+        color: Colors.Blue[8],
+        alignSelf: 'center',
+        bottom: '5%'
     },
     button: {
+        backgroundColor: Colors.Blue[8],
         borderRadius: StyleConstants.Radius,
-        borderWidth: 2,
         height: StyleConstants.FormItemHeight,
-        backgroundColor: Colors.ButtonBackground,
-        alignContent: 'center',
         alignItems: 'center',
+        alignContent: 'center',
         justifyContent: 'center',
-        borderColor: Colors.ButtonBorder,
-        elevation: 10, //Android
-        shadowRadius: 5, //iOS
-        shadowColor: 'black' //iOS
+        marginBottom: StyleConstants.FormItemSpacing
     },
     buttonText: {
-        color: Colors.Accent,
-        fontSize: StyleConstants.FormItemTextSize
-    },
-    errorText: {
-        color: Colors.Error,
         fontSize: StyleConstants.FormItemTextSize,
-        fontWeight: 'bold'
+        color: Colors.Background
     },
-    labelText: {
-        color: Colors.InputBorder,
-        marginLeft: StyleConstants.Radius,
-        fontSize: StyleConstants.FormItemTextSize
-    },
-    titleText: {
-        color: Colors.Foreground,
-        fontWeight: 'bold',
-        fontSize: 20,
-        paddingBottom: StyleConstants.FormItemHeight
-    },
-    subtitleText: {
-        color: Colors.MainText,
-        fontWeight: 'bold',
-        fontSize: 20,
-    },
-    avatar: {
-        width: StyleConstants.AvatarRadius,
-        height: StyleConstants.AvatarRadius,
-        borderRadius: 63,
-        borderWidth: 2,
-        borderColor: Colors.Background,
-        alignSelf:'center',
-        marginTop: 30, 
-        marginBottom: 20
-    },
-    alertBox: {
-        alignContent: 'center',
-        alignItems: 'center', 
-        justifyContent: 'center',
-        color: Colors.MainText,
-        fontWeight: 'bold',
-        fontSize: 20,
-        paddingHorizontal: 45,
-        paddingVertical: 20,
-        borderRadius: 20,
-        backgroundColor: '#00FF99'
-    },
-    alert: {
-        alignContent: 'center',
-        justifyContent: 'center',
-        color: Colors.MainText,
-        fontWeight: 'bold',
-        fontSize: 20,
-        paddingHorizontal: 45,
-        paddingVertical: 25,
-        borderRadius: 20,
-        backgroundColor: '#FF403D'
-    },
-    flagBox: {
-        alignContent: 'center',
-        alignItems: 'center', 
-        justifyContent: 'center',
-        color: Colors.MainText,
-        fontWeight: 'bold',
-        fontSize: 20,
-        paddingHorizontal: 45,
-        paddingVertical: 20,
-        borderRadius: 20,
-        backgroundColor: 'white',
-        borderWidth: 2,
-        borderColor: "#ff0000"
-    },
-    flagMessage: {
-        color: Colors.MainText,
-        fontWeight: 'bold',
-        fontSize: 13,
-    },
-    flagButton: {
-        borderRadius: StyleConstants.Radius,
-        borderWidth: 2,
-        height: StyleConstants.FormItemHeight,
-        backgroundColor: '#ff0000',
-        alignContent: 'center',
+    plainButton: {
+        height: StyleConstants.FormItemHeight * 0.5,
+        marginBottom: StyleConstants.FormItemSpacing,
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'black',
-        elevation: 10, //Android
-        shadowRadius: 5, //iOS
-        shadowColor: 'black', //iOS
-        width: 150,
         flexDirection: 'row'
-    },
-    navButton: {
-        marginBottom: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        marginTop: 20,
-        backgroundColor: "#00C4FF",
-        borderRadius: 20
-        },
-    navButtonText: {
-        fontSize: 16,
-        color: "black"
-        },
-    buttonSpace: {
-        width: 20, 
-        height: 20,
-        },
-    ingredientList: {
-        color: Colors.Accent,
-        paddingLeft: 10, 
-        paddingTop: 5,
-        fontSize: 17
-    },
-    flatListRow: {
-        borderBottomColor: '#fff',
-        marginBottom: 15,
-        paddingBottom: 15,
-        borderBottomWidth: 0.5
-    },
-    flatListRowSpacing: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "baseline"
     }
 });
 

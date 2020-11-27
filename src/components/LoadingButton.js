@@ -7,7 +7,7 @@ export default function LoadingButton({children, isLoading, onPress, style}) {
         <Pressable style={[Styles.button, style]} onPress={onPress}>
             {
                 isLoading
-                    ? <ActivityIndicator color={Colors.AccentForeground} size="large"/>
+                    ? <ActivityIndicator color={Colors.Background} size="large"/>
                     : children
             }
         </Pressable>
