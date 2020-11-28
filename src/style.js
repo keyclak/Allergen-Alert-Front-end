@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 import { Directions } from 'react-native-gesture-handler';
@@ -59,7 +60,8 @@ const StyleConstants = {
     FormItemHeight: 50,
     FormWidth: '80%',
     FormItemTextSize: 16,
-    FormItemSpacing: 15
+    FormItemSpacing: 15,
+    FloatingButtonSize: 60
 };
 
 const Styles = StyleSheet.create({
@@ -70,7 +72,7 @@ const Styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.Background,
         display: 'flex',
-        flexGrow: 1,
+        height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -125,7 +127,7 @@ const Styles = StyleSheet.create({
     },
     alertBoxContainer: {
         position: 'absolute',
-        top: '5%',
+        top: 30,
         width: StyleConstants.FormWidth,
         flexDirection: 'row',
         alignItems: 'center',
@@ -139,6 +141,39 @@ const Styles = StyleSheet.create({
     alertBoxText: {
         fontSize: StyleConstants.FormItemTextSize,
         marginLeft: 5
+    },
+    headerText: {
+        fontSize: StyleConstants.FormItemTextSize * 2,
+        color: Colors.Gray[7],
+        paddingBottom: StyleConstants.FormItemSpacing,
+        alignSelf: 'center'
+    },
+    floatingButton: {
+        position: "absolute",
+        width: StyleConstants.FloatingButtonSize,
+        height: StyleConstants.FloatingButtonSize,
+        borderRadius: StyleConstants.FloatingButtonSize / 2,
+        elevation: 10,
+        backgroundColor: Colors.Blue[6],
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bottom: StyleConstants.FloatingButtonSize / 2,
+        right: StyleConstants.FloatingButtonSize / 2
+    },
+    listItem: {
+        backgroundColor: Colors.Gray[0],
+        height: StyleConstants.FormItemHeight,
+        borderRadius: StyleConstants.Radius,
+        justifyContent: 'center',
+        paddingLeft: StyleConstants.Radius,
+        marginBottom: StyleConstants.FormItemSpacing / 2,
+        width: '90%',
+        alignSelf: 'center'
+    },
+    listItemText: {
+        color: Colors.Gray[7],
+        fontSize: StyleConstants.FormItemTextSize
     }
 });
 

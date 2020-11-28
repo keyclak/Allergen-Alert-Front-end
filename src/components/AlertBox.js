@@ -4,6 +4,8 @@ import { Colors, StyleConstants, Styles } from '../style';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function AlertBox({text, icon, colors}) {
+    if(!text) return null;
+
     return (
         <View style={[Styles.alertBoxContainer, { borderColor: colors[8], backgroundColor: colors[2] }]}>
             <MaterialIcons name="error" size={32} color={colors[8]}/>

@@ -57,7 +57,7 @@ function TabScreen() {
 const AuthStack = createStackNavigator();
 function AuthStackScreen() {
     return (
-        <AuthStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
+        <AuthStack.Navigator screenOptions={{ headerShown: false }}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
             <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{title: "Sign Up"}}/>
             <AuthStack.Screen name="ForgotPass" component={ForgotPass} options={{title: "Reset Password"}}/>
@@ -70,8 +70,9 @@ function AuthStackScreen() {
 const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
-        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
+        <SearchStack.Navigator screenOptions={{ headerShown: false }}>
             <SearchStack.Screen name="FoodSearch" component={FoodSearch} />
+            <SearchStack.Screen name="Scanner" component={Scanner} />
             <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
         </SearchStack.Navigator>
     );
@@ -123,7 +124,7 @@ export default function App() {
             <NavigationContainer>
                 {
                     authToken
-                        ? <TabScreen/>
+                        ? <SearchStackScreen/>
                         : <AuthStackScreen/>
                 }
             </NavigationContainer>

@@ -1,52 +1,89 @@
 import React, { useEffect, useState } from "react";
-import {Image, View, StatusBar, StyleSheet, Text, TouchableOpacity, Button, TextInput, SafeAreaView, FlatList } from "react-native";
+import {Image, View, StatusBar, StyleSheet, Text, TouchableOpacity, Button, TextInput, SafeAreaView, FlatList, Pressable, ActivityIndicator } from "react-native";
 import { StyleConstants, Styles, Colors } from '../../style';
 import { useGetFoodSearch } from '../../hooks/api';
 import { useDummy } from '../../hooks/api';
-
-function searchHelper(query) {
-    return useDummy([]);
-}
+import ButtonTextInput from '../../components/ButtonTextInput';
+import FloatingButton from "../../components/FloatingButton";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function FoodSearch({navigation}) {
 
     const [searchValue, setSearchValue] = useState("");
     const getFoodSearch = useGetFoodSearch(searchValue);
-  //  const [query, setQuery] = useState('');
 
     const fetchData = async () => {
-   //     console.log(query);        
         getFoodSearch.background(); 
-      };
+    };
 
 
-    //creates an item object from data for flatlist
     const Item = ({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('FoodPage', { foodId: item.id })}>
-            <Text style={{fontSize: 20}}>{item.name}</Text>
-        </TouchableOpacity>
+        <Pressable style={Styles.listItem} onPress={() => navigation.navigate('FoodPage', { foodId: item.id })}>
+            <Text style={Styles.listItemText}>{item.name}</Text>
+        </Pressable>
     );
 
+    function Header() {
+        return (
+            <View style={{height: 90}} />
+        );
+    }
+
+    function openScanner() {
+        navigation.push('Scanner');
+    }
+
+    function getItemsContent() {
+        if(getFoodSearch.loading)
+            return (
+                <ActivityIndicator size="large" color={Colors.Blue[6]}/>
+            )
+        
+        if(!searchValue)
+            return (
+                <Text style={{color: Colors.Gray[5]}}>Search for something, or open the barcode scanner</Text>
+            )
+        
+        if(getFoodSearch.response.length > 0) {
+            return (
+                <FlatList
+                    data={getFoodSearch.response}
+                    keyExtractor={item => item.id}
+                    renderItem={Item} 
+                    extraData={getFoodSearch.response}
+                    ListHeaderComponent={Header}
+                    style={{width: '100%', alignContent: 'center'}}/>
+            );
+        } else {
+            return (
+                <Text style={{color: Colors.Gray[5]}}>No results found</Text>
+            )
+        }
+
+    }
+
     return (
-        <View style={[Styles.container, {flex: 1}]}>
-            <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                <View style={{ borderRadius: 20, alignSelf: 'center', flexDirection: 'row', justifyContent:'space-evenly' }}>
-                    <TextInput style={styles.inputFood }
-                        placeholder="  Search Food"
-                        onChangeText= {t => setSearchValue(t)}
-                        onSubmitEditing={() => fetchData()}
-                    />
-                    <TouchableOpacity onPress={fetchData} style={{paddingTop: 4, paddingLeft: 10}}>
-                        <Image source={require('../../../assets/search.png')} style={{width: 40, height: 40}} ></Image>
-                    </TouchableOpacity>
-                </View>
+        <View style={Styles.container}>
+
+            {
+                getItemsContent()
+            }
+
+            <View style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 30}}>
+                <ButtonTextInput
+                    icon="search"
+                    onChangeText={setSearchValue}
+                    placeholder="Search"
+                    onSubmitEditing={fetchData}
+                    onPress={fetchData}/>
             </View>
-            <FlatList
-                data={getFoodSearch.response}
-                keyExtractor={item => item.id}
-                renderItem={Item} 
-                extraData={getFoodSearch.response}
-                style={{width: '100%', alignContent: 'center'}}/>
+
+            <View style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
+                <FloatingButton onPress={openScanner}>
+                    <MaterialCommunityIcons name="barcode-scan" size={32} color="white"/>
+                </FloatingButton>
+            </View>
         </View>
     );
 }
