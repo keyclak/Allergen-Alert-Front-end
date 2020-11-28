@@ -6,6 +6,7 @@ import { StyleConstants, Styles, Colors } from '../../style';
 import { useLogin, useDummy } from '../../hooks/api';
 import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
+import AlertBox from '../../components/AlertBox';
 
 export default function Login({navigation}) {
     const context = useContext(AuthContext);
@@ -33,32 +34,30 @@ export default function Login({navigation}) {
     }
 
     return (
-        <View style={Styles.container}>
-            <View style={{width: StyleConstants.FormWidth}}>
+        <View style={Styles.alertContainer}>
+            <AlertBox text={login.error} colors={Colors.Red}/>
+            <View style={Styles.container}>
+                <View style={{width: StyleConstants.FormWidth}}>
 
-                <Text style={Styles.logo}>Allergen Alert</Text>
+                    <Text style={Styles.logo}>Allergen Alert</Text>
 
-                <TextInput 
-                    placeholder="Username" 
-                    placeholderTextColor={Colors.Gray[5]} 
-                    style={Styles.formInput}/>
+                    <FormTextInput placeholder="Username" onChangeText={setUsername}/>
 
-                <TextInput 
-                    placeholder="Password" 
-                    placeholderTextColor={Colors.Gray[5]} 
-                    style={Styles.formInput}/>
+                    <FormTextInput placeholder="Password" onChangeText={setPassword}/>
+                        
+                    <TextLoadingButton text="Log In" onPress={onSubmit} isLoading={login.loading}/>
 
-                <TextLoadingButton text="Log In" onPress={onSubmit} isLoading={login.loading}/>
 
-                <Pressable style={Styles.plainButton} onPress={onForgotPass}>
-                    <Text style={{color: Colors.Gray[6]}}>Forgot Password?</Text>
-                </Pressable>
+                    <Pressable style={Styles.plainButton} onPress={onForgotPass}>
+                        <Text style={{color: Colors.Gray[6]}}>Forgot Password?</Text>
+                    </Pressable>
 
-                <Pressable style={Styles.plainButton} onPress={onCreateAccount}>
-                    <Text style={{color: Colors.Gray[5]}}>Don't have an account? </Text>
-                    <Text style={{color: Colors.Gray[6]}}>Create One</Text>
-                </Pressable>
+                    <Pressable style={Styles.plainButton} onPress={onCreateAccount}>
+                        <Text style={{color: Colors.Gray[5]}}>Don't have an account? </Text>
+                        <Text style={{color: Colors.Gray[6]}}>Create One</Text>
+                    </Pressable>
 
+                </View>
             </View>
         </View>
     );

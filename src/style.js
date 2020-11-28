@@ -63,6 +63,10 @@ const StyleConstants = {
 };
 
 const Styles = StyleSheet.create({
+    alertContainer: {
+        height: '100%',
+        width: '100%',
+    },
     container: {
         backgroundColor: Colors.Background,
         display: 'flex',
@@ -77,23 +81,36 @@ const Styles = StyleSheet.create({
         paddingRight: StyleConstants.Radius,
         height: StyleConstants.FormItemHeight,
         backgroundColor: Colors.Gray[2],
+        borderColor: Colors.Gray[6],
         color: Colors.Gray[7],
         marginBottom: StyleConstants.FormItemSpacing,
+        borderWidth: 0
+    },
+    formInputFocus: {
+        backgroundColor: 'white',
+        borderWidth: 2
+    },
+    formInputError: {
+        backgroundColor: Colors.Red[2],
+        borderColor: Colors.Red[7]
     },
     logo: {
         fontSize: 45,
-        color: Colors.Blue[8],
+        color: Colors.Blue[6],
         alignSelf: 'center',
         bottom: '5%'
     },
     button: {
-        backgroundColor: Colors.Blue[8],
+        backgroundColor: Colors.Blue[6],
         borderRadius: StyleConstants.Radius,
         height: StyleConstants.FormItemHeight,
         alignItems: 'center',
         alignContent: 'center',
         justifyContent: 'center',
-        marginBottom: StyleConstants.FormItemSpacing
+        marginBottom: StyleConstants.FormItemSpacing,
+    },
+    buttonPressed: {
+        backgroundColor: Colors.Blue[8]
     },
     buttonText: {
         fontSize: StyleConstants.FormItemTextSize,
@@ -105,6 +122,23 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row'
+    },
+    alertBoxContainer: {
+        position: 'absolute',
+        top: '5%',
+        width: StyleConstants.FormWidth,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        borderRadius: StyleConstants.Radius,
+        borderWidth: 2,
+        height: StyleConstants.FormItemHeight,
+        paddingLeft: 5,
+        elevation: 5
+    },
+    alertBoxText: {
+        fontSize: StyleConstants.FormItemTextSize,
+        marginLeft: 5
     }
 });
 

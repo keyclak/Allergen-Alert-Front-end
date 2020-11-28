@@ -2,11 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 import { Colors, StyleConstants, Styles } from '../style';
 
-export default function FormTextInput({label, error, ...params}) {
+export default function FormTextInput({error, ...params}) {
+    const [focused, setFocused] = useState(false);
+
+    function onFocus() {
+        setFocused(true);
+    }
+
+    function onBlur() {
+        setFocused(false);
+    }
+
     return (
-        <View>
-            <Text style={[Styles.labelText, error && { color: Colors.Error }]}>{label}</Text>
-            <TextInput {...params} placeholderTextColor={Colors.Input} style={[Styles.textInput, error && { borderColor: Colors.Error }]}/>
-        </View>
+        <TextInput 
+            onFocus={onFocus}
+            onBlur={onBlur}
+            {...params}
+            placeholderTextColor={error ? Colors.Red[5] : Colors.Gray[6]}
+            style={[Styles.formInput, error && Styles.formInputError, focused && Styles.formInputFocus]}/>
     )
 }

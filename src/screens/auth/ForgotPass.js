@@ -7,19 +7,13 @@ import FormTextInput from '../../components/FormTextInput';
 import { sendPasswordReset } from '../../hooks/api';
 
 export default function ForgotPass({navigation, route}) {
-    const context = useContext(AuthContext);
-
     const [username, setUsername] = useState();
     const sendPassReset = sendPasswordReset(username);
-
-    useEffect(() => console.log(sendPassReset.response), [sendPassReset.response]);
 
     function onSend() {
         sendPassReset.execute()
             .then(r => {navigation.navigate('AuthCode', { user: username })})
             .catch(e => {});
-
-        
     }
 
     return (
