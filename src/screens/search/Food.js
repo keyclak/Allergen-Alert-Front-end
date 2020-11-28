@@ -84,6 +84,10 @@ export default function Food({ navigation, route }) {
 
     const disclaimer = "Basic Legal Disclaimer"
 
+    const [flag, flagState] = useState(0);
+    const [flagReason, changeFlagReason] = useState();
+    const [dialog, dialogState] = useState(0);
+
     return(
         <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
             <Spinner
@@ -94,11 +98,28 @@ export default function Food({ navigation, route }) {
             <ScrollView style={{display: 'flex', width: '90%'}}> 
                 <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
                     <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{food?.name}</Text> 
-
                 </View>
                 <View style={[Styles.alertBox, (food?.safe ? null : Styles.alert)]}>
                     <Text style=
                       {food?.safe ? [Styles.subtitleText,{textAlign: 'center'}] : [Styles.subtitleText,{textAlign: 'center', color: Colors.Accent}]}>{(food?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
+                </View>
+                <View style={{paddingTop: 10}}></View>
+                {flag === 1 &&
+                <View style={[Styles.flagBox]}>
+                    <Image source={require('../../../assets/flagCircle.png')} style={{width: 20, height: 20}}></Image>
+                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{(flagReason == ''? 'You have flagged this food.':'You have flagged this food for the following reason(s): ')}</Text>
+                    {flagReason != '' && <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{flagReason}</Text>}
+                </View>}
+                <View style={{alignItems: 'center', paddingTop: 5}}>
+                    {flag === 1 &&
+                    <Pressable style={Styles.flagButton} onPress={() => {flagState(0), changeFlagReason()}}>
+                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Unflag food</Text>
+                    </Pressable>}
+                    {flag === 0 &&
+                    <Pressable style={Styles.flagButton} onPress={() => {flagState(1), dialogState(1)}}>
+                        <Image source={require('../../../assets/flag.png')} style={{width: 20, height: 20}}></Image>
+                        <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black", paddingLeft: 5}]}>Flag food</Text>
+                    </Pressable>}
                 </View>
                 <View style={{paddingTop: 10, alignItems: 'center'}}>
                     <Pressable 
@@ -118,6 +139,14 @@ export default function Food({ navigation, route }) {
                 <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
                     <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
                 </View>
+                <DialogInput isDialogVisible={dialog ? true : false}
+                    title={"Flag Food"}
+                    message={"Why would you like to flag this food?"}
+                    hintInput ={"Ex: Caused bloating, is unappealing, etc."}
+                    submitInput={ (inputText) => {changeFlagReason(inputText), dialogState(0)} }
+                    closeDialog={ () => {dialogState(0), flagState(0)}}
+                   >
+                </DialogInput>
             </ScrollView>
         </SafeAreaView>
     )

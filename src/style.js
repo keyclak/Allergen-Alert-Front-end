@@ -146,7 +146,7 @@ const Styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: 'white',
         borderWidth: 2,
-        borderColor: "#ff0000"
+        borderColor: "#ff0000",
     },
     flagMessage: {
         color: Colors.MainText,
