@@ -6,6 +6,8 @@ import { Colors, StyleConstants, Styles } from '../style';
 import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification } from '../hooks/api';
 import { AuthContext } from '../context';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function ViewDiet({navigation}) {
 
@@ -55,7 +57,7 @@ export default function ViewDiet({navigation}) {
             textStyle={Styles.spinnerTextStyle}
         />
         <View style={{width: StyleConstants.FormWidth, flex: 1}}>
-            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
+            <Text style={{fontSize: RFPercentage(5), color: Colors.Foreground, alignSelf: 'center', paddingBottom: 10}}>Dietary Restrictions</Text>
             <View style={{flex: 1}}>
                 <FlatList
                     data={getDiet.response?.restrictions}
@@ -93,7 +95,7 @@ export default function ViewDiet({navigation}) {
                     style={[Styles.buttonText]}
                 >Add a Dietary Restriction</Text>
             </TouchableOpacity>
-            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Diet Modifications</Text>
+            <Text style={{fontSize: RFPercentage(5), color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 10}}>Diet Modifications</Text>
             <View style={{flex: 1}}>
                 <FlatList
                     data={getDiet.response?.modifications}
@@ -136,7 +138,7 @@ export default function ViewDiet({navigation}) {
                     keyExtractor={item => `${item.id}`}
                 />
             </View>
-            <View style={{paddingBottom: 30}}>
+            <View style={{paddingBottom: 5}}>
                 <TouchableOpacity
                     style={Styles.button}
                     onPress={typeRestriction}

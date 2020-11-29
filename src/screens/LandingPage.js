@@ -5,6 +5,7 @@ import avatar from '../../assets/avatar.png'
 import IconFlatlist from '../components/IconFlatlist'
 import { useGetUsername } from '../hooks/api';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default function LandingPage({navigation}) {
 
@@ -47,14 +48,14 @@ export default function LandingPage({navigation}) {
                 textContent={'Loading...'}
                 textStyle={Styles.spinnerTextStyle}
             />
-            <View style={{display: 'flex', alignItems: 'center'}}>
+            <View style={{display: 'flex', alignItems: 'center', height: hp('36%')}}>
                 {/* TODO: onPress user can pick an image to change profile pic */}
                 <Pressable>
                     <Image style={[Styles.avatar]} source={image} />
                 </Pressable>
                 <Text style={[Styles.titleText]}>{getUsername.response?.username}</Text>
             </View>
-            <View style={{display: 'flex', alignItems: 'center', width: '100%'}}>
+            <View style={{display: 'flex', alignItems: 'center', width: '100%', height: hp('64%')}}>
                 <IconFlatlist content={list} />
             </View>
         </View>

@@ -6,6 +6,7 @@ import { StyleConstants, Styles, Colors } from '../../style';
 import { useLogin, useDummy } from '../../hooks/api';
 import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default function Login({navigation}) {
     const context = useContext(AuthContext);
@@ -34,8 +35,8 @@ export default function Login({navigation}) {
 
     return (
         <ImageBackground source={require('../../../assets/background.png')}  style={[Styles.backgroundImage, {justifyContent: 'flex-start'}]}>
-            <View style={{paddingTop: 170}}></View>
-            <Image source={require('../../../assets/title.png')} style={{width: 350, height: 100}}></Image>
+            <View style={{height: hp('23%')}}></View>
+            <Image source={require('../../../assets/title.png')} style={{width: wp('80%'), height: hp('10%')}}></Image>
             <View style={{width: StyleConstants.FormWidth}}>
                 <FormTextInput placeholder="Username" onChangeText={setUsername}/>
                 <FormTextInput placeholder="Password" onChangeText={setPassword} />

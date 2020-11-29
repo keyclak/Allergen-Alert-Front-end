@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Image, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
 import { Directions } from 'react-native-gesture-handler';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const Colors = {
     Foreground: '#001dbd',
@@ -22,7 +23,7 @@ const Colors = {
 const StyleConstants = {
     Radius: 25,
     FormItemHeight: 50,
-    FormWidth: '80%',
+    FormWidth: wp('80%'),
     FormItemTextSize: 16,
     AvatarRadius: 120
 };
@@ -34,7 +35,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: Colors.Background,
-        paddingTop: 30
+        paddingTop: 30,
     },
     containerIngredient: {
         display: 'flex',
@@ -47,7 +48,9 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',     
         alignItems: 'center',     
         flex: 1,     
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        width: wp('100%'),
+        height: hp('100%')
     },
     textInput: {
         height: StyleConstants.FormItemHeight,
