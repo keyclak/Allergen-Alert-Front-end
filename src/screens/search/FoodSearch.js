@@ -45,7 +45,7 @@ export default function FoodSearch({navigation}) {
                 <Text style={{color: Colors.Gray[5]}}>Search for something, or open the barcode scanner</Text>
             )
         
-        if(getFoodSearch.response.length > 0) {
+        if(getFoodSearch.response?.length) {
             return (
                 <FlatList
                     data={getFoodSearch.response}
@@ -70,7 +70,7 @@ export default function FoodSearch({navigation}) {
                 getItemsContent()
             }
 
-            <View style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 30}}>
+            <View style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 35}}>
                 <ButtonTextInput
                     icon="search"
                     onChangeText={setSearchValue}

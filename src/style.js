@@ -142,12 +142,6 @@ const Styles = StyleSheet.create({
         fontSize: StyleConstants.FormItemTextSize,
         marginLeft: 5
     },
-    headerText: {
-        fontSize: StyleConstants.FormItemTextSize * 2,
-        color: Colors.Gray[7],
-        paddingBottom: StyleConstants.FormItemSpacing,
-        alignSelf: 'center'
-    },
     floatingButton: {
         position: "absolute",
         width: StyleConstants.FloatingButtonSize,
@@ -168,12 +162,21 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         paddingLeft: StyleConstants.Radius,
         marginBottom: StyleConstants.FormItemSpacing / 2,
-        width: '90%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        width: '90%'
     },
     listItemText: {
         color: Colors.Gray[7],
         fontSize: StyleConstants.FormItemTextSize
+    },
+    headerText: {
+        fontSize: 28,
+        color: Colors.Gray[8]
+    },
+    headerButton: {
+        backgroundColor: Colors.Gray[6],
+        width: StyleConstants.FormItemHeight,
+        marginBottom: 0
     }
 });
 

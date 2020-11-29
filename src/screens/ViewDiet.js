@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
+import AddHeader from '../components/AddHeader';
+import SwipableListItem from '../components/SwipableListItem';
 import { Colors, StyleConstants, Styles } from '../style';
 import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification } from '../hooks/api';
-import { AuthContext } from '../context';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 export default function ViewDiet({navigation}) {
 
@@ -42,104 +45,46 @@ export default function ViewDiet({navigation}) {
             .then(() => getDiet.background());
     }
 
+    function restrictionRenderItem({item}) {
+        return (
+            <View style={{marginBottom: StyleConstants.FormItemSpacing / 2}}>
+                <SwipableListItem onPress={() => navigation.navigate('RestrictionInfo', item.id)} deleteOnPress={() => onDeleteRestriction(item.id)}>
+                    <Text style={Styles.listItemText}>{item.name}</Text>
+                </SwipableListItem>
+            </View>
+        )
+    }
+
+    function modificationRenderItem({item}) {
+        let background = item.type ? Colors.Red[0] : Colors.Green[0];
+        let foreground = item.type ? Colors.Red[9] : Colors.Green[9];
+
+        return (
+            <View style={{marginBottom: StyleConstants.FormItemSpacing / 2}}>
+                <SwipableListItem deleteOnPress={() => onDeleteModification(item.id)} style={{ backgroundColor: background }}>
+                    <Text style={[Styles.listItemText, { color: foreground }]}>{item.ingredient}</Text>
+                </SwipableListItem>
+            </View>
+        );
+    }
+
     
     return (
-    <SafeAreaView>
-    <View style={[Styles.container, {justifyContent: 'flex-start', paddingTop:30}]}>  
-        <View style={{width: StyleConstants.FormWidth, flex: 1}}>
-            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
-            <View style={{flex: 1}}>
-                <FlatList
-                    data={getDiet.response?.restrictions}
-                    renderItem={({ item }) => (
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
-                            <TouchableOpacity
-                                style={[Styles.button, {width: '75%'}]}
-                                onPress={viewRestriction(item.id)}
-                                >
-                                <Text
-                                    style={[Styles.buttonText]}
-                                    //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
-                                    >
-                                    { item.name }
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={Styles.button}
-                                onPress={() => onDeleteRestriction(item.id)}
-                                >
-                                <Text
-                                    style={[Styles.buttonText]}
-                                >  Delete  </Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    keyExtractor={item => `${item.id}`}
-                />
-            </View>
-            <TouchableOpacity
-                style={Styles.button}
-                onPress={selectRestriction}
-                >
-                <Text
-                    style={[Styles.buttonText]}
-                >Add a Dietary Restriction</Text>
-            </TouchableOpacity>
-            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingTop: 30, paddingBottom: 30}}>Diet Modifications</Text>
-            <View style={{flex: 1}}>
-                <FlatList
-                    data={getDiet.response?.modifications}
-                    renderItem={({ item }) => (
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 20 }}>
-                            
-                            <TouchableOpacity
-                                style={[Styles.button, {width: '75%'}]}
-                                onPress={viewRestriction(item.id)}
-                                disabled={true}
-                                >
-                                <View style={{}}>
-                                    {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#07bb02'}]}
-                                        //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
-                                        >
-                                        { item.ingredient } (Exception)
-                                    </Text>}
-                                    {(item.type == 1)&&<Text style={[Styles.ingredientList, {color: '#e50000'}]}
-                                        //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
-                                        >
-                                        { item.ingredient } (Restriction)
-                                    </Text>}
-                                </View>
-                            </TouchableOpacity>
-                            
-                            
-                            
-                            
-                            
-                            <TouchableOpacity
-                                style={Styles.button}
-                                onPress={() => onDeleteModification(item.id)}
-                                >
-                                <Text
-                                    style={[Styles.buttonText]}
-                                >  Delete  </Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    keyExtractor={item => `${item.id}`}
-                />
-            </View>
-            <View style={{paddingBottom: 30}}>
-                <TouchableOpacity
-                    style={Styles.button}
-                    onPress={typeRestriction}
-                    >
-                    <Text
-                        style={[Styles.buttonText]}
-                    >Add an Ingredient</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+    <View style={[Styles.container, {paddingTop: 35, justifyContent: 'flex-start'}]}>  
+        <AddHeader text="Restrictions" onPressAdd={selectRestriction}/>
+        <FlatList
+            style={{width: '100%', flexGrow: 0, marginBottom: 30}}
+            data={getDiet.response?.restrictions}
+            renderItem={restrictionRenderItem}
+            keyExtractor={item => `${item.id}`}/>
+
+        <AddHeader text="Modifications" onPressAdd={typeRestriction}/>
+        <FlatList
+            style={{width: '100%', flexGrow: 0}}
+            data={getDiet.response?.modifications}
+            renderItem={modificationRenderItem}
+            keyExtractor={item => `${item.id}`} />
+
     </View>
-    </SafeAreaView>
     );
 }

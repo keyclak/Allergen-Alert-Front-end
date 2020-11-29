@@ -3,6 +3,7 @@ import { StyleSheet, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, createTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { AuthContext } from './src/context';
 import { ListItem, Icon } from 'react-native-elements'
 
@@ -23,35 +24,14 @@ import FoodSearch from './src/screens/search/FoodSearch';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
 
-const Tabs = createBottomTabNavigator(); 
-function TabScreen() {
+const Drawer = createDrawerNavigator();
+function DrawerScreen() {
     return (
-        <Tabs.Navigator screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-  
-              if (route.name === 'Home') {
-                iconName = 'home';
-              } else if(route.name === 'Scan'){
-                iconName = "camera-alt"
-              } else if (route.name === 'Search') {
-                iconName = 'search';
-              }
-  
-              // You can return any component that you like here!
-              return <Icon name={iconName} size={30} color={color} style={{paddingTop: 10}}/>;
-            },
-          })} 
-          tabBarOptions={{ 
-            style: navStyle.header, 
-            activeTintColor: Colors.Foreground, 
-            inactiveTintColor: Colors.Accent, 
-        }}>
-            <Tabs.Screen name = "Home" component = {HomeStackScreen} options={{title: ""}}/>
-            <Tabs.Screen name = "Scan" component = {ScanStackScreen} options={{title: ""}}/>
-            <Tabs.Screen name = "Search" component = {SearchStackScreen} options={{title: ""}}/>
-        </Tabs.Navigator>
-    )
+        <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={SearchStackScreen}/>
+            <Drawer.Screen name="My Diet" component={DietStackScreen}/>
+        </Drawer.Navigator>
+    );
 }
 
 const AuthStack = createStackNavigator();
@@ -78,14 +58,17 @@ function SearchStackScreen() {
     );
 }
 
-const ScanStack = createStackNavigator();
-function ScanStackScreen() {
+const DietStack = createStackNavigator();
+function DietStackScreen() {
     return (
-        <SearchStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent }}>
-            <SearchStack.Screen name="Scanner" component={Scanner} />
-            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
-        </SearchStack.Navigator>
-    );
+        <DietStack.Navigator screenOptions={{ headerShown: false }}>
+            <DietStack.Screen name="ViewDiet" component={ViewDiet} />
+            <HomeStack.Screen name="SelectRestriction" component={SelectRestriction}/>
+            <HomeStack.Screen name="FoodPage" component={Food}/>
+            <HomeStack.Screen name="RestrictionInfo" component={RestrictionInfo}/>
+            <HomeStack.Screen name="TypeRestriction" component={TypeRestriction}/>
+        </DietStack.Navigator>
+    )
 }
 
 const HomeStack = createStackNavigator();
@@ -124,7 +107,7 @@ export default function App() {
             <NavigationContainer>
                 {
                     authToken
-                        ? <SearchStackScreen/>
+                        ? <DrawerScreen/>
                         : <AuthStackScreen/>
                 }
             </NavigationContainer>
