@@ -85,7 +85,7 @@ export default function Food({ navigation, route }) {
     const disclaimer = "Basic Legal Disclaimer"
 
     const [flag, flagState] = useState(0);
-    const [flagReason, changeFlagReason] = useState();
+    const [flagReason, changeFlagReason] = useState('');
     const [dialog, dialogState] = useState(0);
 
     return(
@@ -107,12 +107,12 @@ export default function Food({ navigation, route }) {
                 {flag === 1 &&
                 <View style={[Styles.flagBox]}>
                     <Image source={require('../../../assets/flagCircle.png')} style={{width: 20, height: 20}}></Image>
-                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{(flagReason == ''? 'You have flagged this food.':'You have flagged this food for the following reason(s): ')}</Text>
-                    {flagReason != '' && <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{flagReason}</Text>}
+                    <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{((flagReason == null || flagReason.trim().length === 0)? 'You have flagged this food.':'You have flagged this food for the following reason(s): ')}</Text>
+                    {(flagReason.trim() != '') && <Text style={[Styles.flagMessage,{textAlign: 'center'}]}>{flagReason}</Text>}
                 </View>}
                 <View style={{alignItems: 'center', paddingTop: 5}}>
                     {flag === 1 &&
-                    <Pressable style={Styles.flagButton} onPress={() => {flagState(0), changeFlagReason()}}>
+                    <Pressable style={Styles.flagButton} onPress={() => {flagState(0), changeFlagReason('')}}>
                         <Text style={[Styles.buttonText, { fontWeight: 'bold', color: "black"}]}>Unflag food</Text>
                     </Pressable>}
                     {flag === 0 &&
@@ -143,7 +143,7 @@ export default function Food({ navigation, route }) {
                     title={"Flag Food"}
                     message={"Why would you like to flag this food?"}
                     hintInput ={"Ex: Caused bloating, is unappealing, etc."}
-                    submitInput={ (inputText) => {changeFlagReason(inputText), dialogState(0)} }
+                    submitInput={ (inputText) => {if (inputText != undefined) {changeFlagReason(inputText)} dialogState(0)} }
                     closeDialog={ () => {dialogState(0), flagState(0)}}
                    >
                 </DialogInput>
