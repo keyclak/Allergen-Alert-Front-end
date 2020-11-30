@@ -96,8 +96,6 @@ export default function ViewDiet({navigation}) {
             textContent={'Loading...'}
             textStyle={Styles.spinnerTextStyle}
         />
-        
-       
             <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>Dietary Restrictions</Text>
             <View style={{flex: 1}}>
                 <FlatList
@@ -124,7 +122,7 @@ export default function ViewDiet({navigation}) {
                 />
             </View>
             <TouchableOpacity
-                style={Styles.button}
+                style={[Styles.button, {width: "80%", alignSelf: "center"}]}
                 onPress={selectRestriction}
                 >
                 <Text
@@ -146,12 +144,12 @@ export default function ViewDiet({navigation}) {
                             >
                                 <View style={Styles.flatListRowSpacing}>  
                                     <View style={{}}>
-                                    {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#07bb02', paddingLeft: 10}]}
+                                    {(item.type == 0)&&<Text style={[Styles.ingredientList, {color: '#07bb02'}]}
                                         //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
                                         >
                                         { item.ingredient } (Exception)
                                     </Text>}
-                                    {(item.type == 1)&&<Text style={[{color: '#e50000', paddingLeft: 10}]}
+                                    {(item.type == 1)&&<Text style={[Styles.ingredientList, {color: '#e50000'}]}
                                         //style={[Styles.buttonText, {paddingLeft: 32, paddingBottom: 20}]}
                                         >
                                         { item.ingredient } (Restriction)
@@ -164,7 +162,7 @@ export default function ViewDiet({navigation}) {
                     keyExtractor={item => `${item.id}`}
                 />
             </View>
-            <View style={{paddingBottom: 30}}>
+            <View style={{paddingBottom: 30, width: "80%", alignSelf: "center"}}>
                 <TouchableOpacity
                     style={Styles.button}
                     onPress={typeRestriction}

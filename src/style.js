@@ -191,8 +191,8 @@ const Styles = StyleSheet.create({
         fontSize: 17
     },
     flatListRow: {
-        borderTopColor: '#fff',
-        borderTopWidth: 0.75,
+        borderBottomColor: '#fff',
+        borderBottomWidth: 0.5,
     },
     flatListRowSpacing: {
         flexDirection: "row",
