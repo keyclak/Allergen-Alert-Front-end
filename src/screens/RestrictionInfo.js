@@ -6,7 +6,7 @@ import { Colors, StyleConstants, Styles } from '../style';
 import { useGetIngredients, useAddModification } from '../hooks/api';
 import { AuthContext } from '../context';
 import { ListItem, Icon } from 'react-native-elements'
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, Swipeable } from 'react-native-gesture-handler';
 
 
 export default function SelectRestriction({navigation, route}) {
@@ -29,7 +29,9 @@ export default function SelectRestriction({navigation, route}) {
     useEffect(() => {
         if(initialRender.current) {
             initialRender.current = false;
+            console.log("here2");
         } else {
+            
             addModification.execute()
             .then(() => navigation.pop())
             .catch(e => {});
@@ -44,6 +46,21 @@ export default function SelectRestriction({navigation, route}) {
         }
     }
 
+    function rightAction(item) {
+        return (
+            <View style={{paddingBottom: 3005}}>
+                <TouchableOpacity
+                    style={[Styles.buttonMakeException]}
+                    onPress={onAddException(item)}
+                    >  
+                    <Text
+                        style={[Styles.buttonText]}
+                    >  Make Exception  </Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
     return (
 
         <View style={[Styles.containerIngredient, {justifyContent: 'flex-start', paddingTop:40}]}>   
@@ -52,25 +69,23 @@ export default function SelectRestriction({navigation, route}) {
             <FlatList
                 data={getIngredients.response?.ingredients}
                 renderItem={({ item }) => (
-
                     <View style={Styles.flatListRow}>
-                        <View style={Styles.flatListRowSpacing}>
-                            <Text
-                                style={[Styles.buttonText, {paddingLeft: 25}]}
-                                >
-                                {item}
-                            </Text>
-                            <View style={{paddingRight: 25}}>
-                                <TouchableOpacity
-                                    style={[Styles.button,{width: "100%"}]}
-                                    onPress={onAddException(item)}
+                        <View>
+
+                        <Swipeable
+                            renderRightActions={() => rightAction(item)}
+                            style={{alignSelf: 'center'}}
+                        >
+                            <View style={Styles.flatListRowSpacing}>
+                                <Text
+                                    style={[Styles.buttonText]}
                                     >
-                                    <Text
-                                        style={[Styles.buttonText]}
-                                    >  Make Exception  </Text>
-                                </TouchableOpacity>
+                                    {item}
+                                </Text>
                             </View>
+                        </Swipeable>
                         </View>
+                        
                     </View>
                 )}
                 keyExtractor={(item, index) => 'key'+index}

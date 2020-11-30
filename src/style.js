@@ -191,19 +191,36 @@ const Styles = StyleSheet.create({
         fontSize: 17
     },
     flatListRow: {
-        borderBottomColor: '#fff',
-        marginBottom: 15,
-        paddingBottom: 15,
-        borderBottomWidth: 0.5
+        borderTopColor: '#fff',
+        borderTopWidth: 0.75,
     },
     flatListRowSpacing: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "baseline"
+        height: 70,
+        alignItems: "center",
+        justifyContent: "center"
     },
     spinnerTextStyle: {
         color: '#FFF'
-    }
+    },
+    buttonMakeException: {
+        height: 70,
+        backgroundColor: '#008000', 
+        alignContent: 'center',
+        justifyContent: 'center',
+        elevation: 10, //Android
+        shadowRadius: 5, //iOS
+        shadowColor: 'black' //iOS
+    },
+    buttonDelete: {
+        height: 70,
+        backgroundColor: '#ff0000', 
+        alignContent: 'center',
+        justifyContent: 'center',
+        elevation: 10, //Android
+        shadowRadius: 5, //iOS
+        shadowColor: 'black' //iOS
+    },
 });
 
 export { Colors, StyleConstants, Styles };
