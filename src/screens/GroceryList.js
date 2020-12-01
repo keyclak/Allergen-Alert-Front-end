@@ -3,6 +3,8 @@ import {SafeAreaView, ScrollView, View, Text, FlatList, Pressable} from 'react-n
 import { StyleConstants, Styles, Colors } from '../style';
 import { useDeleteGrocery, useGetGroceryList, useTogglePurchased } from '../hooks/api';
 import { ListItem, CheckBox } from 'react-native-elements'
+import SwipableListItem from '../components/SwipableListItem';
+import Checkbox from '../components/Checkbox';
 
 export default function GroceryList({navigation}) {
 
@@ -26,31 +28,22 @@ export default function GroceryList({navigation}) {
             .catch(e => {});    
     }
 
+    function renderItem({item}) {
+        return (
+            <SwipableListItem onPress={() => navigation.navigate('FoodPage', {foodId: item.foodId})} deleteOnPress={() => onDelete(item.id)}>
+                <Checkbox style={{marginRight: 5}}/>
+                <Text style={Styles.listItemText}>{item.name}</Text>
+            </SwipableListItem>
+        )
+    }
+
     return (
-        <SafeAreaView style={[Styles.container, {flex: 1, alignItems: 'flex-start', justifyContent:'space-evenly'}]}>
-            <View style={{paddingTop: 15}}>
-                <FlatList
-                    data={getGroceryList.response}
-                    renderItem={({ item }) => (
-                        <ListItem containerStyle={{backgroundColor: 'Colors.Background', padding: 2}}
-                        >
-                            <CheckBox
-                                containerStyle={{width: '72%', borderRadius: 15}}
-                                title={item.name}
-                                checked={item.purchased}
-                                onPress={() => navigation.navigate('FoodPage', { foodId: item.foodId })}
-                                onIconPress={() => onCheck(item)}
-                            />
-                            <Pressable 
-                                style= {{backgroundColor: Colors.ButtonBackground, padding: 15, borderRadius: 25}}
-                                onPress={() => onDelete(item.foodId)}>
-                                <Text style={{color: Colors.Accent}}>Delete</Text>
-                            </Pressable>
-                        </ListItem>
-                    )}
-                    keyExtractor={item => `${item.foodId}`}
-                />
-            </View>
-        </SafeAreaView>
+        <View style={[Styles.container, {paddingTop: 10}]}>
+            <FlatList
+                style={{width: '100%'}}
+                data={getGroceryList.response}
+                renderItem={renderItem}
+                keyExtractor={item => `${item.foodId}`}/>
+        </View>
     )
 }

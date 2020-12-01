@@ -75,8 +75,9 @@ function DietStackScreen() {
 const GroceryListStack = createStackNavigator();
 function GroceryListStackScreen() {
     return (
-        <GroceryListStack.Navigator screenOptions={{ headerShown: false }}>
-            <GroceryListStack.Screen name="GroceryList" component={GroceryList}/>
+        <GroceryListStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: 'white', headerTitleAlign: 'center' }}>
+            <GroceryListStack.Screen name="GroceryList" component={GroceryList} options={{ headerTitle: 'Grocery List'}} />
+            <GroceryListStack.Screen name="FoodPage" component={Food}/>
         </GroceryListStack.Navigator>
     )
 }
@@ -127,6 +128,6 @@ export default function App() {
 
 const navStyle = StyleSheet.create({
     header: {
-        backgroundColor: Colors.Secondary,
+        backgroundColor: Colors.Blue[6],
     }
 });

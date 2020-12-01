@@ -163,7 +163,11 @@ const Styles = StyleSheet.create({
         paddingLeft: StyleConstants.Radius,
         marginBottom: StyleConstants.FormItemSpacing / 2,
         alignSelf: 'center',
-        width: '90%'
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        alignContent: 'center'
     },
     listItemText: {
         color: Colors.Gray[7],
