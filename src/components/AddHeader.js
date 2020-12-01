@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default function AddHeader({text, onPressAdd}) {
     return (
-        <View style={{ flexDirection: 'row', width: StyleConstants.FormWidth, marginBottom: StyleConstants.FormItemSpacing, alignItems: 'center'}}>
+        <View style={{ flexDirection: 'row', width: StyleConstants.FormWidth, marginBottom: StyleConstants.FormItemSpacing, alignItems: 'center', alignSelf: 'center'}}>
             <Text style={Styles.headerText}>{text}</Text>
             <View style={{flexDirection: 'row-reverse', flexGrow: 1}}>
                 <Pressable style={[Styles.button, Styles.headerButton]} onPress={onPressAdd}>

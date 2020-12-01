@@ -30,6 +30,7 @@ function DrawerScreen() {
         <Drawer.Navigator>
             <Drawer.Screen name="Home" component={SearchStackScreen}/>
             <Drawer.Screen name="My Diet" component={DietStackScreen}/>
+            <Drawer.Screen name="Grocery List" component={GroceryListStackScreen}/>
         </Drawer.Navigator>
     );
 }
@@ -63,11 +64,20 @@ function DietStackScreen() {
     return (
         <DietStack.Navigator screenOptions={{ headerShown: false }}>
             <DietStack.Screen name="ViewDiet" component={ViewDiet} />
-            <HomeStack.Screen name="SelectRestriction" component={SelectRestriction}/>
-            <HomeStack.Screen name="FoodPage" component={Food}/>
-            <HomeStack.Screen name="RestrictionInfo" component={RestrictionInfo}/>
-            <HomeStack.Screen name="TypeRestriction" component={TypeRestriction}/>
+            <DietStack.Screen name="SelectRestriction" component={SelectRestriction}/>
+            <DietStack.Screen name="FoodPage" component={Food}/>
+            <DietStack.Screen name="RestrictionInfo" component={RestrictionInfo}/>
+            <DietStack.Screen name="TypeRestriction" component={TypeRestriction}/>
         </DietStack.Navigator>
+    )
+}
+
+const GroceryListStack = createStackNavigator();
+function GroceryListStackScreen() {
+    return (
+        <GroceryListStack.Navigator screenOptions={{ headerShown: false }}>
+            <GroceryListStack.Screen name="GroceryList" component={GroceryList}/>
+        </GroceryListStack.Navigator>
     )
 }
 
