@@ -25,17 +25,33 @@ import FoodSearch from './src/screens/search/FoodSearch';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
 
+function HeaderMenuButton(navigation) {
+    return (
+        <Pressable onPress={() => navigation.openDrawer()} style={{paddingHorizontal: 12, height: '100%', justifyContent: 'center'}}>
+            <MaterialIcons name="menu" color={Colors.Background} size={28} />
+        </Pressable>
+    );
+}
+
 function GetMenuHeaderOptions(title) {
     return ({navigation}) => {
         return {
             headerTitle: title,
-            headerLeft: () => (
-                <Pressable onPress={() => navigation.openDrawer()} style={{paddingHorizontal: 12, height: '100%', justifyContent: 'center'}}>
-                    <MaterialIcons name="menu" color={Colors.Background} size={28} />
-                </Pressable>
-            )
+            headerLeft: () => HeaderMenuButton(navigation)
         }
     };
+}
+
+function GetSearchMenuHeaderOptions() {
+    return ({navigation}) => {
+        return {
+            headerTintColor: Colors.Background,
+            headerStyle: {backgroundColor: Colors.Blue[4]},
+            headerTitleContainerStyle: { margin: 0, padding: 0, left: 52 },
+            headerTitleAlign: 'left',
+            headerLeft: () => HeaderMenuButton(navigation)
+        }
+    }
 }
 
 const HeaderScreenOptions = {
@@ -73,16 +89,10 @@ function AuthStackScreen() {
 const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
-        <SearchStack.Navigator
-            screenOptions={{
-                headerTintColor: Colors.Background,
-                headerStyle: {backgroundColor: Colors.Blue[4]},
-                headerTitleContainerStyle: { margin: 0, padding: 0, left: 52 }
-            }}>
-
-            <SearchStack.Screen name="FoodSearch" component={FoodSearch} options={GetMenuHeaderOptions()}/>
+        <SearchStack.Navigator screenOptions={HeaderScreenOptions}>
+            <SearchStack.Screen name="FoodSearch" component={FoodSearch} options={GetSearchMenuHeaderOptions()}/>
             <SearchStack.Screen name="Scanner" component={Scanner} />
-            <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
+            <SearchStack.Screen name="FoodPage" component={Food} options={{ headerTitleAlign: 'center', title: "Food Information" }}/>
         </SearchStack.Navigator>
     );
 }

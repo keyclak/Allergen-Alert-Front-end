@@ -140,15 +140,20 @@ export default function Food({ navigation, route }) {
                         width: '100%',
                         flexGrow: 1,
                         elevation: 10,
+                        paddingBottom: StyleConstants.FormItemSpacing
                     }}>
 
-                    <Expandable headerText="Violated Restrictions">
-                        {
-                            food?.violatedRestrictions.map(r => (
-                                <Text style={{color: Colors.Gray[7]}}key={r.name}>{r.name}</Text>
-                            ))
-                        }
-                    </Expandable>
+                    {
+                        !(food?.safe)
+                            ? (<Expandable headerText="Violated Restrictions">
+                                    {
+                                        food?.violatedRestrictions.map(r => (
+                                            <Text style={{color: Colors.Gray[7]}}key={r.name}>{r.name}</Text>
+                                        ))
+                                    }
+                                </Expandable>)
+                            : null
+                    }
 
                     <Expandable headerText="Ingredients">
                         {
