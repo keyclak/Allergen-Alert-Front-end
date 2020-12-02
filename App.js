@@ -105,7 +105,7 @@ function GroceryListStackScreen() {
     return (
         <GroceryListStack.Navigator screenOptions={HeaderScreenOptions}>
             <GroceryListStack.Screen name="GroceryList" component={GroceryList} options={GetMenuHeaderOptions('Grocery List')} />
-            <GroceryListStack.Screen name="FoodPage" component={Food} options={{ headerStyle: { backgroundColor: Colors.Red[4]} }}/>
+            <GroceryListStack.Screen name="FoodPage" component={Food} options={{ title: "Food Information" }}/>
         </GroceryListStack.Navigator>
     )
 }

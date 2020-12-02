@@ -15,7 +15,7 @@ export default function Checkbox({ startChecked, onChange, style }) {
         <Pressable onPress={onPress} style={style}>
             {
                 checked
-                    ? <MaterialIcons name="check-circle" size={24} color={Colors.Blue[8]} />
+                    ? <MaterialIcons name="check-circle" size={24} color={Colors.Blue[4]} />
                     : <MaterialIcons name="radio-button-unchecked" size={24} color={Colors.Gray[6]} />
             }
         </Pressable>

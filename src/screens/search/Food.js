@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
 import TextLoadingButton from '../../components/TextLoadingButton'
-import { color } from 'react-native-reanimated';
 import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
-import Ingredients from '../../components/Ingredients'
-import DialogInput from 'react-native-dialog-input';
+import Ingredients from '../../components/Ingredients';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import Expandable from '../../components/Expandable';
 
 
 export default function Food({ navigation, route }) {
@@ -47,6 +47,23 @@ export default function Food({ navigation, route }) {
         navigation.addListener('focus', () => refresh())
     }, [navigation]);
 
+    useEffect(() => {
+        let color;
+        if(getFood.loading || getUpcSearch.loading) {
+            color = Colors.Gray[6];
+        } else if(food?.safe) {
+            color = Colors.Green[4]
+        } else {
+            color = Colors.Red[4]
+        }
+
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: color
+            }
+        });
+    }, [food, getFood.loading, getUpcSearch.loading])
+
     function onAdd(id) {
         addToGroceryList.execute(id) 
         .then (getUpcSearch.background(upc))
@@ -73,45 +90,85 @@ export default function Food({ navigation, route }) {
         )
     }
 
-
     function onAdd(id) {
         addToGroceryList.execute(id) 
         .then (refresh())
         .catch(e => {});
     }
 
-    const disclaimer = "Basic Legal Disclaimer"
-
     return(
-        <SafeAreaView style={[Styles.container, {justifyContent:'space-evenly'}]}>  
-            <ScrollView style={{display: 'flex', width: '90%'}}> 
-                <View style={{display:'flex', direction:'column', alignItems: 'center'}}>
-                    <Text style={[Styles.titleText, {marginTop: 20, fontSize: 45}]}>{food?.name}</Text> 
+        <View style={Styles.container}>
+            <View style={[StyleSheet.absoluteFillObject, {backgroundColor: Colors.Gray[3], paddingTop: 20, alignItems: 'center'}]}>
+                <MaterialCommunityIcons name="food-apple" color={Colors.Gray[8]} size={200}/>
+            </View>
 
+            <ScrollView style={{width: '100%'}} contentContainerStyle={{flexGrow: 1}}>
+                <View style={{
+                    height: 200
+                }}/>
+
+                <View style={{
+                    marginBottom: 10,
+                    flexDirection: 'row'
+                }}>
+                    <View style={Styles.infoBubble}>
+                        <Text style={Styles.infoBubbleText}>
+                            {food?.name}
+                        </Text>
+                    </View>
+                    
+                    <View style={Styles.infoBubble}>
+                        {
+                            food?.safe
+                                ? <MaterialIcons name="check-circle" size={22} color={Colors.Green[4]} style={{right: 3}}/>
+                                : <MaterialIcons name="warning" size={20} color={Colors.Red[4]} style={{right: 2}}/>
+                        }
+                        <Text style={Styles.infoBubbleText}>
+                            {
+                                food?.safe
+                                    ? 'Safe'
+                                    : 'Unsafe'
+                            }
+                        </Text>
+                    </View>
                 </View>
-                <View style={[Styles.alertBox, (food?.safe ? null : Styles.alert)]}>
-                    <Text style=
-                      {food?.safe ? [Styles.subtitleText,{textAlign: 'center'}] : [Styles.subtitleText,{textAlign: 'center', color: Colors.Accent}]}>{(food?.safe ? 'THIS FOOD IS SAFE!' : 'THIS FOOD IS NOT SAFE!')}</Text>
-                </View>
-                <View style={{paddingTop: 10, alignItems: 'center'}}>
-                    <Pressable 
-                        style={food?.inGroceryList ? null : [Styles.button, {width: '80%'}]}
-                        onPress={food?.inGroceryList ? null : () => onAdd(food?.id)}>
-                        <Text style={{color: Colors.Accent}}>{food?.inGroceryList ? 'This food been added to your grocery list' : 'Add food to your grocery list'}</Text>
-                    </Pressable>
-                </View>
-                <View style={{paddingTop: 20}}></View>
-                <View style={{alignItems: 'center', paddingTop: 5}}>
-                </View>
-                <View>
-                    {listRestrictions(food?.violatedRestrictions)}
-                </View>
-                <Text style={[{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}]}>Ingredients</Text>
-                <Ingredients content={food?.ingredients} />
-                <View style={{alignSelf: 'center', paddingTop: StyleConstants.Radius}}>
-                    <Text style={[Styles.labelText, {color: Colors.Foreground, marginLeft: 0}]}>{disclaimer}</Text>
+
+                <View
+                    style={{
+                        backgroundColor: Colors.Background,
+                        alignItems: 'center',
+                        width: '100%',
+                        flexGrow: 1,
+                        elevation: 10,
+                    }}>
+
+                    <Expandable headerText="Violated Restrictions">
+                        {
+                            food?.violatedRestrictions.map(r => (
+                                <Text style={{color: Colors.Gray[7]}}key={r.name}>{r.name}</Text>
+                            ))
+                        }
+                    </Expandable>
+
+                    <Expandable headerText="Ingredients">
+                        {
+                            food?.ingredients.map(i => (
+                                <Text 
+                                    key={i.ingredient}
+                                    style={{
+                                        marginTop: 3,
+                                        color: i.safe
+                                            ? Colors.Gray[7]
+                                            : Colors.Red[5]
+                                    }}>
+                                    
+                                    {i.ingredient}
+                                </Text>
+                            ))
+                        }
+                    </Expandable>
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }

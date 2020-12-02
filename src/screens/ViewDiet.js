@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, RefreshControl} from 'react-native';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, RefreshControl, Animated} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import FloatingButton from '../components/FloatingButton';
@@ -83,12 +83,6 @@ export default function ViewDiet({navigation}) {
         navigation.navigate('SelectRestriction');
     }
 
-    function viewRestriction(id) {
-        return function() {
-            navigation.navigate('RestrictionInfo', id);
-        }
-    }
-
     function typeRestriction() {
         navigation.navigate('TypeRestriction');
     }
@@ -141,6 +135,39 @@ export default function ViewDiet({navigation}) {
         }
     }
 
+    const addAnimation = useRef(new Animated.Value(0)).current;
+    const [addOpen, setAddOpen] = useState(false);
+    const AnimatedMaterialIcons = Animated.createAnimatedComponent(MaterialIcons);
+
+    function openAdd() {
+        setAddOpen(true);
+        Animated.timing(
+            addAnimation,
+            {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: true
+            }
+        ).start();
+    }
+
+    function closeAdd() {
+        setAddOpen(false);
+        Animated.timing(
+            addAnimation,
+            {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true
+            }
+        ).start();
+    }
+
+    function toggleAdd() {
+        if(addOpen) closeAdd();
+        else openAdd();
+    }
+
     return (
         <View style={[Styles.container, {justifyContent: 'flex-start'}]}>  
 
@@ -151,9 +178,41 @@ export default function ViewDiet({navigation}) {
                 keyExtractor={item => item.key}
                 refreshControl={<RefreshControl colors={[Colors.Blue[7]]} refreshing={getDiet.loading} onRefresh={load}/>}/>
 
-            <View style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-                <FloatingButton>
-                    <MaterialIcons name="add" size={32} color="white"/>
+            {/* <Animated.View 
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    backgroundColor: 'black',
+                    opacity: addAnimation.interpolate({
+                        inputRange: [0,1],
+                        outputRange: [0,0.5]
+                    })
+                }}/> */}
+
+            <View
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end'
+                    }}>
+                <FloatingButton onPress={toggleAdd}>
+                    <AnimatedMaterialIcons
+                        name="add"
+                        size={32}
+                        color="white"
+                        style={{
+                            transform: [
+                                {
+                                    rotate: addAnimation.interpolate({
+                                        inputRange: [0,1],
+                                        outputRange: ['0deg', '45deg']
+                                    })
+                                }
+                            ]
+                        }}/>
                 </FloatingButton>
             </View>
         </View>

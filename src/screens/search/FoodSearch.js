@@ -33,15 +33,15 @@ export default function FoodSearch({navigation}) {
                     placeholder="Search"
                     placeholderTextColor={Colors.Gray[4]}
                     onChangeText={setSearchValue}
-                    onSubmitEditing={fetchData}
+                    onSubmitEditing={() => fetchData()}
                     style={{
                         color: Colors.Gray[1],
-                        marginLeft: StyleConstants.Radius,
+                        marginLeft: StyleConstants.Radius * 0.75,
                         fontSize: StyleConstants.FormItemTextSize,
                         flexGrow: 1
                     }}/>
                 
-                <Pressable style={{width: 40, alignItems: 'center', }}  onPress={fetchData}>
+                <Pressable style={{width: 40, alignItems: 'center', }} onPress={() => fetchData()}>
                     <MaterialIcons name="search" color={Colors.Background} size={24} />
                 </Pressable>
             </View>

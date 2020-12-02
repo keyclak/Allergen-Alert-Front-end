@@ -202,6 +202,21 @@ const Styles = StyleSheet.create({
         backgroundColor: Colors.Gray[6],
         width: StyleConstants.FormItemHeight,
         marginBottom: 0
+    },
+    infoBubble: {
+        marginLeft: 10,
+        color: Colors.Gray[1],
+        backgroundColor: '#000B',
+        paddingHorizontal: 10,
+        height: 35,
+        borderRadius: StyleConstants.Radius,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    infoBubbleText: {
+        fontSize: 20,
+        color: Colors.Gray[1],
+        bottom: 1
     }
 });
 
