@@ -25,6 +25,27 @@ import FoodSearch from './src/screens/search/FoodSearch';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
 
+function GetMenuHeaderOptions(title) {
+    return ({navigation}) => {
+        return {
+            headerTitle: title,
+            headerLeft: () => (
+                <Pressable onPress={() => navigation.openDrawer()} style={{paddingHorizontal: 12, height: '100%', justifyContent: 'center'}}>
+                    <MaterialIcons name="menu" color={Colors.Background} size={28} />
+                </Pressable>
+            )
+        }
+    };
+}
+
+const HeaderScreenOptions = {
+    headerStyle: {
+        backgroundColor: Colors.Blue[4]
+    },
+    headerTintColor: Colors.Background,
+    headerTitleAlign: 'center',
+};
+
 const Drawer = createDrawerNavigator();
 function DrawerScreen() {
     return (
@@ -52,8 +73,14 @@ function AuthStackScreen() {
 const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
-        <SearchStack.Navigator screenOptions={{ headerShown: false }}>
-            <SearchStack.Screen name="FoodSearch" component={FoodSearch} />
+        <SearchStack.Navigator
+            screenOptions={{
+                headerTintColor: Colors.Background,
+                headerStyle: {backgroundColor: Colors.Blue[4]},
+                headerTitleContainerStyle: { margin: 0, padding: 0, left: 52 }
+            }}>
+
+            <SearchStack.Screen name="FoodSearch" component={FoodSearch} options={GetMenuHeaderOptions()}/>
             <SearchStack.Screen name="Scanner" component={Scanner} />
             <SearchStack.Screen name="FoodPage" component={Food} options={{ title: "Ingredient Information" }}/>
         </SearchStack.Navigator>
@@ -63,13 +90,8 @@ function SearchStackScreen() {
 const DietStack = createStackNavigator();
 function DietStackScreen() {
     return (
-        <DietStack.Navigator 
-            screenOptions={{
-                headerStyle: navStyle.header,
-                headerTintColor: Colors.Background,
-                headerTitleAlign: 'center',
-            }}>
-            <DietStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "Diet" }}/>
+        <DietStack.Navigator screenOptions={HeaderScreenOptions}>
+            <DietStack.Screen name="ViewDiet" component={ViewDiet} options={GetMenuHeaderOptions('Diet')}/>
             <DietStack.Screen name="SelectRestriction" component={SelectRestriction}/>
             <DietStack.Screen name="FoodPage" component={Food}/>
             <DietStack.Screen name="RestrictionInfo" component={RestrictionInfo}/>
@@ -81,23 +103,8 @@ function DietStackScreen() {
 const GroceryListStack = createStackNavigator();
 function GroceryListStackScreen() {
     return (
-        <GroceryListStack.Navigator
-            screenOptions={{
-                headerStyle: navStyle.header,
-                headerTintColor: Colors.Background,
-                headerTitleAlign: 'center',
-            }}>
-            <GroceryListStack.Screen
-                name="GroceryList"
-                component={GroceryList}
-                options={{
-                    headerTitle: 'Grocery List',
-                    headerLeft: (navigation) => (
-                        <Pressable onPress={() => navigation.openDrawer()} style={{paddingHorizontal: 15}}>
-                            <MaterialIcons name="menu" color={Colors.Background} size={32} />
-                        </Pressable>
-                    )
-                }} />
+        <GroceryListStack.Navigator screenOptions={HeaderScreenOptions}>
+            <GroceryListStack.Screen name="GroceryList" component={GroceryList} options={GetMenuHeaderOptions('Grocery List')} />
             <GroceryListStack.Screen name="FoodPage" component={Food} options={{ headerStyle: { backgroundColor: Colors.Red[4]} }}/>
         </GroceryListStack.Navigator>
     )

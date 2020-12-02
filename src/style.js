@@ -182,7 +182,7 @@ const Styles = StyleSheet.create({
         borderRadius: StyleConstants.Radius,
         justifyContent: 'center',
         paddingLeft: StyleConstants.Radius,
-        marginBottom: StyleConstants.FormItemSpacing / 2,
+        marginTop: StyleConstants.FormItemSpacing / 2,
         alignSelf: 'center',
         width: '90%',
         flexDirection: 'row',
@@ -196,7 +196,7 @@ const Styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 28,
-        color: Colors.Gray[8]
+        color: Colors.Gray[7]
     },
     headerButton: {
         backgroundColor: Colors.Gray[6],
