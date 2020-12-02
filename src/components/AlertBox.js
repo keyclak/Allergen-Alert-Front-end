@@ -7,9 +7,9 @@ export default function AlertBox({text, icon, colors}) {
     if(!text) return null;
 
     return (
-        <View style={[Styles.alertBoxContainer, { borderColor: colors[8], backgroundColor: colors[2] }]}>
-            <MaterialIcons name="error" size={32} color={colors[8]}/>
-            <Text style={[Styles.alertBoxText, { color: colors[8] }]}>{text}</Text>
+        <View style={[Styles.alertBoxContainer, { borderColor: colors[5], backgroundColor: colors[1] }]}>
+            <MaterialIcons name="error" size={32} color={colors[5]}/>
+            <Text style={[Styles.alertBoxText, { color: colors[5] }]}>{text}</Text>
         </View>
     )
 }

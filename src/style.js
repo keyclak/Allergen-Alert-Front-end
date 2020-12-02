@@ -17,41 +17,62 @@ const Colors = {
         '#343a40',
         '#212529'
     ],
+    // Red: [
+    //     '#fff5f5',
+    //     '#ffe3e3',
+    //     '#ffc9c9',
+    //     '#ffa8a8',
+    //     '#ff8787',
+    //     '#ff6b6b',
+    //     '#fa5252',
+    //     '#f03e3e',
+    //     '#e03131',
+    //     '#c92a2a'
+    // ],
     Red: [
-        '#fff5f5',
-        '#ffe3e3',
-        '#ffc9c9',
-        '#ffa8a8',
-        '#ff8787',
-        '#ff6b6b',
-        '#fa5252',
-        '#f03e3e',
-        '#e03131',
-        '#c92a2a'
+        '#FEE7DA',
+        '#FEC9B6',
+        '#FEA591',
+        '#FE8276',
+        '#FE4A49',
+        '#DA3542',
+        '#B6243D',
+        '#931736',
+        '#790E32',
     ],
+    // Blue: [
+    //     '#e7f5ff',
+    //     '#d0ebff',
+    //     '#a5d8ff',
+    //     '#74c0fc',
+    //     '#4dabf7',
+    //     '#339af0',
+    //     '#228be6',
+    //     '#1c7ed6',
+    //     '#1971c2',
+    //     '#1864ab'
+    // ],
     Blue: [
-        '#e7f5ff',
-        '#d0ebff',
-        '#a5d8ff',
-        '#74c0fc',
-        '#4dabf7',
-        '#339af0',
-        '#228be6',
-        '#1c7ed6',
-        '#1971c2',
-        '#1864ab'
+        '#D4FCF4',
+        '#AAF9F0',
+        '#7DEFEA',
+        '#5ADADF',
+        '#2AB7CA',
+        '#1E91AD',
+        '#156E91',
+        '#0D5075',
+        '#083A60',
     ],
     Green: [
-        '#ebfbee',
-        '#d3f9d8',
-        '#b2f2bb',
-        '#8ce99a',
-        '#69db7c',
-        '#51cf66',
-        '#40c057',
-        '#37b24d',
-        '#2f9e44',
-        '#2b8a3e'
+        '#F5FCDD',
+        '#E8FABC',
+        '#D4F298',
+        '#BDE67B',
+        '#9ED651',
+        '#7EB83B',
+        '#609A28',
+        '#467C19',
+        '#33660F',
     ],
 };
 
@@ -93,17 +114,17 @@ const Styles = StyleSheet.create({
         borderWidth: 2
     },
     formInputError: {
-        backgroundColor: Colors.Red[2],
-        borderColor: Colors.Red[7]
+        backgroundColor: Colors.Red[1],
+        borderColor: Colors.Red[5]
     },
     logo: {
         fontSize: 45,
-        color: Colors.Blue[6],
+        color: Colors.Blue[4],
         alignSelf: 'center',
         bottom: '5%'
     },
     button: {
-        backgroundColor: Colors.Blue[6],
+        backgroundColor: Colors.Blue[4],
         borderRadius: StyleConstants.Radius,
         height: StyleConstants.FormItemHeight,
         alignItems: 'center',
@@ -112,7 +133,7 @@ const Styles = StyleSheet.create({
         marginBottom: StyleConstants.FormItemSpacing,
     },
     buttonPressed: {
-        backgroundColor: Colors.Blue[8]
+        backgroundColor: Colors.Blue[6]
     },
     buttonText: {
         fontSize: StyleConstants.FormItemTextSize,
@@ -148,7 +169,7 @@ const Styles = StyleSheet.create({
         height: StyleConstants.FloatingButtonSize,
         borderRadius: StyleConstants.FloatingButtonSize / 2,
         elevation: 10,
-        backgroundColor: Colors.Blue[6],
+        backgroundColor: Colors.Blue[4],
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center',

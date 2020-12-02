@@ -21,7 +21,7 @@ export default function SwipableListItem({children, onPress, deleteOnPress, styl
                 style={{ 
                     height: buttonSize,
                     width: buttonSize,
-                    backgroundColor: Colors.Red[7],
+                    backgroundColor: Colors.Red[5],
                     borderRadius: buttonSize/ 2,
                     alignItems: 'center',
                     justifyContent: 'center',
