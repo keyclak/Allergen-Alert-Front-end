@@ -164,17 +164,13 @@ const Styles = StyleSheet.create({
         marginLeft: 5
     },
     floatingButton: {
-        position: "absolute",
+        backgroundColor: Colors.Blue[4],
         width: StyleConstants.FloatingButtonSize,
         height: StyleConstants.FloatingButtonSize,
         borderRadius: StyleConstants.FloatingButtonSize / 2,
-        elevation: 10,
-        backgroundColor: Colors.Blue[4],
-        alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        bottom: StyleConstants.FloatingButtonSize / 2,
-        right: StyleConstants.FloatingButtonSize / 2
+        elevation: 10
     },
     listItem: {
         backgroundColor: Colors.Gray[0],

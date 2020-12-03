@@ -7,7 +7,6 @@ import Ingredients from '../../components/Ingredients';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Expandable from '../../components/Expandable';
 
-
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
     const foodId = route.params.foodId;

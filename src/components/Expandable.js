@@ -1,12 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput, Animated } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput, Animated, Platform, UIManager, LayoutAnimation } from 'react-native';
 import { Colors, StyleConstants, Styles } from '../style';
 import { MaterialIcons } from '@expo/vector-icons';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 
 export default function Expandable({headerText, children}) {
     const [expanded, setExpanded] = useState(false);
 
     function toggleExpanded() {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setExpanded(!expanded);
     }
 
