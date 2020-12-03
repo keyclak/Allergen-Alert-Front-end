@@ -9,6 +9,11 @@ export default function ExpandableFloatingButton({items}) {
     const AnimatedMaterialIcons = Animated.createAnimatedComponent(MaterialIcons);
     const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
+    function closeImmediate() {
+        setAddOpen(false);
+        addAnimation.setValue(0);
+    }
+
     function openAdd() {
         setAddOpen(true);
         Animated.timing(
@@ -96,7 +101,14 @@ export default function ExpandableFloatingButton({items}) {
 
                 {
                     items.map((item, i) => (
-                        <AnimatedPressable style={ItemStyle(i)} key={i} onPress={item.onPress}>
+                        <AnimatedPressable
+                            style={ItemStyle(i)}
+                            key={i}
+                            onPress={() => {
+                                item.onPress();
+                                closeImmediate();
+                            }}>
+
                             <Text style={{color: Colors.Background, bottom: 1, fontSize: 16}}>{item.name}</Text>
                         </AnimatedPressable>
                     ))
