@@ -3,6 +3,7 @@ import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, 
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import FloatingButton from '../components/FloatingButton';
+import AnimatedFloatingButton from '../components/AnimatedFloatingButton';
 import SwipableEditListItem from '../components/SwipableEditListItem';
 import AddHeader from '../components/AddHeader';
 import SwipableListItem from '../components/SwipableListItem';
@@ -109,7 +110,7 @@ export default function ViewDiet({navigation}) {
     }
 
     function modificationRenderItem({item}) {
-        let fg = !item.type ? Colors.Green[6] : Colors.Red[6];
+        let fg = !item.type ? Colors.Green[7] : Colors.Red[6];
         let bg = !item.type ? Colors.Green[0] : Colors.Red[0];
 
         return (
@@ -125,7 +126,7 @@ export default function ViewDiet({navigation}) {
         switch(item.type) {
             case 'header':
                 return (
-                    <View style={{width: StyleConstants.FormWidth, alignSelf: 'center', marginVertical: 10}}>
+                    <View style={{width: StyleConstants.FormWidth, alignSelf: 'center', marginTop: 5}}>
                         <Text style={Styles.headerText}>{item.headerText}</Text>
                     </View>
                 );
@@ -141,12 +142,16 @@ export default function ViewDiet({navigation}) {
 
             <FlatList
                 style={{width: '100%'}}
+                contentContainerStyle={{paddingTop: StyleConstants.FormItemSpacing / 2}}
                 data={listItems}
                 renderItem={renderItem}
                 keyExtractor={item => item.key}
                 refreshControl={<RefreshControl colors={[Colors.Blue[7]]} refreshing={getDiet.loading} onRefresh={load}/>}/>
 
-                <ExpandableFloatingButton items={[
+                {/* <AnimatedFloatingButton onPress={() => navigation.navigate('SelectRestriction')}/> */}
+                <AnimatedFloatingButton />
+
+                {/* <ExpandableFloatingButton items={[
                     {
                         name: "Exception",
                         onPress: typeRestriction
@@ -159,7 +164,7 @@ export default function ViewDiet({navigation}) {
                         name: "Category",
                         onPress: selectRestriction
                     }
-                ]}/>
+                ]}/> */}
 
         </View>
     );

@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert, RefreshControl, Animated} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
-import TextLoadingButton from '../../components/TextLoadingButton'
 import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
-import Ingredients from '../../components/Ingredients';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Expandable from '../../components/Expandable';
+import ExpandableFloatingButton from '../../components/ExpandableFloatingButton';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
@@ -15,6 +14,8 @@ export default function Food({ navigation, route }) {
     const getUpcSearch = useGetUpcSearch();
     const getFood = useGetFood();
     const addToGroceryList = useAddToGroceryList(); 
+
+    const scrollAnimation = useRef(new Animated.Value(0)).current;
 
     function refresh() {
         if(foodId) {
@@ -65,43 +66,39 @@ export default function Food({ navigation, route }) {
 
     function onAdd(id) {
         addToGroceryList.execute(id) 
-        .then (getUpcSearch.background(upc))
-        .catch(e => {});
-    }
-
-    const listRestrictions = (restrictions) => {
-        var x;
-        var text = ""; 
-
-        for(x in restrictions) {
-            text += restrictions[x].name + "\n"
-        }
-
-        if (text.length == 0 ) {
-            return null 
-        }
-
-        return(
-            <View>
-                <Text style={{ paddingTop: 20, color: Colors.Foreground, fontSize: 20, textAlign: 'center', textDecorationLine: 'underline'}}>Violated Restrictions</Text>
-                <Text style={[Styles.ingredientList]}>{text}</Text>
-            </View>
-        )
-    }
-
-    function onAdd(id) {
-        addToGroceryList.execute(id) 
         .then (refresh())
         .catch(e => {});
     }
 
     return(
         <View style={Styles.container}>
-            <View style={[StyleSheet.absoluteFillObject, {backgroundColor: Colors.Gray[3], paddingTop: 20, alignItems: 'center'}]}>
-                <MaterialCommunityIcons name="food-apple" color={Colors.Gray[8]} size={200}/>
-            </View>
 
-            <ScrollView style={{width: '100%'}} contentContainerStyle={{flexGrow: 1}}>
+            <Animated.View style={[
+                StyleSheet.absoluteFillObject,
+                {
+                    backgroundColor: Colors.Gray[3],
+                    paddingTop: 20,
+                    alignItems: 'center',
+                    transform: [
+                        { translateY: scrollAnimation.interpolate({
+                            inputRange: [0, 2],
+                            outputRange: [0, -1]
+                        })}
+                    ]
+                }
+            ]}>
+                <MaterialCommunityIcons name="food-apple" color={Colors.Gray[8]} size={200}/>
+            </Animated.View>
+
+
+            <Animated.ScrollView 
+                onScroll={Animated.event([
+                    {nativeEvent: {contentOffset: {y: scrollAnimation}}}
+                ], { useNativeDriver: true })}
+                refreshControl={<RefreshControl colors={[Colors.Blue[4]]} refreshing={getFood.loading || getUpcSearch.loading} onRefresh={refresh}/>}
+                style={{width: '100%'}}
+                contentContainerStyle={{flexGrow: 1}}>
+
                 <View style={{
                     height: 200
                 }}/>
@@ -142,37 +139,43 @@ export default function Food({ navigation, route }) {
                         paddingBottom: StyleConstants.FormItemSpacing
                     }}>
 
-                    {
-                        !(food?.safe)
-                            ? (<Expandable headerText="Violated Restrictions">
-                                    {
-                                        food?.violatedRestrictions.map(r => (
-                                            <Text style={{color: Colors.Gray[7]}}key={r.name}>{r.name}</Text>
-                                        ))
-                                    }
-                                </Expandable>)
-                            : null
+                    {!(food?.safe)
+                        ? (<Expandable headerText="Violated Restrictions">
+                                {
+                                    food?.violatedRestrictions.map(r => (
+                                        <Text style={{color: Colors.Gray[7]}}key={r.name}>{r.name}</Text>
+                                    ))
+                                }
+                            </Expandable>)
+                        : null
                     }
 
                     <Expandable headerText="Ingredients">
                         {
-                            food?.ingredients.map(i => (
+                            food?.ingredients.map((ingr, i) => (
                                 <Text 
-                                    key={i.ingredient}
+                                    key={`${i}`}
                                     style={{
                                         marginTop: 3,
-                                        color: i.safe
+                                        color: ingr.safe
                                             ? Colors.Gray[7]
                                             : Colors.Red[5]
                                     }}>
                                     
-                                    {i.ingredient}
+                                    {ingr.ingredient}
                                 </Text>
                             ))
                         }
                     </Expandable>
                 </View>
-            </ScrollView>
+            </Animated.ScrollView>
+
+            <ExpandableFloatingButton items={[
+                {
+                    name: "Grocery List",
+                    onPress: () => {}
+                }
+            ]}/>
         </View>
     )
 }

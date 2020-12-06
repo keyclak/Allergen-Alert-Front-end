@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {SafeAreaView, ScrollView, View, Text, FlatList, Pressable} from 'react-native'
+import {SafeAreaView, ScrollView, View, Text, FlatList, Pressable, RefreshControl} from 'react-native'
 import { StyleConstants, Styles, Colors } from '../style';
 import { useDeleteGrocery, useGetGroceryList, useTogglePurchased } from '../hooks/api';
 import { ListItem, CheckBox } from 'react-native-elements'
@@ -38,8 +38,10 @@ export default function GroceryList({navigation}) {
     }
 
     return (
-        <View style={[Styles.container, {paddingTop: 10}]}>
+        <View style={Styles.container}>
             <FlatList
+                contentContainerStyle={{ paddingTop: 10 }}
+                refreshControl={<RefreshControl onRefresh={getGroceryList.background} refreshing={getGroceryList.loading} colors={[Colors.Blue[4]]}/>}
                 style={{width: '100%'}}
                 data={getGroceryList.response}
                 renderItem={renderItem}

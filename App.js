@@ -25,6 +25,28 @@ import FoodSearch from './src/screens/search/FoodSearch';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
 
+
+const fadeTransition = {
+    transitionSpec: {
+        open: {
+            animation: 'timing',
+            config: {
+            }
+        },
+        close: {
+            animation: 'timing',
+            config: {
+                duration: 300
+            }
+        }
+    },
+    cardStyleInterpolator: ({ current }) => ({
+        cardStyle: {
+            opacity: current.progress,
+        }
+    })
+};
+
 function HeaderMenuButton(navigation) {
     return (
         <Pressable onPress={() => navigation.openDrawer()} style={{paddingHorizontal: 12, height: '100%', justifyContent: 'center'}}>
@@ -102,7 +124,7 @@ function DietStackScreen() {
     return (
         <DietStack.Navigator screenOptions={HeaderScreenOptions}>
             <DietStack.Screen name="ViewDiet" component={ViewDiet} options={GetMenuHeaderOptions('Diet')}/>
-            <DietStack.Screen name="SelectRestriction" component={SelectRestriction}/>
+            <DietStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ headerShown: false, ...fadeTransition }}/>
             <DietStack.Screen name="FoodPage" component={Food}/>
             <DietStack.Screen name="RestrictionInfo" component={RestrictionInfo}/>
             <DietStack.Screen name="TypeRestriction" component={TypeRestriction}/>

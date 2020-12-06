@@ -20,7 +20,7 @@ export default function ExpandableFloatingButton({items}) {
             addAnimation,
             {
                 toValue: 1,
-                duration: 200,
+                duration: 300,
                 useNativeDriver: true
             }
         ).start();
@@ -32,7 +32,7 @@ export default function ExpandableFloatingButton({items}) {
             addAnimation,
             {
                 toValue: 0,
-                duration: 200,
+                duration: 300,
                 useNativeDriver: true
             }
         ).start();

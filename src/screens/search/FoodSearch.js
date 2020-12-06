@@ -78,7 +78,6 @@ export default function FoodSearch({navigation}) {
 
     return (
         <View style={Styles.container}>
-
             <FlatList
                 refreshControl={<RefreshControl colors={[Colors.Blue[4]]} refreshing={getFoodSearch.loading} onRefresh={fetchData}/>}
                 ListEmptyComponent={getEmptyComponent}
