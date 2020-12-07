@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, RefreshControl, Animated} from 'react-native';
+import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, RefreshControl, Animated, LayoutAnimation, UIManager} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import FloatingButton from '../components/FloatingButton';
@@ -12,6 +12,9 @@ import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification } f
 import { MaterialIcons } from '@expo/vector-icons';
 import ExpandableFloatingButton from '../components/ExpandableFloatingButton';
 
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 export default function ViewDiet({navigation}) {
 
@@ -71,7 +74,8 @@ export default function ViewDiet({navigation}) {
                             key: `e_${m.ingredient}`,
                             modification: m
                         }));
-
+                
+                LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
                 setListItems(items);
             })
             .catch(() => {});
