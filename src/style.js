@@ -194,11 +194,11 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: StyleConstants.Radius,
         marginTop: StyleConstants.FormItemSpacing / 2,
-        alignSelf: 'center',
         width: '60%',
         flexDirection: 'row',
         alignItems: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        alignSelf:'center'
     },
     listItemText: {
         color: Colors.Gray[7],

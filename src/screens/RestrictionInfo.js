@@ -39,16 +39,8 @@ export default function RestrictionInfo({navigation, route}) {
 
     }, [ingredient, type]);
 
-    function onAddException(ingredient) {
-        return function() {
-            setType(0);
-            setIngredient(ingredient);
-        }
-    }
-
     return (
-
-        <View style={[Styles.container, {justifyContent: 'flex-start'}]}>  
+        <View style={[Styles.container]}>  
             <AlertBox icon="error" text={addModification.error} colors={Colors.Red}/>
             <FlatList
                 data={getIngredients.response?.ingredients}

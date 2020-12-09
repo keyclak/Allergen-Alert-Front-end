@@ -17,6 +17,7 @@ export default function GroceryList({navigation}) {
     }, [navigation]);
 
     function onDelete(id) {
+        console.log(id);
         deleteGrocery.execute(id)
             .then(() => getGroceryList.background())
             .catch(e => {});
@@ -30,7 +31,7 @@ export default function GroceryList({navigation}) {
 
     function renderItem({item}) {
         return (
-            <SwipableListItem onPress={() => navigation.navigate('FoodPage', {foodId: item.foodId})} deleteOnPress={() => onDelete(item.id)}>
+            <SwipableListItem onPress={() => navigation.navigate('FoodPage', {foodId: item.foodId})} deleteOnPress={() => onDelete(item.foodId)}>
                 <Checkbox style={{marginRight: 5}}/>
                 <Text style={Styles.listItemText}>{item.name}</Text>
             </SwipableListItem>
