@@ -171,6 +171,7 @@ const Styles = StyleSheet.create({
         borderRadius: StyleConstants.FloatingButtonSize / 2,
         alignItems: 'center',
         justifyContent: 'center',
+        elevation: 5
     },
     listItem: {
         backgroundColor: Colors.Gray[0],

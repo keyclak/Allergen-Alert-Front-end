@@ -33,9 +33,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 import ExpandableFloatingButton from '../components/ExpandableFloatingButton';
 import { TextInput } from 'react-native-gesture-handler';
 
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+// if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+//   UIManager.setLayoutAnimationEnabledExperimental(true);
+// }
 
 export default function ViewDiet({navigation}) {
 
@@ -45,6 +45,9 @@ export default function ViewDiet({navigation}) {
     const getRestrictions = useGetRestrictions();
     const addRestriction = useAddRestriction();
     const addModification = useAddModification();
+
+    const [addExceptionIngredient, setAddExceptionIngredient] = useState('');
+    const [addRestrictionIngredient, setAddRestrictionIngredient] = useState('');
 
     const [listItems, setListItems] = useState([]);
 
@@ -100,7 +103,7 @@ export default function ViewDiet({navigation}) {
                             modification: m
                         }));
                 
-                LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+                // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
                 setListItems(items);
             })
             .catch(() => {});
@@ -171,7 +174,7 @@ export default function ViewDiet({navigation}) {
             <Pressable
                 style={[Styles.listItem, {marginTop: 0, width: '100%'}]}
                 onPress={() => {
-                    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+                    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
                     addRestriction.execute(item.id)
                         .then(() => {
                             setAddCategoryVisible(false);
@@ -220,11 +223,31 @@ export default function ViewDiet({navigation}) {
             ]}/>
 
             <PopupModal title="Add Ingredient" visible={addIngredientVisible} setVisible={setAddIngredientVisible}>
-                <ButtonTextInput placeholder="Ingredient" icon="add"/>
+                <ButtonTextInput
+                    placeholder="Ingredient"
+                    icon="add"
+                    onChangeText={setAddRestrictionIngredient}
+                    onPress={() => {
+                        addModification.execute(addRestrictionIngredient, 1)
+                            .then(() => {
+                                setAddIngredientVisible(false);
+                                load();
+                            })
+                    }}/>
             </PopupModal>
 
             <PopupModal title="Add Exception" visible={addExceptionVisible} setVisible={setAddExceptionVisible}>
-                <ButtonTextInput placeholder="Ingredient" icon="add"/>
+                <ButtonTextInput
+                    placeholder="Ingredient"
+                    icon="add"
+                    onChangeText={setAddExceptionIngredient}
+                    onPress={() => {
+                        addModification.execute(addExceptionIngredient, 0)
+                            .then(() => {
+                                setAddExceptionVisible(false);
+                                load();
+                            })
+                    }}/>
             </PopupModal>
 
             <PopupModal title="Add Category" visible={addCategoryVisible} setVisible={setAddCategoryVisible}>
