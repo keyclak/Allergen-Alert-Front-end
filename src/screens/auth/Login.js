@@ -43,9 +43,9 @@ export default function Login({navigation}) {
 
                     <Text style={Styles.logo}>Allergen Alert</Text>
 
-                    <FormTextInput placeholder="Username" onChangeText={setUsername}/>
+                    <FormTextInput placeholder="Username" onChangeText={setUsername} autoCapitalize='none'/>
 
-                    <FormTextInput placeholder="Password" onChangeText={setPassword}/>
+                    <FormTextInput placeholder="Password" onChangeText={setPassword} secureTextEntry={true}/>
                         
                     <TextLoadingButton text="Log In" onPress={onSubmit} isLoading={login.loading}/>
 
