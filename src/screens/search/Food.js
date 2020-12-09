@@ -120,6 +120,7 @@ export default function Food({ navigation, route }) {
                     ]
                 }
             ]}>
+                {/* <Image source={{ uri: food?.image }}/> */}
                 <MaterialCommunityIcons name="food-apple" color={Colors.Gray[8]} size={200}/>
             </Animated.View>
 
@@ -225,6 +226,13 @@ export default function Food({ navigation, route }) {
                             ))
                         }
                     </Expandable>
+
+                    
+                    <View style={{padding: 10}}>
+                        <Text style={{color: Colors.Gray[5], textAlign: 'center'}}>
+                            Allergen Alert “Safe” ratings are not medical advice or a guarantee of allergy safety. Allergen Alert is not responsible for any adverse reactions caused by consumption of foods labeled “Safe” or otherwise.
+                        </Text>
+                    </View>
                 </View>
             </Animated.ScrollView>
 

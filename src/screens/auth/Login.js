@@ -36,7 +36,7 @@ export default function Login({navigation}) {
     return (
         <View style={Styles.alertContainer}>
             <AlertBox icon="error" text={login.error} colors={Colors.Red}/>
-            <View style={Styles.container}>
+            <ImageBackground source={require('../../../assets/login.png')} style={Styles.container}>
                 <View style={{width: StyleConstants.FormWidth}}>
 
                     <Text style={Styles.logo}>Allergen Alert</Text>
@@ -49,16 +49,15 @@ export default function Login({navigation}) {
 
 
                     <Pressable style={Styles.plainButton} onPress={onForgotPass}>
-                        <Text style={{color: Colors.Gray[6]}}>Forgot Password?</Text>
+                        <Text style={{color: Colors.Gray[8]}}>Forgot Password?</Text>
                     </Pressable>
 
                     <Pressable style={Styles.plainButton} onPress={onCreateAccount}>
-                        <Text style={{color: Colors.Gray[5]}}>Don't have an account? </Text>
-                        <Text style={{color: Colors.Gray[6]}}>Create One</Text>
+                        <Text style={{color: Colors.Gray[8]}}>Don't have an account? Create One</Text>
                     </Pressable>
 
                 </View>
-            </View>
+            </ImageBackground>
         </View>
     );
 }
