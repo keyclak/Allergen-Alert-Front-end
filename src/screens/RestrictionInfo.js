@@ -25,24 +25,23 @@ export default function RestrictionInfo({navigation, route}) {
 
     const [ingredient, setIngredient] = useState();
     const [type, setType] = useState();
-    const addModification = useAddModification(ingredient, type);
+    const addModification = useAddModification();
     const initialRender = useRef(true);
 
     useEffect(() => {
         if(initialRender.current) {
             initialRender.current = false;
         } else {
-            addModification.execute()
+            addModification.execute(ingredient, type)
             .then(() => navigation.pop())
             .catch(e => {});
         }
 
-    }, [ingredient]);
+    }, [ingredient, type]);
 
     function onAddException(ingredient) {
         return function() {
             setType(0);
-            
             setIngredient(ingredient);
         }
     }
@@ -54,8 +53,8 @@ export default function RestrictionInfo({navigation, route}) {
             <FlatList
                 data={getIngredients.response?.ingredients}
                 renderItem={({ item }) => (
-
-                    <ButtonPartition item={item} onPress={() => onAddException(item)}></ButtonPartition>
+                    <ButtonPartition item={item} onPress={() => addModification.execute(item, 0).then(() => navigation.pop())
+                        .catch(e => {})}></ButtonPartition>
                 )}
                 keyExtractor={(item, index) => 'key'+index}
                 />
