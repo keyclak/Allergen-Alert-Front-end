@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
-import { CheckBox,TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
+import { CheckBox,TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, Button} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
@@ -7,9 +7,11 @@ import { useGetIngredients, useAddModification } from '../hooks/api';
 import { AuthContext } from '../context';
 import { ListItem, Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
+import ButtonPartition from '../components/ButtonPartition';
+import AlertBox from '../components/AlertBox';
 
 
-export default function SelectRestriction({navigation, route}) {
+export default function RestrictionInfo({navigation, route}) {
 
     const id = route.params;
     const context = useContext(AuthContext);
@@ -40,38 +42,20 @@ export default function SelectRestriction({navigation, route}) {
     function onAddException(ingredient) {
         return function() {
             setType(0);
+            
             setIngredient(ingredient);
         }
     }
 
     return (
 
-        <View style={[Styles.containerIngredient, {justifyContent: 'flex-start', paddingTop:40}]}>   
-            <Text style={{fontSize: 32, color: Colors.Foreground, alignSelf: 'center', paddingBottom: 30}}>{getIngredients.response?.name}</Text>
-            <Text style={[Styles.errorText, {alignSelf: 'center'}]}>{addModification.error}</Text>
+        <View style={[Styles.container, {justifyContent: 'flex-start'}]}>  
+            <AlertBox icon="error" text={addModification.error} colors={Colors.Red}/>
             <FlatList
                 data={getIngredients.response?.ingredients}
                 renderItem={({ item }) => (
 
-                    <View style={Styles.flatListRow}>
-                        <View style={Styles.flatListRowSpacing}>
-                            <Text
-                                style={[Styles.buttonText, {paddingLeft: 25}]}
-                                >
-                                {item}
-                            </Text>
-                            <View style={{paddingRight: 25}}>
-                                <TouchableOpacity
-                                    style={[Styles.button,{width: "100%"}]}
-                                    onPress={onAddException(item)}
-                                    >
-                                    <Text
-                                        style={[Styles.buttonText]}
-                                    >  Make Exception  </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
+                    <ButtonPartition item={item} onPress={() => onAddException(item)}></ButtonPartition>
                 )}
                 keyExtractor={(item, index) => 'key'+index}
                 />

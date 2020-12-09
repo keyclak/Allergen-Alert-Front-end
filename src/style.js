@@ -187,6 +187,19 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center'
     },
+    buttonPartitionItem: {
+        backgroundColor: Colors.Gray[0],
+        height: StyleConstants.FormItemHeight,
+        borderRadius: StyleConstants.Radius,
+        justifyContent: 'space-between',
+        paddingLeft: StyleConstants.Radius,
+        marginTop: StyleConstants.FormItemSpacing / 2,
+        alignSelf: 'center',
+        width: '60%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignContent: 'center'
+    },
     listItemText: {
         color: Colors.Gray[7],
         fontSize: StyleConstants.FormItemTextSize,
