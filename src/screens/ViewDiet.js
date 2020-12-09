@@ -222,7 +222,7 @@ export default function ViewDiet({navigation}) {
                 }
             ]}/>
 
-            <PopupModal title="Add Ingredient" visible={addIngredientVisible} setVisible={setAddIngredientVisible}>
+            <PopupModal title="Add Ingredient" visible={addIngredientVisible} setVisible={setAddIngredientVisible} containerStyle={{paddingVertical: 10}}>
                 <ButtonTextInput
                     placeholder="Ingredient"
                     icon="add"
@@ -236,7 +236,7 @@ export default function ViewDiet({navigation}) {
                     }}/>
             </PopupModal>
 
-            <PopupModal title="Add Exception" visible={addExceptionVisible} setVisible={setAddExceptionVisible}>
+            <PopupModal title="Add Exception" visible={addExceptionVisible} setVisible={setAddExceptionVisible} containerStyle={{paddingVertical: 10}}>
                 <ButtonTextInput
                     placeholder="Ingredient"
                     icon="add"
@@ -255,6 +255,7 @@ export default function ViewDiet({navigation}) {
                     addRestriction.loading 
                         ? <ActivityIndicator color={Colors.Blue[5]} size="large"/>
                         : <FlatList
+                            contentContainerStyle={{paddingVertical: 10}}
                             data={getRestrictions.response}
                             renderItem={categoriesRenderItem}
                             ItemSeparatorComponent={() => <View style={{height: 10}}/>}

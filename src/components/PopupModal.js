@@ -4,7 +4,7 @@ import { Colors, StyleConstants, Styles } from '../style';
 import { MaterialIcons } from '@expo/vector-icons';
 import ButtonTextInput from '../components/ButtonTextInput';
 
-export default function PopupModal({visible, setVisible, title, children}) {
+export default function PopupModal({visible, setVisible, title, children, containerStyle}) {
     return (
         <Modal
             animationType="fade"
@@ -45,7 +45,7 @@ export default function PopupModal({visible, setVisible, title, children}) {
                                 {title}
                             </Text>
                         </View>
-                        <View style={{paddingHorizontal: 10, overflow: 'hidden'}}>
+                        <View style={[{paddingHorizontal: 10, overflow: 'hidden'}, containerStyle]}>
                             {children}
                         </View>
                     </Pressable>
