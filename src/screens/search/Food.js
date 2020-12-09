@@ -135,9 +135,25 @@ export default function Food({ navigation, route }) {
                         food?.inGroceryList
                             ?  (
                                 <View style={Styles.infoBubble}>
-                                    <SimpleLineIcons name="bag" color={Colors.Background} size={20} style={{bottom: 1}}/>
+                                    <SimpleLineIcons name="bag" color={Colors.Background} size={20}/>
                                 </View>
                             ) :  null
+                    }
+                    {
+                        true
+                            ? (
+                                <View style={Styles.infoBubble}>
+                                    <SimpleLineIcons name="flag" color={Colors.Background} size={20} />
+                                </View>
+                            ) : null
+                    }
+                    {
+                        true
+                            ? (
+                                <View style={Styles.infoBubble}>
+                                    <SimpleLineIcons name="check" color={Colors.Background} size={20} />
+                                </View>
+                            ) : null
                     }
                 </View>
 

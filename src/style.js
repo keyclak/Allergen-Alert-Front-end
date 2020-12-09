@@ -188,7 +188,8 @@ const Styles = StyleSheet.create({
     },
     listItemText: {
         color: Colors.Gray[7],
-        fontSize: StyleConstants.FormItemTextSize
+        fontSize: StyleConstants.FormItemTextSize,
+        paddingRight: 5
     },
     headerText: {
         fontSize: 28,
@@ -205,7 +206,6 @@ const Styles = StyleSheet.create({
         color: Colors.Gray[1],
         backgroundColor: '#000B',
         paddingHorizontal: 10,
-        height: 35,
         borderRadius: StyleConstants.Radius,
         flexDirection: 'row',
         alignItems: 'center'
