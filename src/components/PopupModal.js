@@ -29,7 +29,8 @@ export default function PopupModal({visible, setVisible, title, children}) {
                         elevation: 10,
                         borderRadius: StyleConstants.Radius,
                         width: '90%',
-                        maxHeight: '80%'
+                        maxHeight: '80%',
+                        overflow: 'hidden'
                     }}>
                         <View
                             style={{
@@ -44,7 +45,7 @@ export default function PopupModal({visible, setVisible, title, children}) {
                                 {title}
                             </Text>
                         </View>
-                        <View style={{padding: 10}}>
+                        <View style={{paddingHorizontal: 10, overflow: 'hidden'}}>
                             {children}
                         </View>
                     </Pressable>
