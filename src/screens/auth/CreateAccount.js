@@ -34,7 +34,7 @@ export default function CreateAccount() {
                     <Text style={Styles.headerText}>Create Account</Text>
                     <FormTextInput placeholder="Username" error={createAccount.error?.PropertyHint == 'username'} onChangeText={setUsername}/>
                     <FormTextInput placeholder="Email" error={createAccount.error?.PropertyHint == 'email'} onChangeText={setEmail}/>
-                    <FormTextInput placeholder="Password" error={createAccount.error?.PropertyHint == 'password'} onChangeText={setPassword} />
+                    <FormTextInput placeholder="Password" error={createAccount.error?.PropertyHint == 'password'} onChangeText={setPassword} secureTextEntry={true}/>
                     <TextLoadingButton text="Create Account" isLoading={createAccount.loading} onPress={onSubmit} />
                 </View>
             </View>
