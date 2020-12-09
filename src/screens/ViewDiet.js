@@ -250,12 +250,12 @@ export default function ViewDiet({navigation}) {
                     }}/>
             </PopupModal>
 
-            <PopupModal title="Add Category" visible={addCategoryVisible} setVisible={setAddCategoryVisible}>
+            <PopupModal title="Add Category" visible={addCategoryVisible} setVisible={setAddCategoryVisible} containerStyle={{paddingHorizontal: 0}}>
                 {
                     addRestriction.loading 
                         ? <ActivityIndicator color={Colors.Blue[5]} size="large"/>
                         : <FlatList
-                            contentContainerStyle={{paddingVertical: 10}}
+                            contentContainerStyle={{padding: 10}}
                             data={getRestrictions.response}
                             renderItem={categoriesRenderItem}
                             ItemSeparatorComponent={() => <View style={{height: 10}}/>}

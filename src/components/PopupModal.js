@@ -45,7 +45,7 @@ export default function PopupModal({visible, setVisible, title, children, contai
                                 {title}
                             </Text>
                         </View>
-                        <View style={[{paddingHorizontal: 10, overflow: 'hidden'}, containerStyle]}>
+                        <View style={[{paddingHorizontal: 10, flexGrow: 1}, containerStyle]}>
                             {children}
                         </View>
                     </Pressable>
