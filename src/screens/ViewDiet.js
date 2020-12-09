@@ -1,16 +1,37 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import {SafeAreaView, Image, TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, RefreshControl, Animated, LayoutAnimation, UIManager} from 'react-native';
+import {
+    SafeAreaView,
+    Image,
+    TouchableOpacity,
+    FlatList,
+    View,
+    Text,
+    Pressable,
+    StyleSheet,
+    RefreshControl,
+    Animated,
+    LayoutAnimation,
+    UIManager,
+    Modal,
+    Button,
+    ActivityIndicator
+} from 'react-native';
+
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import FloatingButton from '../components/FloatingButton';
 import AnimatedFloatingButton from '../components/AnimatedFloatingButton';
+import ButtonTextInput from '../components/ButtonTextInput';
+import FormTextInput from '../components/FormTextInput';
 import SwipableEditListItem from '../components/SwipableEditListItem';
 import AddHeader from '../components/AddHeader';
+import PopupModal from '../components/PopupModal';
 import SwipableListItem from '../components/SwipableListItem';
 import { Colors, StyleConstants, Styles } from '../style';
-import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification } from '../hooks/api';
+import { useGetDiet, useDeleteDiet, useAddRestriction, useDeleteModification, useAddModification, useGetRestrictions } from'../hooks/api';
 import { MaterialIcons } from '@expo/vector-icons';
 import ExpandableFloatingButton from '../components/ExpandableFloatingButton';
+import { TextInput } from 'react-native-gesture-handler';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -21,10 +42,14 @@ export default function ViewDiet({navigation}) {
     const getDiet = useGetDiet();
     const deleteRestriction = useDeleteDiet();
     const deleteModification = useDeleteModification();
+    const getRestrictions = useGetRestrictions();
+    const addRestriction = useAddRestriction();
+    const addModification = useAddModification();
 
     const [listItems, setListItems] = useState([]);
 
     function load() {
+        getRestrictions.background();
         getDiet.execute()
             .then(d => {
                 let items = [];
@@ -84,7 +109,7 @@ export default function ViewDiet({navigation}) {
     useEffect(() => {
         navigation.addListener('focus', () => load());
     }, [navigation]);
-
+    
     function selectRestriction() {
         navigation.navigate('SelectRestriction');
     }
@@ -92,7 +117,7 @@ export default function ViewDiet({navigation}) {
     function typeRestriction() {
         navigation.navigate('TypeRestriction');
     }
-    
+
     function onDeleteRestriction(id) {
         deleteRestriction.execute(id)
             .then(() => load());
@@ -141,8 +166,32 @@ export default function ViewDiet({navigation}) {
         }
     }
 
+    function categoriesRenderItem({item}) {
+        return (
+            <Pressable
+                style={[Styles.listItem, {marginTop: 0, width: '100%'}]}
+                onPress={() => {
+                    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+                    addRestriction.execute(item.id)
+                        .then(() => {
+                            setAddCategoryVisible(false);
+                            load();
+                        });
+                    }}>
+                <Text style={Styles.listItemText}>
+                    {item.name}
+                </Text>
+            </Pressable>
+        )
+    }
+
+    const [addIngredientVisible, setAddIngredientVisible] = useState(false);
+    const [addExceptionVisible, setAddExceptionVisible] = useState(false);
+    const [addCategoryVisible, setAddCategoryVisible] = useState(false);
+
     return (
         <View style={[Styles.container, {justifyContent: 'flex-start'}]}>  
+
 
             <FlatList
                 style={{width: '100%'}}
@@ -150,25 +199,45 @@ export default function ViewDiet({navigation}) {
                 data={listItems}
                 renderItem={renderItem}
                 keyExtractor={item => item.key}
-                refreshControl={<RefreshControl colors={[Colors.Blue[7]]} refreshing={getDiet.loading} onRefresh={load}/>}/>
+                refreshControl={<RefreshControl colors={[Colors.Blue[4]]} refreshing={getDiet.loading} onRefresh={load}/>}/>
 
                 {/* <AnimatedFloatingButton onPress={() => navigation.navigate('SelectRestriction')}/> */}
-                <AnimatedFloatingButton />
+                {/* <AnimatedFloatingButton /> */}
 
-                {/* <ExpandableFloatingButton items={[
-                    {
-                        name: "Exception",
-                        onPress: typeRestriction
-                    },
-                    {
-                        name: "Ingredient",
-                        onPress: typeRestriction
-                    },
-                    {
-                        name: "Category",
-                        onPress: selectRestriction
-                    }
-                ]}/> */}
+            <ExpandableFloatingButton items={[
+                {
+                    name: "Exception",
+                    onPress: () => setAddExceptionVisible(true)
+                },
+                {
+                    name: "Ingredient",
+                    onPress: () => setAddIngredientVisible(true)
+                },
+                {
+                    name: "Category",
+                    onPress: () => setAddCategoryVisible(true)
+                }
+            ]}/>
+
+            <PopupModal title="Add Ingredient" visible={addIngredientVisible} setVisible={setAddIngredientVisible}>
+                <ButtonTextInput placeholder="Ingredient" icon="add"/>
+            </PopupModal>
+
+            <PopupModal title="Add Exception" visible={addExceptionVisible} setVisible={setAddExceptionVisible}>
+                <ButtonTextInput placeholder="Ingredient" icon="add"/>
+            </PopupModal>
+
+            <PopupModal title="Add Category" visible={addCategoryVisible} setVisible={setAddCategoryVisible}>
+                {
+                    addRestriction.loading 
+                        ? <ActivityIndicator color={Colors.Blue[5]} size="large"/>
+                        : <FlatList
+                            data={getRestrictions.response}
+                            renderItem={categoriesRenderItem}
+                            ItemSeparatorComponent={() => <View style={{height: 10}}/>}
+                            keyExtractor={item => item.name}/>
+                }
+            </PopupModal>
 
         </View>
     );

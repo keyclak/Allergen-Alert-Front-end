@@ -3,7 +3,7 @@ import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput, Animat
 import { Colors, StyleConstants, Styles } from '../style';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function ExpandableFloatingButton({items}) {
+export default function ExpandableFloatingButton({items, icon}) {
     const addAnimation = useRef(new Animated.Value(0)).current;
     const [addOpen, setAddOpen] = useState(false);
     const AnimatedMaterialIcons = Animated.createAnimatedComponent(MaterialIcons);
@@ -58,12 +58,6 @@ export default function ExpandableFloatingButton({items}) {
                         outputRange: [0,-60 - i * 46]
                     })
                 },
-                // {
-                //     scale: addAnimation.interpolate({
-                //         inputRange: [0,1],
-                //         outputRange: [0.5, 1]
-                //     })
-                // }
             ]
         };
     }
@@ -71,6 +65,7 @@ export default function ExpandableFloatingButton({items}) {
 
     return (
         <View
+            pointerEvents="box-none"
             style={{
                 width: '100%',
                 height: '100%',
@@ -106,7 +101,7 @@ export default function ExpandableFloatingButton({items}) {
                             key={i}
                             onPress={() => {
                                 item.onPress();
-                                closeImmediate();
+                                closeAdd();
                             }}>
 
                             <Text style={{color: Colors.Background, bottom: 1, fontSize: 16}}>{item.name}</Text>
@@ -117,11 +112,34 @@ export default function ExpandableFloatingButton({items}) {
                 <Pressable
                     style={Styles.floatingButton}
                     onPress={toggleAdd}>
+
                     <AnimatedMaterialIcons
                         name="add"
                         size={36}
                         color="white"
                         style={{
+                            position: 'absolute',
+                            opacity: addAnimation,
+                            transform: [
+                                {
+                                    rotate: addAnimation.interpolate({
+                                        inputRange: [0,1],
+                                        outputRange: ['0deg', '45deg']
+                                    })
+                                }
+                            ]
+                        }}
+                        />
+                    <AnimatedMaterialIcons
+                        name={icon ?? "add"}
+                        size={36}
+                        color="white"
+                        style={{
+                            position: 'absolute',
+                            opacity: addAnimation.interpolate({
+                                inputRange: [0,1],
+                                outputRange: [1,0]
+                            }),
                             transform: [
                                 {
                                     rotate: addAnimation.interpolate({

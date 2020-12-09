@@ -2,23 +2,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput, Animated } from 'react-native';
 import { Colors, StyleConstants, Styles } from '../style';
 import { MaterialIcons } from '@expo/vector-icons';
+import { isRTL } from 'expo-localization';
 
-export default function AlertBox({text, icon, colors}) {
+export default function LoadingAlertBox({text, icon, colors, loading}) {
     const animation = useRef(new Animated.Value(0)).current;
 
-    useEffect(() => {
-        if(text) {
-            console.log('opening');
-            Animated.timing(
-                animation,
-                {
-                    toValue: 1,
-                    duration: 300,
-                    useNativeDriver: true
-                }
-            ).start();
-        } else {
-            console.log('closing');
+    function open() {
+        Animated.timing(
+            animation,
+            {
+                toValue: 1,
+                duration: 300,
+                useNativeDriver: true
+            }
+        ).start();
+    }
+
+    function startClose() {
+        Animated.sequence([
+            Animated.delay(5000),
             Animated.timing(
                 animation,
                 {
@@ -26,9 +28,17 @@ export default function AlertBox({text, icon, colors}) {
                     duration: 300,
                     useNativeDriver: true
                 }
-            ).start();
+            )
+        ]).start();
+    }
+
+    useEffect(() => {
+        if(loading) {
+            open();
+        } else {
+            startClose();
         }
-    }, [text]);
+    }, [loading])
 
     return (
         <Animated.View style={[
@@ -46,7 +56,12 @@ export default function AlertBox({text, icon, colors}) {
                 ]
             }]}>
 
-            <MaterialIcons name={icon} size={32} color={colors[5]}/>
+            {
+                loading
+                    ? <ActivityIndicator color={colors[5]} size="large" />
+                    : <MaterialIcons name={icon} size={32} color={colors[5]}/>
+            }
+
             <Text style={[Styles.alertBoxText, { color: colors[5] }]}>{text}</Text>
         </Animated.View>
     )

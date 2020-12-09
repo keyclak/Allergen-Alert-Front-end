@@ -35,7 +35,7 @@ export default function Login({navigation}) {
 
     return (
         <View style={Styles.alertContainer}>
-            <AlertBox text={login.error} colors={Colors.Red}/>
+            <AlertBox icon="error" text={login.error} colors={Colors.Red}/>
             <View style={Styles.container}>
                 <View style={{width: StyleConstants.FormWidth}}>
 

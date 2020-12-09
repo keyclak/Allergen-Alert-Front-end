@@ -338,9 +338,9 @@ export function useDeleteModification() {
     return useAsync(id => api(context, getDeleteModification(id), undefined, { id }));
 }
 
-export function useAddModification(ingredient, type) {
+export function useAddModification() {
     const context = useContext(AuthContext);
-    return useAsync(() => api(context, addModification, undefined, { ingredient, type }));
+    return useAsync((ingredient, type) => api(context, addModification, undefined, { ingredient, type }));
 }
 
 export function useGetFoodSearch(search) {

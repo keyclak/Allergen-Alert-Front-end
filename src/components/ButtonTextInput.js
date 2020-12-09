@@ -15,7 +15,7 @@ export default function ButtonTextInput({icon, onPress, ...params}) {
     }
 
     return (
-        <View style={{flexDirection: 'row', width: '95%', elevation: 10, backgroundColor: 'white', borderRadius: StyleConstants.Radius}}>
+        <View style={{flexDirection: 'row', borderRadius: StyleConstants.Radius}}>
             <TextInput 
                 {...params}
                 onFocus={onFocus}

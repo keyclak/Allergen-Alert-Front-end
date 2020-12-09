@@ -201,6 +201,7 @@ const Styles = StyleSheet.create({
     },
     infoBubble: {
         marginLeft: 10,
+        marginBottom: 10,
         color: Colors.Gray[1],
         backgroundColor: '#000B',
         paddingHorizontal: 10,

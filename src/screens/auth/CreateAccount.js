@@ -28,7 +28,7 @@ export default function CreateAccount() {
 
     return (
         <View style={[Styles.alertContainer]}>
-            <AlertBox colors={Colors.Red} text={createAccount.error?.Error}/>
+            <AlertBox icon="error" colors={Colors.Red} text={createAccount.error?.Error}/>
             <View style={Styles.container}>
                 <View style={{width: StyleConstants.FormWidth}}>
                     <Text style={Styles.headerText}>Create Account</Text>

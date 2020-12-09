@@ -2,9 +2,11 @@ import React, {useEffect, useState, useRef} from 'react';
 import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert, RefreshControl, Animated} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
 import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons';
+import AlertBox from '../../components/AlertBox';
 import Expandable from '../../components/Expandable';
 import ExpandableFloatingButton from '../../components/ExpandableFloatingButton';
+import LoadingAlertBox from '../../components/LoadingAlertBox';
 
 export default function Food({ navigation, route }) {
     const upc = route.params.upc;
@@ -72,6 +74,7 @@ export default function Food({ navigation, route }) {
 
     return(
         <View style={Styles.container}>
+            <LoadingAlertBox colors={Colors.Blue} icon="check-circle" text="asdf" loading={addToGroceryList.loading}/>
 
             <Animated.View style={[
                 StyleSheet.absoluteFillObject,
@@ -104,8 +107,8 @@ export default function Food({ navigation, route }) {
                 }}/>
 
                 <View style={{
-                    marginBottom: 10,
-                    flexDirection: 'row'
+                    flexDirection: 'row',
+                    flexWrap: 'wrap'
                 }}>
                     <View style={Styles.infoBubble}>
                         <Text style={Styles.infoBubbleText}>
@@ -127,6 +130,15 @@ export default function Food({ navigation, route }) {
                             }
                         </Text>
                     </View>
+
+                    {
+                        food?.inGroceryList
+                            ?  (
+                                <View style={Styles.infoBubble}>
+                                    <SimpleLineIcons name="bag" color={Colors.Background} size={20} style={{bottom: 1}}/>
+                                </View>
+                            ) :  null
+                    }
                 </View>
 
                 <View
@@ -170,10 +182,18 @@ export default function Food({ navigation, route }) {
                 </View>
             </Animated.ScrollView>
 
-            <ExpandableFloatingButton items={[
+            <ExpandableFloatingButton icon="playlist-add" items={[
+                {
+                    name: "Safe Foods",
+                    onPress: () => {}
+                },
+                {
+                    name: "Flagged Foods",
+                    onPress: () => {}
+                },
                 {
                     name: "Grocery List",
-                    onPress: () => {}
+                    onPress: () => addToGroceryList.background(food?.id)
                 }
             ]}/>
         </View>
