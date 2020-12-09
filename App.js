@@ -95,6 +95,7 @@ function DrawerScreen() {
             <Drawer.Screen name="Grocery List" component={GroceryListStackScreen}/>
             <Drawer.Screen name="Flagged Foods" component={FlaggedFoodsStackScreen}/>
             <Drawer.Screen name="Saved Foods" component={SavedFoodsStackScreen}/>
+            <Drawer.Screen name="Log Out" component={Login}/>
         </Drawer.Navigator>
     );
 }

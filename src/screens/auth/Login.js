@@ -17,6 +17,8 @@ export default function Login({navigation}) {
     const login = useLogin(username, password);
     const dummy = useDummy("Hello World");
 
+    useEffect(() => context.logOut(), [navigation]);
+    
     useEffect(() => console.log(dummy.response), [dummy.response]);
 
     function onSubmit() {
