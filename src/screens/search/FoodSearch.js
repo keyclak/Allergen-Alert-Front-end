@@ -17,42 +17,7 @@ export default function FoodSearch({navigation}) {
         getFoodSearch.background(); 
     };
 
-    useEffect(() => console.log(getFoodSearch.response), [searchValue]);
-
-    function renderHeader() {
-        return (
-            <View
-                style={{
-                    backgroundColor: Colors.Blue[5],
-                    borderRadius: StyleConstants.Radius,
-                    height: 40,
-                    flexDirection: 'row',
-                    alignItems: 'center'
-                }}>
-                <TextInput
-                    placeholder="Search"
-                    placeholderTextColor={Colors.Gray[4]}
-                    onChangeText={setSearchValue}
-                    onSubmitEditing={() => fetchData()}
-                    style={{
-                        color: Colors.Gray[1],
-                        marginLeft: StyleConstants.Radius * 0.75,
-                        fontSize: StyleConstants.FormItemTextSize,
-                        flexGrow: 1
-                    }}/>
-                
-                <Pressable style={{width: 40, alignItems: 'center', }} onPress={() => fetchData()}>
-                    <MaterialIcons name="search" color={Colors.Background} size={24} />
-                </Pressable>
-            </View>
-        );
-    }
-
-    useEffect(() => {
-        navigation.setOptions({
-            headerTitle: renderHeader
-        });
-    }, [searchValue]);
+    // useEffect(() => console.log(getFoodSearch.response), [searchValue]);
 
     const Item = ({ item }) => (
         <Pressable style={Styles.listItem} onPress={() => navigation.navigate('FoodPage', { foodId: item.id })}>
@@ -77,7 +42,32 @@ export default function FoodSearch({navigation}) {
 
 
     return (
-        <View style={Styles.container}>
+        <View style={[Styles.container, {paddingTop: 10}]}>
+        <View
+                style={{
+                    backgroundColor: Colors.Blue[5],
+                    borderRadius: StyleConstants.Radius,
+                    height: 50,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    width: '90%',
+                }}>
+                <TextInput
+                    placeholder="Search"
+                    placeholderTextColor={Colors.Gray[4]}
+                    onChangeText={setSearchValue}
+                    onSubmitEditing={() => fetchData()}
+                    style={{
+                        color: Colors.Gray[1],
+                        marginLeft: StyleConstants.Radius * 0.75,
+                        fontSize: StyleConstants.FormItemTextSize + 5,
+                        flexGrow: 1
+                    }}/>
+                
+                <Pressable style={{width: 40, alignItems: 'center', }} onPress={() => fetchData()}>
+                    <MaterialIcons name="search" color={Colors.Background} size={24} />
+                </Pressable>
+            </View>
             <FlatList
                 refreshControl={<RefreshControl colors={[Colors.Blue[4]]} refreshing={getFoodSearch.loading} onRefresh={fetchData}/>}
                 ListEmptyComponent={getEmptyComponent}

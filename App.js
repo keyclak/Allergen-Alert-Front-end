@@ -117,7 +117,7 @@ const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
         <SearchStack.Navigator screenOptions={HeaderScreenOptions}>
-            <SearchStack.Screen name="FoodSearch" component={FoodSearch} options={GetSearchMenuHeaderOptions()}/>
+            <SearchStack.Screen name="FoodSearch" component={FoodSearch} options={GetMenuHeaderOptions("")}/>
             <SearchStack.Screen name="Scanner" component={Scanner} />
             <SearchStack.Screen name="FoodPage" component={Food} options={{ headerTitleAlign: 'center', title: "Food Information" }}/>
         </SearchStack.Navigator>

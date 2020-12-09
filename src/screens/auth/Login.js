@@ -51,11 +51,11 @@ export default function Login({navigation}) {
 
 
                     <Pressable style={Styles.plainButton} onPress={onForgotPass}>
-                        <Text style={{color: Colors.Gray[8]}}>Forgot Password?</Text>
+                        <Text style={{color: Colors.Gray[8], textDecorationLine:'underline'}}>Forgot Password?</Text>
                     </Pressable>
 
                     <Pressable style={Styles.plainButton} onPress={onCreateAccount}>
-                        <Text style={{color: Colors.Gray[8]}}>Don't have an account? Create One</Text>
+                        <Text style={{color: Colors.Gray[8]}}>Don't have an account? <Text style={{color: Colors.Red[4], fontWeight:'bold', textDecorationLine:'underline'}}>Sign Up</Text></Text>
                     </Pressable>
 
                 </View>
