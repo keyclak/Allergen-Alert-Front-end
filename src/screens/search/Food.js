@@ -74,7 +74,15 @@ export default function Food({ navigation, route }) {
 
     return(
         <View style={Styles.container}>
-            <LoadingAlertBox colors={Colors.Blue} icon="check-circle" text="asdf" loading={addToGroceryList.loading}/>
+            <LoadingAlertBox
+                colors={Colors.Blue}
+                errorColors={Colors.Red}
+                icon="check-circle"
+                loadingText="Adding Item..."
+                text="Added item to grocery list"
+                error={addToGroceryList.error}
+                errorIcon="error"
+                loading={addToGroceryList.loading}/>
 
             <Animated.View style={[
                 StyleSheet.absoluteFillObject,

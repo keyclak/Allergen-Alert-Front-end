@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput, Animated } from 'react-native';
 import { Colors, StyleConstants, Styles } from '../style';
 import { MaterialIcons } from '@expo/vector-icons';
-import { isRTL } from 'expo-localization';
 
-export default function LoadingAlertBox({text, icon, colors, loading}) {
+export default function LoadingAlertBox({text, icon, colors, loading, loadingText, error, errorIcon, errorColors}) {
     const animation = useRef(new Animated.Value(0)).current;
 
     function open() {
@@ -20,7 +19,7 @@ export default function LoadingAlertBox({text, icon, colors, loading}) {
 
     function startClose() {
         Animated.sequence([
-            Animated.delay(5000),
+            Animated.delay(3000),
             Animated.timing(
                 animation,
                 {
@@ -40,12 +39,15 @@ export default function LoadingAlertBox({text, icon, colors, loading}) {
         }
     }, [loading])
 
+    const fg = error ? errorColors[5] : colors[5];
+    const bg = error ? errorColors[1] : colors[1];
+
     return (
         <Animated.View style={[
             Styles.alertBoxContainer,
             {
-                borderColor: colors[5],
-                backgroundColor: colors[1],
+                borderColor: fg,
+                backgroundColor: bg,
                 transform: [
                     {
                         translateY: animation.interpolate({
@@ -56,13 +58,15 @@ export default function LoadingAlertBox({text, icon, colors, loading}) {
                 ]
             }]}>
 
+            <View style={{width: 32}}>
             {
                 loading
                     ? <ActivityIndicator color={colors[5]} size="large" />
-                    : <MaterialIcons name={icon} size={32} color={colors[5]}/>
+                    : <MaterialIcons name={error ? errorIcon : icon} size={32} color={fg}/>
             }
+            </View>
 
-            <Text style={[Styles.alertBoxText, { color: colors[5] }]}>{text}</Text>
+            <Text style={[Styles.alertBoxText, { color: fg }]}>{error || (loading ? loadingText : text)}</Text>
         </Animated.View>
-    )
+    );
 }
