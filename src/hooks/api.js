@@ -242,6 +242,33 @@ const getFoodSearch = {
     ]
 };
 
+const getFlaggedFoods = {
+    url: '/Food/Flagged',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [ ]
+};
+
+const getSavedFoods = {
+    url: '/Food/Saved',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [ ]
+};
+
+const setFoodState = {
+    url: p => `/Food/${p.id}/State`,
+    method: 'PUT',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: [ ]
+};
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -374,4 +401,19 @@ export function validatePasswordResetToken(username, token) {
 export function resetPassword(username, token, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, resetPass, undefined, {username, token, password}));
+}
+
+export function useGetFlaggedFoods() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getFlaggedFoods));
+}
+
+export function useGetSavedFoods() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getSavedFoods));
+}
+
+export function useSetFoodState() {
+    const context = useContext(AuthContext);
+    return useAsync((id, state) => api(context, setFoodState, { id }, { state }));
 }

@@ -1,9 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Button, View, ScrollView, Text, SafeAreaView, StyleSheet, Pressable, Image, TouchableOpacity, Alert, RefreshControl, Animated} from 'react-native';
 import { StyleConstants, Styles, Colors } from '../../style';
-import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList} from '../../hooks/api';
+import { useDummy, useGetUpcSearch, useGetFood , useAddToGroceryList, useSetFoodState} from '../../hooks/api';
 import { MaterialIcons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons';
-import AlertBox from '../../components/AlertBox';
 import Expandable from '../../components/Expandable';
 import ExpandableFloatingButton from '../../components/ExpandableFloatingButton';
 import LoadingAlertBox from '../../components/LoadingAlertBox';
@@ -16,6 +15,8 @@ export default function Food({ navigation, route }) {
     const getUpcSearch = useGetUpcSearch();
     const getFood = useGetFood();
     const addToGroceryList = useAddToGroceryList(); 
+    const flagSetFoodState = useSetFoodState();
+    const saveSetFoodState = useSetFoodState();
 
     const scrollAnimation = useRef(new Animated.Value(0)).current;
 
@@ -84,6 +85,27 @@ export default function Food({ navigation, route }) {
                 errorIcon="error"
                 loading={addToGroceryList.loading}/>
 
+            <LoadingAlertBox
+                colors={Colors.Blue}
+                errorColors={Colors.Red}
+                icon="check-circle"
+                loadingText="Flagging food..."
+                text="Flagged food"
+                error={flagSetFoodState.error}
+                errorIcon="error"
+                loading={flagSetFoodState.loading}/>
+
+            <LoadingAlertBox
+                colors={Colors.Blue}
+                errorColors={Colors.Red}
+                icon="check-circle"
+                loadingText="Saving food..."
+                text="Saved food"
+                error={saveSetFoodState.error}
+                errorIcon="error"
+                loading={saveSetFoodState.loading}/>
+
+
             <Animated.View style={[
                 StyleSheet.absoluteFillObject,
                 {
@@ -143,23 +165,23 @@ export default function Food({ navigation, route }) {
                         food?.inGroceryList
                             ?  (
                                 <View style={Styles.infoBubble}>
-                                    <SimpleLineIcons name="bag" color={Colors.Background} size={20}/>
+                                    <MaterialCommunityIcons name="shopping" color={Colors.Background} size={20}/>
                                 </View>
                             ) :  null
                     }
                     {
-                        true
+                        food?.state == 2
                             ? (
                                 <View style={Styles.infoBubble}>
-                                    <SimpleLineIcons name="flag" color={Colors.Background} size={20} />
+                                    <MaterialIcons name="flag" color={Colors.Background} size={20} />
                                 </View>
                             ) : null
                     }
                     {
-                        true
+                        food?.state == 1
                             ? (
                                 <View style={Styles.infoBubble}>
-                                    <SimpleLineIcons name="check" color={Colors.Background} size={20} />
+                                    <MaterialIcons name="bookmark" color={Colors.Background} size={20} />
                                 </View>
                             ) : null
                     }
@@ -208,16 +230,16 @@ export default function Food({ navigation, route }) {
 
             <ExpandableFloatingButton icon="playlist-add" items={[
                 {
-                    name: "Safe Foods",
-                    onPress: () => {}
+                    name: "Saved Foods",
+                    onPress: () => saveSetFoodState.execute(food?.id, 1).then(() => refresh())
                 },
                 {
                     name: "Flagged Foods",
-                    onPress: () => {}
+                    onPress: () => flagSetFoodState.execute(food?.id, 2).then(() => refresh())
                 },
                 {
                     name: "Grocery List",
-                    onPress: () => addToGroceryList.background(food?.id)
+                    onPress: () => addToGroceryList.execute(food?.id).then(() => refresh())
                 }
             ]}/>
         </View>

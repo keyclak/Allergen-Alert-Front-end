@@ -24,6 +24,8 @@ import AuthCode from './src/screens/auth/AuthCode';
 import FoodSearch from './src/screens/search/FoodSearch';
 import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
+import FlaggedFoods from './src/screens/FlaggedFoods';
+import SavedFoods from './src/screens/SavedFoods';
 
 
 const fadeTransition = {
@@ -91,6 +93,8 @@ function DrawerScreen() {
             <Drawer.Screen name="Search" component={SearchStackScreen}/>
             <Drawer.Screen name="My Diet" component={DietStackScreen}/>
             <Drawer.Screen name="Grocery List" component={GroceryListStackScreen}/>
+            <Drawer.Screen name="Flagged Foods" component={FlaggedFoodsStackScreen}/>
+            <Drawer.Screen name="Saved Foods" component={SavedFoodsStackScreen}/>
         </Drawer.Navigator>
     );
 }
@@ -139,6 +143,26 @@ function GroceryListStackScreen() {
             <GroceryListStack.Screen name="GroceryList" component={GroceryList} options={GetMenuHeaderOptions('Grocery List')} />
             <GroceryListStack.Screen name="FoodPage" component={Food} options={{ title: "Food Information" }}/>
         </GroceryListStack.Navigator>
+    )
+}
+
+const FlaggedFoodsStack = createStackNavigator();
+function FlaggedFoodsStackScreen() {
+    return (
+        <FlaggedFoodsStack.Navigator screenOptions={HeaderScreenOptions}>
+            <FlaggedFoodsStack.Screen name="FlaggedFoods" component={FlaggedFoods} options={GetMenuHeaderOptions('Flagged Foods')}/>
+            <GroceryListStack.Screen name="FoodPage" component={Food} options={{ title: "Food Information" }}/>
+        </FlaggedFoodsStack.Navigator>
+    )
+}
+
+const SavedFoodsStack = createStackNavigator();
+function SavedFoodsStackScreen() {
+    return (
+        <SavedFoodsStack.Navigator screenOptions={HeaderScreenOptions}>
+            <SavedFoodsStack.Screen name="SavedFoods" component={SavedFoods} options={GetMenuHeaderOptions('Saved Foods')}/>
+            <GroceryListStack.Screen name="FoodPage" component={Food} options={{ title: "Food Information" }}/>
+        </SavedFoodsStack.Navigator>
     )
 }
 
