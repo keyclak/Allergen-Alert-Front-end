@@ -208,7 +208,8 @@ const Styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: StyleConstants.Radius,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        minHeight: 35
     },
     infoBubbleText: {
         fontSize: 20,
