@@ -88,7 +88,7 @@ const Drawer = createDrawerNavigator();
 function DrawerScreen() {
     return (
         <Drawer.Navigator drawerStyle={{backgroundColor: Colors.Blue[6]}} drawerContentOptions={{ activeTintColor: 'white', activeBackgroundColor: Colors.Blue[7], inactiveTintColor: Colors.Gray[3]}}>
-            <Drawer.Screen name="Home" component={SearchStackScreen}/>
+            <Drawer.Screen name="Search" component={SearchStackScreen}/>
             <Drawer.Screen name="My Diet" component={DietStackScreen}/>
             <Drawer.Screen name="Grocery List" component={GroceryListStackScreen}/>
         </Drawer.Navigator>
@@ -146,7 +146,7 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator screenOptions={{ headerStyle: navStyle.header, headerTintColor: Colors.Accent}}>
-            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Home"}}/>
+            <HomeStack.Screen name="LandingPage" component={LandingPage} options={{ title: "Search"}}/>
             <HomeStack.Screen name="Settings" component={Settings} options={{ title: "Settings" }}/>
             <HomeStack.Screen name="ViewDiet" component={ViewDiet} options={{ title: "My Diet" }}/>
             <HomeStack.Screen name="SelectRestriction" component={SelectRestriction} options={{ title: "Add Dietary Restriction" }}/>
