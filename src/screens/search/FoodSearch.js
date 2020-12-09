@@ -17,7 +17,7 @@ export default function FoodSearch({navigation}) {
         getFoodSearch.background(); 
     };
 
-    useEffect(() => console.log(searchValue), [searchValue]);
+    useEffect(() => console.log(getFoodSearch.response), [searchValue]);
 
     function renderHeader() {
         return (
@@ -52,7 +52,7 @@ export default function FoodSearch({navigation}) {
         navigation.setOptions({
             headerTitle: renderHeader
         });
-    }, [getFoodSearch.response]);
+    }, [searchValue]);
 
     const Item = ({ item }) => (
         <Pressable style={Styles.listItem} onPress={() => navigation.navigate('FoodPage', { foodId: item.id })}>
