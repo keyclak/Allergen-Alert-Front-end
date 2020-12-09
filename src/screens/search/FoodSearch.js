@@ -52,7 +52,7 @@ export default function FoodSearch({navigation}) {
         navigation.setOptions({
             headerTitle: renderHeader
         });
-    }, [navigation]);
+    }, [getFoodSearch.response]);
 
     const Item = ({ item }) => (
         <Pressable style={Styles.listItem} onPress={() => navigation.navigate('FoodPage', { foodId: item.id })}>
