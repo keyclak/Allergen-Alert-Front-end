@@ -26,7 +26,7 @@ import Scanner from './src/screens/search/Scanner';
 import GroceryList from './src/screens/GroceryList'
 import FlaggedFoods from './src/screens/FlaggedFoods';
 import SavedFoods from './src/screens/SavedFoods';
-
+import RecdIngs from './src/screens/RecdIngs';
 
 const fadeTransition = {
     transitionSpec: {
@@ -95,6 +95,7 @@ function DrawerScreen() {
             <Drawer.Screen name="Grocery List" component={GroceryListStackScreen}/>
             <Drawer.Screen name="Flagged Foods" component={FlaggedFoodsStackScreen}/>
             <Drawer.Screen name="Saved Foods" component={SavedFoodsStackScreen}/>
+            <Drawer.Screen name="Reccomended Restrictions" component={RecdIngs}/>
             <Drawer.Screen name="Log Out" component={Login}/>
         </Drawer.Navigator>
     );
