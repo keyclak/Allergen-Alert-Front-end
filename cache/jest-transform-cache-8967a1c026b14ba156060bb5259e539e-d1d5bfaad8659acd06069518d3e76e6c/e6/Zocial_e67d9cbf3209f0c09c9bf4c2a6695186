@@ -1,0 +1,3 @@
+40c5832067ed076e3593ffb8b1f18d43
+import Zocial from './build/Zocial';
+export default Zocial;

@@ -1,0 +1,38 @@
+95001ef58a50068ef3e81a9d368f3c42
+// This alphabet uses `A-Za-z0-9_-` symbols. The genetic algorithm helped
+// optimize the gzip compression for this alphabet.
+let urlAlphabet = 'ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW';
+
+let customAlphabet = (alphabet, size) => {
+  return () => {
+    let id = ''; // A compact alternative for `for (var i = 0; i < step; i++)`.
+
+    let i = size;
+
+    while (i--) {
+      // `| 0` is more compact and faster than `Math.floor()`.
+      id += alphabet[Math.random() * alphabet.length | 0];
+    }
+
+    return id;
+  };
+};
+
+let nanoid = (size = 21) => {
+  let id = ''; // A compact alternative for `for (var i = 0; i < step; i++)`.
+
+  let i = size;
+
+  while (i--) {
+    // `| 0` is more compact and faster than `Math.floor()`.
+    id += urlAlphabet[Math.random() * 64 | 0];
+  }
+
+  return id;
+};
+
+module.exports = {
+  nanoid,
+  customAlphabet
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNqcyJdLCJuYW1lcyI6WyJ1cmxBbHBoYWJldCIsImN1c3RvbUFscGhhYmV0IiwiYWxwaGFiZXQiLCJzaXplIiwiaWQiLCJpIiwiTWF0aCIsInJhbmRvbSIsImxlbmd0aCIsIm5hbm9pZCIsIm1vZHVsZSIsImV4cG9ydHMiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQSxJQUFJQSxXQUFXLEdBQ2Isa0VBREY7O0FBR0EsSUFBSUMsY0FBYyxHQUFHLENBQUNDLFFBQUQsRUFBV0MsSUFBWCxLQUFvQjtBQUN2QyxTQUFPLE1BQU07QUFDWCxRQUFJQyxFQUFFLEdBQUcsRUFBVCxDQURXLENBRVg7O0FBQ0EsUUFBSUMsQ0FBQyxHQUFHRixJQUFSOztBQUNBLFdBQU9FLENBQUMsRUFBUixFQUFZO0FBQ1Y7QUFDQUQsTUFBQUEsRUFBRSxJQUFJRixRQUFRLENBQUVJLElBQUksQ0FBQ0MsTUFBTCxLQUFnQkwsUUFBUSxDQUFDTSxNQUExQixHQUFvQyxDQUFyQyxDQUFkO0FBQ0Q7O0FBQ0QsV0FBT0osRUFBUDtBQUNELEdBVEQ7QUFVRCxDQVhEOztBQWFBLElBQUlLLE1BQU0sR0FBRyxDQUFDTixJQUFJLEdBQUcsRUFBUixLQUFlO0FBQzFCLE1BQUlDLEVBQUUsR0FBRyxFQUFULENBRDBCLENBRTFCOztBQUNBLE1BQUlDLENBQUMsR0FBR0YsSUFBUjs7QUFDQSxTQUFPRSxDQUFDLEVBQVIsRUFBWTtBQUNWO0FBQ0FELElBQUFBLEVBQUUsSUFBSUosV0FBVyxDQUFFTSxJQUFJLENBQUNDLE1BQUwsS0FBZ0IsRUFBakIsR0FBdUIsQ0FBeEIsQ0FBakI7QUFDRDs7QUFDRCxTQUFPSCxFQUFQO0FBQ0QsQ0FURDs7QUFXQU0sTUFBTSxDQUFDQyxPQUFQLEdBQWlCO0FBQUVGLEVBQUFBLE1BQUY7QUFBVVIsRUFBQUE7QUFBVixDQUFqQiIsInNvdXJjZXNDb250ZW50IjpbIi8vIFRoaXMgYWxwaGFiZXQgdXNlcyBgQS1aYS16MC05Xy1gIHN5bWJvbHMuIFRoZSBnZW5ldGljIGFsZ29yaXRobSBoZWxwZWRcbi8vIG9wdGltaXplIHRoZSBnemlwIGNvbXByZXNzaW9uIGZvciB0aGlzIGFscGhhYmV0LlxubGV0IHVybEFscGhhYmV0ID1cbiAgJ01vZHVsZVN5bWJoYXNPd25Qci0wMTIzNDU2Nzg5QUJDREVGR0hOUlZmZ2N0aVV2el9LcVlUSmtMeHBaWElqUVcnXG5cbmxldCBjdXN0b21BbHBoYWJldCA9IChhbHBoYWJldCwgc2l6ZSkgPT4ge1xuICByZXR1cm4gKCkgPT4ge1xuICAgIGxldCBpZCA9ICcnXG4gICAgLy8gQSBjb21wYWN0IGFsdGVybmF0aXZlIGZvciBgZm9yICh2YXIgaSA9IDA7IGkgPCBzdGVwOyBpKyspYC5cbiAgICBsZXQgaSA9IHNpemVcbiAgICB3aGlsZSAoaS0tKSB7XG4gICAgICAvLyBgfCAwYCBpcyBtb3JlIGNvbXBhY3QgYW5kIGZhc3RlciB0aGFuIGBNYXRoLmZsb29yKClgLlxuICAgICAgaWQgKz0gYWxwaGFiZXRbKE1hdGgucmFuZG9tKCkgKiBhbHBoYWJldC5sZW5ndGgpIHwgMF1cbiAgICB9XG4gICAgcmV0dXJuIGlkXG4gIH1cbn1cblxubGV0IG5hbm9pZCA9IChzaXplID0gMjEpID0+IHtcbiAgbGV0IGlkID0gJydcbiAgLy8gQSBjb21wYWN0IGFsdGVybmF0aXZlIGZvciBgZm9yICh2YXIgaSA9IDA7IGkgPCBzdGVwOyBpKyspYC5cbiAgbGV0IGkgPSBzaXplXG4gIHdoaWxlIChpLS0pIHtcbiAgICAvLyBgfCAwYCBpcyBtb3JlIGNvbXBhY3QgYW5kIGZhc3RlciB0aGFuIGBNYXRoLmZsb29yKClgLlxuICAgIGlkICs9IHVybEFscGhhYmV0WyhNYXRoLnJhbmRvbSgpICogNjQpIHwgMF1cbiAgfVxuICByZXR1cm4gaWRcbn1cblxubW9kdWxlLmV4cG9ydHMgPSB7IG5hbm9pZCwgY3VzdG9tQWxwaGFiZXQgfVxuIl19
