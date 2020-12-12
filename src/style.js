@@ -158,7 +158,8 @@ const Styles = StyleSheet.create({
         borderWidth: 2,
         height: StyleConstants.FormItemHeight,
         paddingLeft: 5,
-        elevation: 5
+        elevation: 5,
+        zIndex: 300
     },
     alertBoxText: {
         fontSize: StyleConstants.FormItemTextSize,
