@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsPageTests Renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+      },
+      Object {
+        "paddingTop": 0,
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderBottomWidth": 0.5,
+          "borderColor": "#bcbbc1",
+          "flexDirection": "row",
+          "padding": 14,
+        }
+      }
+      testID="padView"
+    >
+      <View
+        style={
+          Object {
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingLeft": 16,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": undefined,
+            "fontSize": 17,
+          }
+        }
+        testID="listItemTitle"
+      >
+        Log Out
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateAccountPageTests Renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "height": "100%",
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "#FEC9B6",
+        "borderColor": "#DA3542",
+        "borderRadius": 15,
+        "borderWidth": 2,
+        "elevation": 5,
+        "flexDirection": "row",
+        "height": 50,
+        "paddingLeft": 5,
+        "position": "absolute",
+        "top": 30,
+        "transform": Array [
+          Object {
+            "translateY": -100,
+          },
+        ],
+        "width": "80%",
+      }
+    }
+  >
+    <Icon
+      color="#DA3542"
+      name="error"
+      size={32}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "marginLeft": 5,
+          },
+          Object {
+            "color": "#DA3542",
+          },
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "80%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#495057",
+            "fontSize": 28,
+          }
+        }
+      >
+        Create Account
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Username"
+        placeholderTextColor="#868e96"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#e9ecef",
+              "borderColor": "#868e96",
+              "borderRadius": 15,
+              "borderWidth": 0,
+              "color": "#495057",
+              "fontSize": 16,
+              "height": 50,
+              "marginBottom": 15,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+            },
+            false,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+      <TextInput
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Email"
+        placeholderTextColor="#868e96"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#e9ecef",
+              "borderColor": "#868e96",
+              "borderRadius": 15,
+              "borderWidth": 0,
+              "color": "#495057",
+              "fontSize": 16,
+              "height": 50,
+              "marginBottom": 15,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+            },
+            false,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+      <TextInput
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Password"
+        placeholderTextColor="#868e96"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#e9ecef",
+              "borderColor": "#868e96",
+              "borderRadius": 15,
+              "borderWidth": 0,
+              "color": "#495057",
+              "fontSize": 16,
+              "height": 50,
+              "marginBottom": 15,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+            },
+            false,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+      <View
+        accessible={true}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignContent": "center",
+              "alignItems": "center",
+              "backgroundColor": "#2AB7CA",
+              "borderRadius": 15,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "center",
+              "marginBottom": 15,
+            },
+            false,
+            undefined,
+          ]
+        }
+      >
+        <ActivityIndicator
+          animating={true}
+          color="white"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "position": "absolute",
+              "transform": Array [
+                Object {
+                  "translateX": 200,
+                },
+              ],
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "position": "absolute",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+              }
+            }
+          >
+            Create Account
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

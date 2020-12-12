@@ -8,7 +8,6 @@ export default function AlertBox({text, icon, colors}) {
 
     useEffect(() => {
         if(text) {
-            console.log('opening');
             Animated.timing(
                 animation,
                 {
@@ -18,7 +17,6 @@ export default function AlertBox({text, icon, colors}) {
                 }
             ).start();
         } else {
-            console.log('closing');
             Animated.timing(
                 animation,
                 {

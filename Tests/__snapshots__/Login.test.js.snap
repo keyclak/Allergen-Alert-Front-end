@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Tests Renders correctly 1`] = `
+exports[`LoginPageTests Renders correctly 1`] = `
 <View
   style={
     Object {
@@ -33,7 +33,11 @@ exports[`Login Tests Renders correctly 1`] = `
       }
     }
   >
-    <Text />
+    <Icon
+      color="#DA3542"
+      name="error"
+      size={32}
+    />
     <Text
       style={
         Array [

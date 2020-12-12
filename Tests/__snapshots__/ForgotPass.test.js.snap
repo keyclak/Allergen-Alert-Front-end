@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForgotPassPageTests Renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "80%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Forgot your password?
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontSize": 18,
+          "paddingTop": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      Please enter the username you used to create your account.
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder="Username"
+      placeholderTextColor="#868e96"
+      rejectResponderTermination={true}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#e9ecef",
+            "borderColor": "#868e96",
+            "borderRadius": 15,
+            "borderWidth": 0,
+            "color": "#495057",
+            "fontSize": 16,
+            "height": 50,
+            "marginBottom": 15,
+            "paddingLeft": 15,
+            "paddingRight": 15,
+          },
+          false,
+          false,
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <Text
+    style={
+      Array [
+        undefined,
+        Object {
+          "alignSelf": "center",
+          "paddingTop": 10,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "width": "80%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "backgroundColor": "#2AB7CA",
+            "borderRadius": 15,
+            "flexDirection": "row",
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 15,
+          },
+          false,
+          Object {
+            "marginTop": 16,
+          },
+        ]
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="white"
+        hidesWhenStopped={true}
+        size="large"
+        style={
+          Object {
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "translateX": 200,
+              },
+            ],
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+            }
+          }
+        >
+          Send
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
