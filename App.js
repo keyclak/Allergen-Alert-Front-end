@@ -115,12 +115,12 @@ function ReccStackScreen() {
 const AuthStack = createStackNavigator();
 function AuthStackScreen() {
     return (
-        <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+        <AuthStack.Navigator screenOptions={{ headerTransparent: true, headerTintColor: Colors.Gray[8]}}>
             <AuthStack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
-            <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{title: "Sign Up"}}/>
-            <AuthStack.Screen name="ForgotPass" component={ForgotPass} options={{title: "Reset Password"}}/>
-            <AuthStack.Screen name="ChangePass" component={ChangePass} options={{title: "Reset Password"}}/>
-            <AuthStack.Screen name="AuthCode" component={AuthCode} options={{title: "Reset Password"}}/>
+            <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{title: ""}}/>
+            <AuthStack.Screen name="ForgotPass" component={ForgotPass} options={{title: ""}}/>
+            <AuthStack.Screen name="ChangePass" component={ChangePass} options={{title: ""}}/>
+            <AuthStack.Screen name="AuthCode" component={AuthCode} options={{title: ""}}/>
         </AuthStack.Navigator>
     )
 }
