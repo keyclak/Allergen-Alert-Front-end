@@ -1,0 +1,10 @@
+6cf61bdfbb44bcaa2d4a7a7e4b6afd2e
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useDocumentTitle;
+
+function useDocumentTitle() {// Noop for React Native
+}

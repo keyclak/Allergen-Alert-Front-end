@@ -1,0 +1,15 @@
+1ef2070d8d5ca21d98b5f65b297c8e9b
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Screen;
+/**
+ * Empty component used for specifying route configuration.
+ */
+
+function Screen(_) {
+  /* istanbul ignore next */
+  return null;
+}

@@ -1,0 +1,14 @@
+d7c1e5174a64cc8a80cffae565da0e91
+var _typeof = require("@babel/runtime/helpers/typeof");
+
+var assertThisInitialized = require("./assertThisInitialized");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;

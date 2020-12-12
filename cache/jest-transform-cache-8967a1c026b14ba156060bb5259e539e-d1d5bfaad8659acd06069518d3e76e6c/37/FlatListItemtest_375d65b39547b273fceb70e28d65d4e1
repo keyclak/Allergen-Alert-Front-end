@@ -1,0 +1,15 @@
+1e885d66e38ef3b186b4f435f28ec919
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _react = _interopRequireDefault(require("react"));
+
+var _FlatlistItem = _interopRequireDefault(require("../../src/components/FlatlistItem"));
+
+var _GroceryList = _interopRequireDefault(require("../../src/screens/GroceryList"));
+
+var _reactTestRenderer = require("react-test-renderer");
+
+describe("FlatListItemTests", function () {
+  test("Check flatlist item returns", function () {});
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkZsYXRMaXN0SXRlbS50ZXN0LmpzIl0sIm5hbWVzIjpbImRlc2NyaWJlIiwidGVzdCJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7QUFDQTs7QUFDQTs7QUFDQTs7QUFFQUEsUUFBUSxDQUFDLG1CQUFELEVBQXNCLFlBQU07QUFDaENDLEVBQUFBLElBQUksQ0FBQyw2QkFBRCxFQUFnQyxZQUFNLENBRXpDLENBRkcsQ0FBSjtBQUdILENBSk8sQ0FBUiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBGbGF0bGlzdEl0ZW0gZnJvbSAnLi4vLi4vc3JjL2NvbXBvbmVudHMvRmxhdGxpc3RJdGVtJztcclxuaW1wb3J0IEdyb2NlcnlMaXN0IGZyb20gJy4uLy4uL3NyYy9zY3JlZW5zL0dyb2NlcnlMaXN0JztcclxuaW1wb3J0IHsgY3JlYXRlIH0gZnJvbSBcInJlYWN0LXRlc3QtcmVuZGVyZXJcIjtcclxuXHJcbmRlc2NyaWJlKFwiRmxhdExpc3RJdGVtVGVzdHNcIiwgKCkgPT4ge1xyXG4gICAgdGVzdChcIkNoZWNrIGZsYXRsaXN0IGl0ZW0gcmV0dXJuc1wiLCAoKSA9PiB7XHJcbiAgICAgICBcclxuICAgIH0pO1xyXG59KTtcclxuIl19
