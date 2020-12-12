@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonTextInputTests Renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderRadius": 15,
+      "flexDirection": "row",
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onSubmitEditing={[MockFunction]}
+    placeholderTextColor="#868e96"
+    rejectResponderTermination={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#e9ecef",
+          "borderColor": "#868e96",
+          "borderRadius": 15,
+          "borderWidth": 0,
+          "color": "#495057",
+          "fontSize": 16,
+          "height": 50,
+          "marginBottom": 15,
+          "paddingLeft": 15,
+          "paddingRight": 15,
+        },
+        Object {
+          "borderBottomRightRadius": 0,
+          "borderTopRightRadius": 0,
+          "flexGrow": 1,
+          "marginBottom": 0,
+        },
+        false,
+      ]
+    }
+    underlineColorAndroid="transparent"
+  />
+  <View
+    accessible={true}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "backgroundColor": "#2AB7CA",
+          "borderRadius": 15,
+          "flexDirection": "row",
+          "height": 50,
+          "justifyContent": "center",
+          "marginBottom": 15,
+        },
+        Object {
+          "borderBottomLeftRadius": 0,
+          "borderTopLeftRadius": 0,
+          "marginBottom": 0,
+          "width": 50,
+        },
+      ]
+    }
+  >
+    <Icon
+      color="white"
+      name={[MockFunction]}
+      size={24}
+    />
+  </View>
+</View>
+`;

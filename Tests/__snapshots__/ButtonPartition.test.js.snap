@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonPartitionTests Renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "#f8f9fa",
+        "borderRadius": 15,
+        "flexDirection": "row",
+        "height": 50,
+        "justifyContent": "space-between",
+        "marginTop": 7.5,
+        "paddingLeft": 15,
+        "width": "60%",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#495057",
+        "fontSize": 16,
+        "paddingRight": 5,
+      }
+    }
+  />
+  <View
+    accessible={true}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "backgroundColor": "#2AB7CA",
+          "borderRadius": 15,
+          "flexDirection": "row",
+          "height": 50,
+          "justifyContent": "center",
+          "marginBottom": 15,
+        },
+        Object {
+          "borderBottomLeftRadius": 0,
+          "borderTopLeftRadius": 0,
+          "marginBottom": 0,
+          "width": 50,
+        },
+      ]
+    }
+  >
+    <Icon
+      color="white"
+      name="add"
+      size={24}
+    />
+  </View>
+</View>
+`;

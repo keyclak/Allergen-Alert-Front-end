@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FloatingButtonTests Renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": undefined,
+      "borderColor": undefined,
+      "borderRadius": 15,
+      "borderWidth": 2,
+      "elevation": 5,
+      "flexDirection": "row",
+      "height": 50,
+      "paddingLeft": 5,
+      "position": "absolute",
+      "top": 30,
+      "transform": Array [
+        Object {
+          "translateY": -100,
+        },
+      ],
+      "width": "80%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "width": 32,
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="large"
+    />
+  </View>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 16,
+          "marginLeft": 5,
+        },
+        Object {
+          "color": undefined,
+        },
+      ]
+    }
+  />
+</View>
+`;

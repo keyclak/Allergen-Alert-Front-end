@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandableFloatingButtonTests Renders correctly 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "alignItems": "flex-end",
+      "height": "100%",
+      "justifyContent": "flex-end",
+      "position": "absolute",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    pointerEvents="none"
+    style={
+      Object {
+        "backgroundColor": "black",
+        "bottom": 0,
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "bottom": 30,
+        "justifyContent": "center",
+        "overflow": "visible",
+        "width": 120,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#2AB7CA",
+          "borderRadius": 30,
+          "elevation": 5,
+          "height": 60,
+          "justifyContent": "center",
+          "width": 60,
+        }
+      }
+    >
+      <Icon
+        color="white"
+        name="add"
+        size={36}
+        style={
+          Object {
+            "opacity": 0,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotate": "0deg",
+              },
+            ],
+          }
+        }
+      />
+      <Icon
+        color="white"
+        name={[MockFunction]}
+        size={36}
+        style={
+          Object {
+            "opacity": 1,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotate": "0deg",
+              },
+            ],
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

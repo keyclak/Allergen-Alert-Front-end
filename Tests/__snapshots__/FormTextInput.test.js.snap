@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormTextInputTests Renders correctly 1`] = `
+<TextInput
+  allowFontScaling={true}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  placeholderTextColor="#DA3542"
+  rejectResponderTermination={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#e9ecef",
+        "borderColor": "#868e96",
+        "borderRadius": 15,
+        "borderWidth": 0,
+        "color": "#495057",
+        "fontSize": 16,
+        "height": 50,
+        "marginBottom": 15,
+        "paddingLeft": 15,
+        "paddingRight": 15,
+      },
+      Object {
+        "backgroundColor": "#FEC9B6",
+        "borderColor": "#DA3542",
+      },
+      false,
+    ]
+  }
+  underlineColorAndroid="transparent"
+/>
+`;

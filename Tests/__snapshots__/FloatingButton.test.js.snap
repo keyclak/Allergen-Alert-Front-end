@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandableFloatingButtonTests Renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#2AB7CA",
+        "borderRadius": 30,
+        "elevation": 5,
+        "height": 60,
+        "justifyContent": "center",
+        "width": 60,
+      },
+      Object {
+        "bottom": 30,
+        "right": 30,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`FloatingButtonTests Renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#2AB7CA",
+        "borderRadius": 30,
+        "elevation": 5,
+        "height": 60,
+        "justifyContent": "center",
+        "width": 60,
+      },
+      Object {
+        "bottom": 30,
+        "right": 30,
+      },
+    ]
+  }
+/>
+`;
