@@ -78,7 +78,9 @@ export default function FoodSearch({navigation}) {
                 contentContainerStyle={{flexGrow: 1}}
                 style={{width: '100%', alignContent: 'center'}}/>
 
-            <View style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
+            <View 
+                pointerEvents="box-none"
+                style={{ width: '100%', height: '100%', position: 'absolute', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
                 <FloatingButton onPress={openScanner}>
                     <MaterialCommunityIcons name="barcode-scan" size={32} color="white"/>
                 </FloatingButton>
