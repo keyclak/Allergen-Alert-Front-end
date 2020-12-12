@@ -27,36 +27,31 @@ const MockedNavigator = ({component, params = {}}) => {
   );
 };
 
-// describe("FlatListItem Tests", () => {
-//     test("Renders correctly", () => {
-//         const props = { i:1, item:{icon: "icon1", title: "title1", navTo:{Login}}};
+describe("FlatListItem Tests", () => {
+    test("Renders correctly", () => {
+        const props = { i:1, item:{icon: "icon1", title: "title1", navTo:{Login}}};
 
-//         const tree = renderer.create(<MockedNavigator component={FlatlistItem}></MockedNavigator>);
+        const tree = renderer.create(<MockedNavigator component={FlatlistItem}></MockedNavigator>);
 
-//         expect(tree.toJSON()).toMatchSnapshot();
-//     });
+        expect(tree.toJSON()).toMatchSnapshot();
+    });
 
-//     test("Correctly passes item in", () => {
-//         const item = { icon: "icon1", title: "title1" };
+    // test("Correctly passes item in", () => {
+    //     const item = { icon: "icon1", title: "title1" };
 
-//         const tree = renderer.create(
-//         <MockedNavigator component={Login}>
-//             <FlatlistItem item={item}/>
-//         </MockedNavigator>);
+    //     const tree = renderer.create(
+    //     <MockedNavigator component={Login}>
+    //         <FlatlistItem item={item}/>
+    //     </MockedNavigator>);
 
-//         expect(tree.toJSON().props.item.title).toEqual("title1");
-//         expect(tree.toJSON().props.item.icon).toEqual("icon1");
-//     });
+    //     expect(tree.toJSON().props.item.title).toEqual("title1");
+    //     expect(tree.toJSON().props.item.icon).toEqual("icon1");
+    // });
 
-//     test("Correctly passes prop in", () => {
-//         const navigation = { navigation: jest.fn() };
-//         const item = { icon: "icon1", title: "title1" };
+    it("accepts products props", () => {
+        const props = {i:'1', item:{ icon: "icon1", title: "title1", navTo:{Login}}};
 
-//         const tree = renderer.create(
-//         <MockedNavigator component={Login}>
-//             <FlatlistItem />
-//         </MockedNavigator>);
-
-//         expect(tree.toJSON().props.item.title).toEqual("title1");
-//     });
-// });
+        const wrapper = mount(<FlatlistItem i={props.i} item={props.item}/>);
+        expect(wrapper.props().item).toEqual(item);
+      });
+});

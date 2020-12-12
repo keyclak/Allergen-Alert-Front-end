@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Tests Renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "#FEC9B6",
+        "borderColor": "#DA3542",
+        "borderRadius": 15,
+        "borderWidth": 2,
+        "elevation": 5,
+        "flexDirection": "row",
+        "height": 50,
+        "paddingLeft": 5,
+        "position": "absolute",
+        "top": 30,
+        "transform": Array [
+          Object {
+            "translateY": -100,
+          },
+        ],
+        "width": "80%",
+      }
+    }
+  >
+    <Text />
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "marginLeft": 5,
+          },
+          Object {
+            "color": "#DA3542",
+          },
+        ]
+      }
+    />
+  </View>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": "100%",
+            "width": undefined,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "width": "80%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "bottom": "5%",
+            "color": "#2AB7CA",
+            "fontSize": 45,
+          }
+        }
+      >
+        Allergen Alert
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Username"
+        placeholderTextColor="#868e96"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#e9ecef",
+              "borderColor": "#868e96",
+              "borderRadius": 15,
+              "borderWidth": 0,
+              "color": "#495057",
+              "fontSize": 16,
+              "height": 50,
+              "marginBottom": 15,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+            },
+            undefined,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+      <TextInput
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Password"
+        placeholderTextColor="#868e96"
+        rejectResponderTermination={true}
+        secureTextEntry={true}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#e9ecef",
+              "borderColor": "#868e96",
+              "borderRadius": 15,
+              "borderWidth": 0,
+              "color": "#495057",
+              "fontSize": 16,
+              "height": 50,
+              "marginBottom": 15,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+            },
+            undefined,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+      <View
+        accessible={true}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignContent": "center",
+              "alignItems": "center",
+              "backgroundColor": "#2AB7CA",
+              "borderRadius": 15,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "center",
+              "marginBottom": 15,
+            },
+            false,
+            undefined,
+          ]
+        }
+      >
+        <ActivityIndicator
+          animating={true}
+          color="white"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "position": "absolute",
+              "transform": Array [
+                Object {
+                  "translateX": 200,
+                },
+              ],
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "position": "absolute",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+              }
+            }
+          >
+            Log In
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 25,
+            "justifyContent": "center",
+            "marginBottom": 15,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#343a40",
+            }
+          }
+        >
+          Forgot Password?
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 25,
+            "justifyContent": "center",
+            "marginBottom": 15,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#343a40",
+            }
+          }
+        >
+          Don't have an account? Create One
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {Image, ImageBackground, View, Text, Pressable, StyleSheet, ActivityIndicator, TextInput } from 'react-native';
-import LoadingButton from '../../components/LoadingButton';
+import { ImageBackground, View, Text, Pressable } from 'react-native';
 import TextLoadingButton from '../../components/TextLoadingButton';
 import { StyleConstants, Styles, Colors } from '../../style';
-import { useLogin, useDummy } from '../../hooks/api';
+import { useLogin } from '../../hooks/api';
 import { AuthContext } from '../../context';
 import FormTextInput from '../../components/FormTextInput';
 import AlertBox from '../../components/AlertBox';
@@ -15,11 +14,8 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState();
 
     const login = useLogin(username, password);
-    const dummy = useDummy("Hello World");
 
     useEffect(() => context.logOut(), [navigation]);
-    
-    useEffect(() => console.log(dummy.response), [dummy.response]);
 
     function onSubmit() {
         login.execute()
