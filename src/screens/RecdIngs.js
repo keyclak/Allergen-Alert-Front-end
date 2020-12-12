@@ -52,14 +52,24 @@ export default function SavedFoods({navigation}) {
         )
     }
 
+    function renderEmpty() {
+        return (
+            <View style={{ height: '100%', flexGrow: 1, alignItems: 'center', justifyContent: 'center'}}>     
+                <Text style={{color: Colors.Gray[5]}}>No Recommendations. You may need to flag more items</Text>
+            </View>
+        );
+    }
+
     return (
         <View style={[Styles.container, {justifyContent: 'flex-start'}]}>
             
             <FlatList
                 style={{width: '100%'}}
-                data={getRecommendations.response}   
+                contentContainerStyle={{flexGrow: 1}}
+                data={getRecommendations.response}
                 keyExtractor={item => item} 
                 renderItem={restrictionRenderItem}          
+                ListEmptyComponent={renderEmpty}
                 refreshControl={<RefreshControl colors={[Colors.Blue[4]]} refreshing={getRecommendations.loading} onRefresh={() => getRecommendations.background()}/>}
             /> 
         </View>
