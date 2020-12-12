@@ -5,6 +5,7 @@ import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
 import SwipableListItem from '../components/SwipableListItem';
+import SwipableAddListItem from '../components/SwipableAddListItem';
 import { render } from 'react-dom';
 
 export default function SavedFoods({navigation}) {
@@ -33,9 +34,9 @@ export default function SavedFoods({navigation}) {
 
     function restrictionRenderItem({item}) {
         return (
-             <SwipableListItem deleteOnPress={() => null} style={{backgroundColor: Colors.Blue[0]}}>
+             <SwipableAddListItem deleteOnPress={() => null} addOnPress={() => null} style={{backgroundColor: Colors.Blue[0]}}>
                     <Text style={[Styles.listItemText, {color: Colors.Blue[6]}]}>{item.name}</Text>
-            </SwipableListItem>
+            </SwipableAddListItem>
         )
     }
 
