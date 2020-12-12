@@ -110,7 +110,6 @@ export default function Food({ navigation, route }) {
                 StyleSheet.absoluteFillObject,
                 {
                     backgroundColor: Colors.Gray[3],
-                    paddingTop: 20,
                     alignItems: 'center',
                     transform: [
                         { translateY: scrollAnimation.interpolate({
@@ -120,8 +119,7 @@ export default function Food({ navigation, route }) {
                     ]
                 }
             ]}>
-                {/* <Image source={{ uri: food?.image }}/> */}
-                <MaterialCommunityIcons name="food-apple" color={Colors.Gray[8]} size={200}/>
+                <Image style={{width: '100%', height:310} } source={{ uri: food?.image }}/> 
             </Animated.View>
 
 
