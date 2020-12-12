@@ -1,15 +1,19 @@
 
 import React, { useRef, useContext, useEffect, useState } from 'react';
-import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 'react-native';
+import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet, RefreshControl} from 'react-native';
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
 import SwipableListItem from '../components/SwipableListItem';
 import SwipableAddListItem from '../components/SwipableAddListItem';
 import { render } from 'react-dom';
+import { useAddModification, useGetRecommendations, useRejectRecommendation } from '../hooks/api';
 
 export default function SavedFoods({navigation}) {
     const [getRecdIngs, setRecdIngs] = useState(ing)//useGetRecdIngs();
+    const addModification = useAddModification();
+    const rejectRecommendation = useRejectRecommendation();
+    const getRecommendations = useGetRecommendations();
    // const setRecdIngs = useSetRecdIngs();
 
 
@@ -24,34 +28,39 @@ export default function SavedFoods({navigation}) {
         }
     ];
 
-    // useEffect(() => {
-    //     navigation.addListener('focus', () =>  getRecdIngs.background());
-    // }, [navigation]);
+    useEffect(() => {
+        navigation.addListener('focus', () =>  getRecommendations.background());
+    }, [navigation]);
 
-    const renderItem = ({ item }) => (
-        <Text>{item.name}</Text>
-      );
+    function onAccept(ingredient) {
+        addModification.execute(ingredient, 1)
+            .then(() => getRecommendations.background())
+            .catch(() => {});
+    }
+
+    function onReject(ingredient) {
+        rejectRecommendation.execute(ingredient)
+            .then(() => getRecommendations.background())
+            .catch(() => {});
+    }
 
     function restrictionRenderItem({item}) {
         return (
-             <SwipableAddListItem deleteOnPress={() => null} addOnPress={() => null} style={{backgroundColor: Colors.Blue[0]}}>
-                    <Text style={[Styles.listItemText, {color: Colors.Blue[6]}]}>{item.name}</Text>
+             <SwipableAddListItem deleteOnPress={() => onReject(item)} addOnPress={() => onAccept(item)} style={{backgroundColor: Colors.Blue[0]}}>
+                    <Text style={[Styles.listItemText, {color: Colors.Blue[6]}]}>{item}</Text>
             </SwipableAddListItem>
         )
     }
-
 
     return (
         <View style={[Styles.container, {justifyContent: 'flex-start'}]}>
             
             <FlatList
                 style={{width: '100%'}}
-                data={ing}   
-                keyExtractor={item => item.key} 
+                data={getRecommendations.response}   
+                keyExtractor={item => item} 
                 renderItem={restrictionRenderItem}          
-                //refreshing={getRecdIngs.loading}
-                //onRefresh={() => getRecdIngs.background()}
-                //foodOnDelete={(f) => setRecdIngs.execute(f.foodId, 0).then(() => getRecdIngs.background())}
+                refreshControl={<RefreshControl colors={[Colors.Blue[4]]} refreshing={getRecommendations.loading} onRefresh={() => getRecommendations.background()}/>}
             /> 
         </View>
     );

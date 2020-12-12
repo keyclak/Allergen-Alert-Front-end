@@ -269,6 +269,24 @@ const setFoodState = {
     reject: [ ]
 };
 
+const getRecommendations = {
+    url: '/Recommendation',
+    method: 'GET',
+    accept: [
+        { when: r => r.status == 200, then: r => r.json() }
+    ],
+    reject: [ ]
+};
+
+const rejectRecommendation = {
+    url: '/Recommendation/Reject',
+    method: 'POST',
+    accept: [
+        { when: r => r.status == 200, then: r => null }
+    ],
+    reject: []
+};
+
 export function useLogin(username, password) {
     const context = useContext(AuthContext);
     return useAsync(() => api(context, login, undefined, { username, password }));
@@ -416,4 +434,14 @@ export function useGetSavedFoods() {
 export function useSetFoodState() {
     const context = useContext(AuthContext);
     return useAsync((id, state) => api(context, setFoodState, { id }, { state }));
+}
+
+export function useGetRecommendations() {
+    const context = useContext(AuthContext);
+    return useAsync(() => api(context, getRecommendations));
+}
+
+export function useRejectRecommendation() {
+    const context = useContext(AuthContext);
+    return useAsync((ingredient) => api(context, rejectRecommendation, undefined, { ingredient }));
 }
