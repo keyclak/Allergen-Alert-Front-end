@@ -95,11 +95,22 @@ function DrawerScreen() {
             <Drawer.Screen name="Grocery List" component={GroceryListStackScreen}/>
             <Drawer.Screen name="Flagged Foods" component={FlaggedFoodsStackScreen}/>
             <Drawer.Screen name="Saved Foods" component={SavedFoodsStackScreen}/>
-            <Drawer.Screen name="Reccomended Restrictions" component={RecdIngs}/>
+            <Drawer.Screen name="Reccomended Restrictions" component={ReccStackScreen}/>
             <Drawer.Screen name="Log Out" component={Login}/>
         </Drawer.Navigator>
     );
 }
+
+
+const ReccStack = createStackNavigator();
+function ReccStackScreen() {
+    return (
+        <ReccStack.Navigator screenOptions={HeaderScreenOptions}>
+            <ReccStack.Screen name="Reccomended Restrictions" component={RecdIngs} options={GetMenuHeaderOptions('Reccomended Restrictions')}/>
+        </ReccStack.Navigator>
+    )
+}
+
 
 const AuthStack = createStackNavigator();
 function AuthStackScreen() {

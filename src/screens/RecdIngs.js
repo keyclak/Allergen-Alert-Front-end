@@ -4,7 +4,7 @@ import { TouchableOpacity, FlatList, View, Text, Pressable, StyleSheet} from 're
 import LoadingButton from '../components/LoadingButton';
 import TextLoadingButton from '../components/TextLoadingButton';
 import { Colors, StyleConstants, Styles } from '../style';
-import { SwipableListItem} from '../components/SwipableListItem';
+import SwipableListItem from '../components/SwipableListItem';
 import { render } from 'react-dom';
 
 export default function SavedFoods({navigation}) {
@@ -31,20 +31,27 @@ export default function SavedFoods({navigation}) {
         <Text>{item.name}</Text>
       );
 
+    function restrictionRenderItem({item}) {
+        return (
+             <SwipableListItem deleteOnPress={() => null} style={{backgroundColor: Colors.Blue[0]}}>
+                    <Text style={[Styles.listItemText, {color: Colors.Blue[6]}]}>{item.name}</Text>
+            </SwipableListItem>
+        )
+    }
+
+
     return (
         <View style={[Styles.container, {justifyContent: 'flex-start'}]}>
-            <SwipableListItem deleteOnPress={() => null} style={{backgroundColor: Colors.Blue[0]}}>
-                    <Text style={[Styles.listItemText, {color: Colors.Blue[6]}]}>{item.name}</Text>
-                </SwipableListItem>
-            {/* <FlatList
+            
+            <FlatList
+                style={{width: '100%'}}
                 data={ing}   
                 keyExtractor={item => item.key} 
-                renderItem={renderItem}          
-                //foods={getRecdIngs.response}
+                renderItem={restrictionRenderItem}          
                 //refreshing={getRecdIngs.loading}
                 //onRefresh={() => getRecdIngs.background()}
                 //foodOnDelete={(f) => setRecdIngs.execute(f.foodId, 0).then(() => getRecdIngs.background())}
-            /> */}
+            /> 
         </View>
     );
 }
